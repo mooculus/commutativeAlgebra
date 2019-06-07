@@ -1,0 +1,298 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Primary decomposition}
+
+\begin{document}
+\begin{abstract}
+  We prove the primary decomposition theorem. Sources and references:
+  \cite{AM1969, sD08, dE95, mR1995}.
+\end{abstract}
+\maketitle
+
+
+\begin{definition}
+  Let $R$ be a ring and $N$, $N_1$, and $N_2$ be proper submodules of
+  some $R$-module $M$. The $R$-module $N$ is called \dfn{irreducible}
+  if $N = N_1\cap N_2$ implies $N=N_1$ or $N=N_2$.
+\end{definition}
+
+
+\begin{exercise}
+  Specialize the idea of an irreducible submodule to an irreducible
+  ideal.
+\end{exercise}
+
+
+\begin{lemma}
+  Let $R$ be a noetherian ring and $M$ be a finitely generated
+  $R$-module. The $R$-module $N\subsetneq M$ can be written as a finite
+  interesection of irreducible submodules of $M$.
+  \begin{sketch}
+    Seek a contradiction by setting $\mathcal{S}$ to be the set of
+    submodules of $M$ that cannot be expressed as a finite
+    intersection of irreducible submodules. Use the fact that $M$ is
+    noetherian to conclude $\mathcal{S}$ must have a maximal element
+    which cannot be irreducible. Find a contradiction.
+  \end{sketch}
+\end{lemma}
+
+\begin{question}
+What is the nature of the irreducible submodules described above?
+\end{question}
+
+
+\begin{definition}
+  Let $R$ be a Noetherian ring. A nonzero finitely generated
+  $R$-module $Q$ is called \dfn{coprimary} if for all $x\in R$, the
+  homothety map (defined by multiplication by $x$)
+  \[
+  Q\lto^x Q
+  \]
+  is either injective or nilpotnent.
+\end{definition}
+
+\begin{exercise}
+  Consider these questions and make wild conjectures:
+  \begin{enumerate}
+  \item Is the $\Z$-module $\Z_{18}$ is coprimary?
+  \item Is the $\Z$-module $\Z_{9}$ is coprimary?
+  \end{enumerate}
+\end{exercise}
+
+
+\begin{lemma}
+  Let $R$ be a Noetherian ring and $N\subset M$ be finitely generated
+  $R$-modules. If $N$ is an irreducible submodule of $M$, then $Q=M/N$
+  is coprimary.
+  \begin{sketch}
+    Construct an ascending chain of kernels of the homothety map
+    defined via multiplication by $x\in R$. Use the fact that $R$ is
+    Noetherian and $M$ is finitely generated.
+    
+    Supposing that $x q= 0$, we must show that $q= 0$ or that $x$ is
+    nilpotent on $Q$.
+
+    Let $a \in x^n Q \cap qR$. If $a\in qR$, argue $xa$ must be zero.
+    Then suppose $a\in x^n Q$, so for $b\in Q$,
+    \begin{align*}
+      &\Rightarrow a = x^nb\\
+      &\Rightarrow xa = x^{n+1}b\\
+      &\Rightarrow x^n b = 0\\
+      &\Rightarrow a=0.
+    \end{align*}
+    Use the fact that $0$ is an irreducible submodule of $Q$ to
+    complete the proof.
+  \end{sketch}
+\end{lemma}
+
+
+\begin{exercise}
+  Specialize this lemma to ideals.
+\end{exercise}
+
+
+
+\begin{definition}
+  Let $R$ be a ring and $Q$ be a $R$-module. The \dfn{assassins} of
+  $Q$, denoted by $\ass(Q)$, is a set such that:
+  \begin{itemize}
+  \item $\ass(Q)\subset\spec(R)$.
+  \item $Q$ contains a submodule isomorphic to $R/\p$.
+  \end{itemize}
+\end{definition}
+
+\begin{exercise}
+  Consider $\Z_6$ as a $\Z$-module. Find the assassins of $\Z_6$.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, consider the $k[x]$-module $k[x]/(x^5)$. Find
+  the assassins of $k[x]/(x^5)$.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, consider the $k[x,y]$-module $k[x,y]/(xy)$. Find
+  the assassins of $k[x,y]/(xy)$.
+\end{exercise}
+
+
+
+\begin{proposition}
+  Let $R$ be a ring, $S$ be a multiplicacitvely closed subset of $R$,
+  and $Q$ be an $R$-module. Then
+  \[
+  \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}}(S^{-1}(Q))
+  \]
+  whenever $S\cap\p = \emptyset$.
+  \begin{sketch}
+    $(\Rightarrow)$
+
+    $(\Leftarrow)$
+  \end{sketch}
+\end{proposition}
+
+
+\begin{lemma}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, then $Q$ is coprimary if and only if it has exactly one
+  assassin.
+  \begin{sketch} 
+    $(\Rightarrow)$ Suppose that $Q$ is a coprimary module. Use double
+    containment to show any assassin is equal to $\rad{\ann(Q)}$.
+
+    
+    $(\Leftarrow)$ Seeking a contradiction, suppose there is a single
+    assassin of $Q$, call it $\p$, but $Q$ is not coprimary . If $x\in
+    \p$, but $x$ is not nilpotent on $Q$, localize at $x$. Contract
+    the canonical map to find a second prime ideal in $\ass(Q)$.
+  \end{sketch}
+\end{lemma}
+
+
+\begin{definition}
+  A module is $Q$ is \dfn{$\boldsymbol{\p}$-coprimary} if $\ass(Q) = \{\p\}$.
+\end{definition}
+
+
+\begin{theorem}
+  Given a Noetherian ring $R$, and a finitely generated $R$-module $M$, we may embed
+  \[
+  M\into \prod_{\p\in\ass(M)} Q(\p)
+  \]
+  where each $Q(\p)$ is a $\p$-coprimary module.
+\end{theorem}
+
+
+
+
+\begin{definition}
+  Let $R$ be a ring, with $N\subset M$ being $R$-modules. The module
+  $N$ is called \dfn{primary} if for all $x\in\R$, the $R$-module
+  homomorphism defined via ``multiplication by $x$''
+  \[
+  M/N\lto^{x} M/N
+  \]
+  is either injective or nilpotnent.
+\end{definition}
+
+\begin{exercise}
+  Specialize this definition to ideals.
+\end{exercise}
+
+\begin{exercise}
+  Show that every prime ideal is primary.
+\end{exercise}
+
+
+\begin{theorem}
+  In a Noetherian ring $R$, irreducible modules are primary modules.
+\end{theorem}
+
+
+
+\begin{proposition}
+  Let $R$ be a ring and $N\subset M$ be $R$-modules. If $N$ is primary, then the set
+  \[
+  \{ x\in R : \text{$M/N\lto^x M/N$ is nilpotent}\} 
+  \]
+  forms a prime ideal in $R$. If we call this ideal $\p$, then we say
+  that $N$ is $\p$-primary.
+\end{proposition}
+
+
+\begin{exercise}
+  Specialize this proposition to ideals. Show that if an idea $\a$ is
+  $\p$-primary, then $\rad{\a} = \p$.
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
+  is $\p$-primary, then we have an injection
+  \[
+  R/\p \into M/N
+  \]
+\end{exercise}
+
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
+  is $\p$-primary, $\q$ is a prime ideal of $R$, and we have an
+  injection
+  \[
+  R/\q \into M/N,
+  \]
+  then $\p = \q$.
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring, $\a$ be an ideal, and let $\m$ be a
+  maximal ideal. Show that if $\m^n \subset\a \subset \m$, then $\a$
+  is $\m$-primary.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, and consider $R=k[x,y,z]/(z^2-xy)$. Let $\p = (\bar{x},\bar{y})$.
+  \begin{enumerate}
+  \item Show that $\p$ is a prime ideal in $R$.
+  \item Show that $\p^2$ is not $\p$-primary.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a UFD and $\p = (p)$ where $p$ is a prime element. Show
+  that $\p^n$ is a $\p$-primary ideal for all $n>0$.
+\end{exercise}
+
+
+
+
+
+\begin{proposition}%hM1986 page 161
+   A Noetherian integral domain $R$ is a UFD if and only every minimal
+   prime ideal is principal.
+\end{proposition}
+
+
+
+\section{Examples and applications}
+
+\subsection{Prime factorization}
+
+\subsection{Fundamental theorem of finitely generated abelian groups}
+
+
+\subsection{Edge ideals} %% maybe bad title.
+
+See HH2011 for edge ideal stuff
+
+
+\subsection{Induced map}
+
+
+answer question:
+
+  Given a morphism $\Phi\supp(M) \to \supp(N)$, can you induce
+  \[
+  \Phi^\sharp : N\to M?
+  \]
+
+\subsection{Noetherian spectrum}
+
+See Proposition 3.26 of sD08.
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
