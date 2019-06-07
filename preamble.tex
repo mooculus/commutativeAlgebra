@@ -1,0 +1,141 @@
+
+
+\usepackage{tikz-cd}
+\usepackage[sans]{dsfont}
+
+\DefineVerbatimEnvironment{macaulay2}{Verbatim}{numbers=left,frame=lines,label=Macaulay2,labelposition=topline}
+
+%%% This next bit of code defines all our theorem environments
+\makeatletter
+\let\c@theorem\relax
+\makeatother
+
+\let\definition\relax
+\let\enddefinition\relax
+
+\let\theorem\relax
+\let\endtheorem\relax
+
+\let\proposition\relax
+\let\endproposition\relax
+
+\let\exercise\relax
+\let\endexercise\relax
+
+\let\question\relax
+\let\endquestion\relax
+
+\let\remark\relax
+\let\endremark\relax
+
+\let\lemma\relax
+\let\endlemma\relax
+
+\newtheoremstyle{SlantTheorem}{\topsep}{\topsep}%%% space between body and thm
+		{\slshape}                      %%% Thm body font
+		{}                              %%% Indent amount (empty = no indent)
+		{\bfseries\sffamily}            %%% Thm head font
+		{}                              %%% Punctuation after thm head
+		{3ex}                           %%% Space after thm head
+		{\thmname{#1}\thmnumber{ #2}\thmnote{ \bfseries(#3)}}%%% Thm head spec
+\theoremstyle{SlantTheorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+%% \newtheorem*{dfnn}{Definition}
+%% \newtheorem{ques}{Question}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%% \newtheorem*{war}{WARNING}
+%% \newtheorem*{cor}{Corollary}
+%% \newtheorem*{eg}{Example}
+\newtheorem*{remark}{Remark}
+\newtheorem*{touchstone}{Touchstone}
+
+
+\newtheoremstyle{Exercise}{\topsep}{\topsep} %%% space between body and thm
+		{}                           %%% Thm body font
+		{}                           %%% Indent amount (empty = no indent)
+		{\bfseries}                  %%% Thm head font
+		{)}                          %%% Punctuation after thm head
+		{ }                          %%% Space after thm head
+		{\thmnumber{#2}\thmnote{ \bfseries(#3)}}%%% Thm head spec
+\theoremstyle{Exercise}
+\newtheorem{exercise}{}[theorem]
+
+%% \newtheoremstyle{Question}{\topsep}{\topsep} %%% space between body and thm
+%% 		{\bfseries}                  %%% Thm body font
+%% 		{3ex}                        %%% Indent amount (empty = no indent)
+%% 		{}                           %%% Thm head font
+%% 		{}                           %%% Punctuation after thm head
+%% 		{}                           %%% Space after thm head
+%% 		{\thmnumber{#2}\thmnote{ \bfseries(#3)}}%%% Thm head spec
+\newtheoremstyle{Question}{3em}{3em} %%% space between body and thm
+		{\large\bfseries}                           %%% Thm body font
+		{3ex}                           %%% Indent amount (empty = no indent)
+		{\bfseries}                  %%% Thm head font
+		{}                          %%% Punctuation after thm head
+		{ }                          %%% Space after thm head
+		{}%%% Thm head spec
+\theoremstyle{Question}
+\newtheorem*{question}{}
+
+
+
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\bar}{\overline}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\V}{\mathbb V}
+\newcommand{\I}{\mathbb I}
+\newcommand{\A}{\mathbb A}
+\newcommand{\iso}{\simeq}
+\newcommand{\ph}{\varphi}
+\newcommand{\Cf}{\mathcal{C}}
+\newcommand{\IZ}{\mathrm{Int}(\Z)}
+\newcommand{\dsum}{\oplus}
+\newcommand{\directsum}{\coprod}
+\newcommand{\union}{\bigcup}
+\renewcommand{\i}{\mathfrak}
+\renewcommand{\a}{\mathfrak{a}}
+\renewcommand{\b}{\mathfrak{b}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\dfn}{\textbf}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\supp}{Supp}
+\DeclareMathOperator{\ass}{Ass}
+\DeclareMathOperator{\ff}{Frac}
+\DeclareMathOperator{\im}{Im}
+\renewcommand{\ker}{\mathop{\mathrm{Ker}}\nolimits}
+\newcommand{\lps}{[\hspace{-0.25ex}[}
+\newcommand{\rps}{]\hspace{-0.25ex}]}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\tensor}{\otimes}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\X}{\mathbf X}
+\newcommand{\Y}{\mathbf Y}
+\renewcommand{\k}{\boldsymbol{\kappa}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\l}{\ell}
+\newcommand{\1}{\mathds{1}}
+\newcommand{\lto}{\mathop{\longrightarrow\,}\limits}
+\newcommand{\rad}{\sqrt}
+\renewcommand{\vec}{\mathbf}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\newcommand{\macaulay}{\textsl{Macaulay2}}
+
+
+
+%\renewcommand{\proofname}{Sketch of Proof}
+
+\newenvironment{sketch}[1][Sketch of Proof]
+  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]}
+{\qed\end{trivlist}}

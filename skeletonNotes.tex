@@ -1,0 +1,62 @@
+\documentclass[noauthor,nooutcomes,twosided]{xourse}
+
+\input{preamble.tex}
+
+
+% Store usual maketitle as othermaketitle
+\let\othermaketitle\maketitle
+
+\renewcommand{\maketitle}{ %
+\pagestyle{empty}
+
+\begin{center}
+  \Huge \textbf{Commutative algebra:}
+
+  \rule{\textwidth}{0.2ex}
+
+
+  \includegraphics[height=5in]{Skeleton_diagram-eps-converted-to.pdf}
+
+
+  \rule{\textwidth}{0.2ex}
+  
+  \textbf{Skeleton Notes}
+\end{center}
+
+\cleardoublepage
+
+\let\maketitle\othermaketitle % renew maketitle to usual definition.
+}
+
+
+\title{Commutative algebra: skeleton notes}
+\author{Bart Snapp}
+
+\begin{document}
+\maketitle
+
+\pagestyle{main}
+
+
+\chapterstyle
+\activity{references/references.tex}
+
+
+\chapterstyle
+\activity{preliminaries/preliminaries.tex}
+\chapterstyle
+\activity{zariskiTopology/topology.tex}
+\sectionstyle
+\activity{zariskiTopology/affineSpace.tex}
+\activity{zariskiTopology/primeSpectrum.tex}
+\activity{zariskiTopology/nullstellensatz.tex}
+\activity{zariskiTopology/supportOfAModule.tex}
+\chapterstyle
+\activity{primaryDecomposition/fundamentalTheorems.tex}
+\sectionstyle
+\activity{primaryDecomposition/primaryDecomposition.tex}
+
+%% %% \chapterstyle
+%% \activity{references/references.tex}
+
+\end{document}
