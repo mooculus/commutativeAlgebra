@@ -1,0 +1,59 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{The Zariski topology}
+
+
+\begin{document}
+\begin{abstract}
+  We recall definitions related to topology. 
+\end{abstract}
+\maketitle
+
+Recall the definition of a topological space:
+
+\begin{definition}
+  A \dfn{topological space} is a set $X$ with a subset called the
+  \dfn{closed sets} that satisfy the following properties:
+  \begin{enumerate}
+  \item The empty set and $X$ are closed.
+  \item Intersections of arbitrary collections of closed sets are
+    closed.
+  \item Finite unions of closed sets are closed.
+  \end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+  A topological space $X$ is said to be \dfn{irreducible} if $X\ne
+  \emptyset$ and if given closed sets $X_1$ and $X_2$, $X=X_1\cup X_2$
+  implies $X=X_1$ or $X=X_2$.
+\end{definition}
+
+
+
+
+\begin{definition}
+  Let $X$ and $Y$ be topological spaces. A function $f:X\to Y$ is
+  called \dfn{continuous} if for each closed set in $V \subset Y$,
+  $f^{-1}(V)$ is closed in $X$.
+\end{definition}
+
+
+
+\begin{definition}
+  Let $X$ and $Y$ be topological spaces. A function $f:X\to Y$ is a
+  \dfn{homeomorphism} if:
+  \begin{enumerate}
+  \item $f$ is bijective.
+  \item $f$ is continuous.
+  \item $f^{-1}$ is continuous.
+  \end{enumerate}
+\end{definition}
+
+
+
+\end{document}

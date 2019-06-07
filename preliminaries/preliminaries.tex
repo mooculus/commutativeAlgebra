@@ -1,0 +1,534 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Preliminaries}
+
+\begin{document}
+\begin{abstract}
+  Some preliminary definitions and propositions. Adapted from \cite{sD2008}.
+\end{abstract}
+\maketitle
+
+\section{Basic definitions}
+
+In these notes all rings will be commutative with a multipicative
+identity. Hence we will define a ring as follows:
+
+\begin{definition}\index{ring} A \dfn{ring} is a set with two binary operations $(R, +,\cdot)$ such that:
+\begin{enumerate}
+\item $R$ is an Abelian group under $+$.
+\item Multiplication is commutative and associative. 
+\item Multiplication is distributive over addition.
+\item There exists a multiplicative identity denoted by $1_R$. 
+\end{enumerate}
+\end{definition}
+
+We will often denote $1_R$ simpliy by $1$.
+
+\begin{definition}\index{ring!homomorphism} If $A$ and $B$ are rings, a map $\ph:A\to B$ is a \dfn{ring homomorphism} if:
+\begin{enumerate}
+\item $\ph(a+b) = \ph(a) + \ph(b).$
+\item $\ph(a\cdot b) = \ph(a)\cdot\ph(b).$
+\item $\ph(1_A) = 1_B$.
+\end{enumerate}
+\end{definition}
+It is easy to show that if $\ph:A\to B$ is a ring homomorphism, then $\ph(0_A) = 0_B$. However, we cannot show that $\ph(1_A) = 1_B$, unless we have it as part of our definition.
+
+
+\begin{definition}\index{ideal} A subset $I$ of a ring $A$ is called an \dfn{ideal} if for all $a\in A$, we have that
+\[
+aI := \{a\cdot x: x\in I\} \subset I.
+\]
+\end{definition}
+From the definition, one can see than an ideal is an additive subgroup of its ring.
+
+
+
+\begin{theorem}[Correspondance Theorem]\label{T:corr}\index{Correspondance Theorem}
+  Considering the canonical surjection $\pi:A \to A/I$, $\pi$ induces
+  a bijective order preserving correspondence:
+  \[
+  \{\text{Ideals of $A$ containing $I$}\} \longleftrightarrow \{\text{Ideals of $A/I$}\} 
+  \]
+\end{theorem}
+
+
+%% \begin{definition} \dfn{$\boldsymbol{A}$-module} 
+%% \end{definition}
+
+%% definition mod hom
+
+%% definition fg module
+
+%% definition free module
+
+%% propositon universal prop free mod
+
+%% propositon quotient free module
+
+\begin{definition}\index{algebra} A ring $A$ is an \dfn{$\boldsymbol{R}$-algebra} if it is equipped with an $R$-module structure. Equivalently, this means that there exists some ring homomorphism $\ph:R\to A$. An $R$-algebra is finitely generated, or of finite type, if 
+\[
+A \iso R[X_1,\dots,X_n]/I.
+\]
+\end{definition}
+
+\begin{definition}\index{algebra homomorphism}\index{homomorphism!of algebras} If $A$ and $B$ are $R$-algebras, $\ph:A\to B$ is a \dfn{$\boldsymbol{R}$-algebra homomorphism} if $\ph$ is a ring homomorphism and $\ph$ is $R$-linear, that is for $x\in R$, $x\ph(a) = \ph(xa)$.
+\end{definition}
+
+
+\begin{example} The complex conjugation map
+\begin{align*}
+\C[X] &\to \C[X]\\
+a_nX^n + \cdots a_1X + a_0 &\mapsto \bar{a}_nX^n + \cdots \bar{a}_1X + \bar{a}_0, 
+\end{align*}
+is not a $\C$-algebra homomorphism, but it is an $\R$-algebra homomorphism.
+\end{example}
+
+
+
+\section{Operations on ideals}
+
+
+\begin{definition}\index{sum of ideals} Given two ideals $I, J\subset A$, the \dfn{sum} of $I$ and $J$ is defined as
+\[
+I + J = \{x + y : x\in I \text{ and }y\in J\}.
+\]
+\end{definition}
+
+
+\begin{exercise} Show that if $I$ and $J$ are ideas in a ring $A$, then $I+J$ is an ideal.
+\end{exercise}
+
+We can perform operations on ideals using \macaulay:
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z]
+I = ideal(x^2-y^2)
+J = ideal(z*x^2-y^2*z)
+I+J
+\end{macaulay2}
+
+
+
+
+\begin{definition}\index{product of ideals} Given two ideals $I, J\subset A$, the \dfn{product} of $I$ and $J$ is defined as
+\[
+I \cdot J = \left\{\sum_{i = 1}^n x_i \cdot y_i : x_i\in I \text{ and }y_i\in J\right\}.
+\]
+\end{definition}
+
+\begin{exercise} Show that if $I$ and $J$ are ideas in a ring $A$, then $I\cdot J$ is an ideal.
+\end{exercise}
+
+\begin{definition}\index{intersection of ideals} Given two ideals $I, J\subset A$, the \dfn{intersection} of $I$ and $J$ is defined as the set-theoretic intersection of $I$ and $J$.
+\end{definition}
+
+\begin{exercise} Show that if $I$ and $J$ are ideas in a ring $A$, then $I\cap J$ is an ideal.
+\end{exercise}
+
+
+\begin{exercise} If $\a, \b,\i c$ are ideals of $A$, show that 
+\[
+\a(\b +\i c) = \a\b + \a\i c.
+\]
+\end{exercise}
+
+\begin{exercise} If $\a$ and  $\b$ are ideals of $A$ and $M$ is an $A$-module, show that
+\[
+\a(M/\b M) = \frac{(\a+\b)M}{\b M}.
+\]
+\end{exercise}
+
+
+
+\begin{exercise} Assuming that $\a, \b,\i c$ are ideals of $A$ and that $\a\supset \b$ or $\a \supset \i c$, prove the \dfn{modular law}\index{modular law}:
+\[
+\a \cap (\b + \i c) = \a \cap \b + \a \cap \i c.
+\]
+\end{exercise}
+
+
+\begin{definition}\index{comaximal} Two ideals $I,J \subset A$ are called \dfn{comaximal} if $I+ J = (1)$.
+\end{definition}
+
+\begin{remark} Sometimes people use the term \textit{coprime} for comaximal. We will refrain from doing this to avoid confusion later on with \textit{coprimary} ideals.
+\end{remark}
+
+\begin{exercise} Show that if $I$ and $J$ are comaximal ideals of $A$, then $IJ = I \cap J$.
+\end{exercise}
+
+\begin{warning} The union of two ideals is \textbf{not} generally an ideal. 
+\end{warning}
+
+\begin{example} Consider $k[X,Y]$ where $k$ is a field. Now $(X) \cup (Y)$ is not an ideal as it contains $X$, $Y$, but not $X+Y$.
+\end{example}
+
+Despite this fact there are some things we can say about unions of ideals.
+
+\begin{lemma}[Prime Avoidance]\label{L:PA}\index{prime avoidance}
+Let $A$ be a ring and $I$ be an ideal of $A$.  If $\p_1,\ldots,\p_n$ are prime ideals such that 
+\[
+I \not\subseteq \p_i \qquad\text{for all $i$,}
+\]
+then 
+\[
+I \not\subset \bigcup_{i = 1}^n \p_i.
+\]
+\end{lemma}
+
+
+\begin{remark} The above lemma is called \textit{prime avoidance} as if $I\not\subset \p_i$ for all $i$, then there is some element of $a \in I$ which \textit{avoids} being contained in any $\p_i$. 
+\end{remark}
+
+
+\begin{definition}\index{colon ideal/submodule}\index{ideal quotient}\index{colon ideal@$(Z:_X Y)$} If $\a$ and $\b$ are ideals of $A$, then the \dfn{colon ideal} $(\b:_A \a)$ is defined as follows:
+\[
+(\b:_A \a) = \{ x\in A: x\a \subset \b\}
+\]
+Moreover if $M$ is an $A$-module and $N$ is a submodule of $M$, then this can be generalized to modules by defining the \dfn{colon submodule} $(N:_M \a)$ as follows:
+\[
+(N:_M \a) = \{x\in M: x\a \subset N  \}
+\]
+\end{definition}
+
+We can compute colon ideals using \macaulay:
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z]
+I = ideal(x^2*y-z^2, x*y-z^3)
+J = ideal(x,y,z)
+I:J
+\end{macaulay2}
+
+
+\begin{remark} Sometimes the colon ideal is called the \textit{ideal quotient}\index{ideal quotient}. However, we will refrain from using that terminology as the word \textit{quotient} is overused in mathematics.
+\end{remark}
+
+\begin{definition}\index{annihilator}\index{annM@$\ann_A(M)$} If $M$ is an $A$-module, the \dfn{annihilator} of $M$ over $A$, is defined as:
+\[
+\ann_A(M) := (0:_A M)  =  \{ x\in A: xm = 0 \text{ for all } m \in M\}
+\]
+\end{definition}
+
+\begin{proposition}[Properties of the Colon Ideal] If $\a$, $\b$, and $\i c$ are ideals of $A$, the following hold:
+\begin{enumerate}
+\item $\b\subset (\b:_A \a)$.
+\item $(\b:_A \a) \a \subset \b$.
+\item $((\i c:_A \b) : \a)= (\i c :_A \b \a) = ((\i c :_A \a):_A \b)$.
+\item $\left(\bigcap_i \b_i:_A \a\right) = \bigcap_i(\b_i:_A \a)$.
+\item $\left(\b:_A\sum_i \a_i\right) = \bigcap_i(\b:_A \a_i)$.
+\end{enumerate}
+\end{proposition}
+
+
+
+\section{Chain conditions}
+
+\begin{definition}\index{Noetherian!module} Given a ring $A$, an $A$-module $M$ is \dfn{Noetherian} if it satisfies the following equivalent conditions:
+\begin{enumerate}
+\item Every non-empty set of submodules has a maximal element.
+\item $M$ satisfies the ascending chain condition (ACC) on submodules.
+\item Every submodule in $M$ is finitely generated.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\index{Noetherian!ring} A ring $A$ is \dfn{Noetherian} if it is a Noetherian $A$-module. Note that the only $A$-submodules of $A$ are the ideals of the ring $A$.
+\end{definition}
+
+\begin{definition}\index{Artinian!module} Given a ring $A$, an $A$-module $M$ is \dfn{Artinian} if it satisfies the following equivalent conditions:
+\begin{enumerate}
+\item Every non-empty set of submodules has a minimal element.
+\item $M$ satisfies the descending chain condition (DCC) on submodules.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\index{Artinian!ring} A ring $A$ is \dfn{Artinian} if it is an Artinian $A$-module. Note that the only $A$-submodules of $A$ are the ideals of the ring $A$.
+\end{definition}
+
+\begin{example} $\Z$ is a Noetherian ring which is not an Artinian ring.
+\end{example}
+
+\begin{example} If $k$ is a field $k[x_1,\dots,x_n,\dots]$,  is neither Artinian nor Noetherian. 
+\end{example}
+
+\begin{example} Any field is an Artinian ring. 
+\end{example}
+
+\begin{remark} As we will soon state, every Artinian ring is also a Noetherian ring. 
+\end{remark}
+
+
+
+\begin{example} A finite Abelian group is a $\Z$-module which is both Noetherian and Artinian.
+\end{example}
+
+
+
+\begin{proposition} If $A$ is Noetherian and $M$ is a finitely generated $A$-module, then $M$ is Noetherian.
+\end{proposition}
+
+
+\begin{example} $A=k[x_1,\dots,x_n,\dots]$ is a finitely generated $k[x_1,\dots,x_n,\dots]$-module which is not Noetherian.
+\end{example}
+
+\begin{example} $\Z_{p^\infty}$ is an Artinian $\Z$-module which is not a Noetherian $\Z$-module. Recall that $\Z_{p^\infty}$ is the $\Z$-submodule of $\Q/\Z$ generated by
+\[
+\{1/p^n : p\text{ is a prime in } \Z\}.
+\]
+\end{example}
+
+
+
+
+
+\begin{definition}\index{Jordan-H\"older chain}\index{composition series} A chain of $A$-modules
+\[
+M = M_0 \supsetneq M_1\supsetneq \dots \supsetneq M_n =(0)
+\]
+is a \dfn{Jordan-H\"older chain}, also known as a \dfn{composition series}, if for each $i$, $M_i/M_{i+1}\iso A/\i m$ for some maximal ideal $\i m$ in $A$.
+\end{definition}
+
+\begin{proposition} Each composition series for $M$ has the same length.
+\end{proposition}
+
+
+\begin{definition}\index{length}\index{l@$\l$} The \dfn{length} of an $A$-module, denoted by $\l_A(M)$, is the length of a composition series for $M$. That is, if
+\[
+M = M_0 \supsetneq M_1\supsetneq \dots \supsetneq M_n =(0)
+\]
+is a composition series, then $\l_A(M)=n$.
+\end{definition}
+
+
+
+\begin{proposition} $M$ has finite length if and only if $M$ is both Artinian and Noetherian.
+\end{proposition}
+
+
+\begin{proposition}  Given a short exact sequence of $A$-modules
+\[
+0\to M' \to M\to M'' \to 0
+\]
+we have that:
+\begin{enumerate}
+\item $M$ is Noetherian if and only if both $M'$ and $M''$ are Noetherian.
+\item $M$ is Artinian if and only if both $M'$ and $M''$ are Artinian.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}\index{length!additive property} Given a short exact sequence of $A$-modules
+\[
+0\to M' \to M\to M'' \to 0
+\]
+such that $\l_A(M)$ is finite, then length is an additive function, that is,
+\[
+\l_A(M) = \l_A(M')+\l_A(M'').
+\]
+In particular, $\l_A(M)$ is finite if and only if $\l_A(M')$ and $\l_A(M'')$ are finite.
+\end{proposition}
+
+
+\begin{theorem}[Hilbert's Basis Theorem]\index{Hilbert's Basis Theorem} If $A$ is a Noetherian ring, then $A[x]$ is a Noetherian ring.
+\end{theorem}
+
+\begin{corollary}\hfill\begin{enumerate}
+\item $\Z[x_1,\dots,x_n]$ is Noetherian.
+\item If $k$ is a field, then $k[x_1,\dots,x_n]$ is Noetherian.
+\end{enumerate}
+\end{corollary}
+
+
+\begin{exercise} Show that if $A$ is Noetherian, then $A\lps x\rps$ is Noetherian.
+\end{exercise}
+
+
+\begin{lemma} If $A$ is a ring with an ideal $I$ which is not prime, then there exist $I_1$ and $I_2$ each containing $I$ such that $I\supset I_1I_2$.
+\end{lemma}
+
+\begin{lemma} If $A$ is a Noetherian ring with an ideal $I$, $I$ must contain a finite product of prime ideals.
+\end{lemma}
+
+\begin{lemma} Every Artinian domain is a field.
+\end{lemma}
+
+%% \begin{theorem} A ring $A$ is Artinian if and only if $A$ is Noetherian and every prime ideal is maximal.
+%% \end{theorem}
+
+%% \begin{proof} See \cite{ZS58}.
+%% \end{proof}
+
+
+%% \begin{corollary} If $A$ is an Artinian ring, then $A$ is Noetherian.
+%% \end{corollary}
+
+
+
+
+\section{Flat modules}
+
+\begin{definition}\index{flat} An $A$-module $F$ is \dfn{flat} if 
+\[
+M\into M'
+\]
+implies that
+\[
+M\tensor_A F \into M'\tensor_A F.
+\]
+\end{definition}
+
+\begin{remark} If $F$ is flat then $-\tensor_A F$ and $F\tensor_A -$ are exact functors from the category of $A$-modules to the category of $A$-modules.
+\end{remark}
+
+\begin{proposition} An $A$-module $F$ is flat if and only if for all finitely generated $A$-modules $M$ and $M'$, $M\into M'$ implies that 
+\[
+M\tensor_A F \into M'\tensor_A F.
+\]
+\end{proposition}
+
+\begin{proposition}
+  If $A$ and $B$ are rings, with $B$ an $A$-module, $B$ is flat over
+  $A$ if and only if any solution $\x\in B$ of homogeneous equations
+  \[
+  \sum a_{i,j} x_j =0 \qquad\text{where}\qquad \mathbf{a}\in A
+  \]
+  is a linear combination of solutions in $A$.
+\end{proposition}
+
+
+\begin{proposition}\index{free module!flatness of} Every free module is flat.
+\end{proposition}
+
+\begin{example} $\Q$ is flat over $\Z$ but $\Q$ is not free over $\Z$.
+\end{example}
+
+
+
+
+
+\section{Localization}\index{localization}
+
+Let $U$ be a subset of $A$ which is closed under multiplication and contains $1$. Given an $A$-module $M$, we may now write ``fractions'' 
+\[
+\frac{m}{u}
+\]
+where $m\in M$ and $u\in U$. For $m'\in M$ and $u'\in U$, we will say
+\[
+\frac{m}{u} = \frac{m'}{u'}\quad\text{when}\quad (mu' -m'u)z = 0 
+\]
+for some $z\in U$. This defines an equivalence relation and we denote the set of equivalence classes by $U^{-1} M$. We can put the canonical module structure on $U^{-1}M$. If $M$ is an $A$-algebra, we may put the canonical ring structure on $U^{-1}M$.
+
+
+\begin{warning} The homomorphism $A\to U^{-1}A$ defined via $x\mapsto x/1$ is \textbf{not} generally injective, consider $A = \Z/6\Z$ and $U = \{1,3\}$.
+\end{warning}
+
+
+\begin{proposition}[Universal Property of Localization]\index{universal property!of localization}\index{localization!universal property}
+  If $\ph:A\to B$ is a homomorphism of rings such that $\ph(u)$ is a
+  unit in $B$ for all $u\in U$, then there exists a unique
+  homomorphism $\tilde\ph: U^{-1}A\to B$ making the diagram below
+  commute.
+  \[
+  \begin{tikzcd}
+    A \arrow[r,"\eta"] \arrow[d,swap,"\ph"] & U^{-1}A  \arrow[dl,dashed,"\tilde{\ph}"]\\
+    B &
+  \end{tikzcd}
+  \]
+\end{proposition}
+
+
+\begin{proposition}
+  If $M$ is an $A$-module and $U$ is a multiplicatively closed subset
+  of $A$, then there is a canonical isomorphism $M\tensor_A U^{-1}
+  A\iso U^{-1}M$. Moreover, this isomorphism is functorial. That is,
+  if $f:M\to N$, the following diagram commutes
+  \[
+  \begin{tikzcd}
+  M\tensor_A U^{-1}A \arrow[r,"\eta_M"] \arrow[d,swap,"f\tensor \1_{U^{-1}A}"] & U^{-1}M \arrow[d,"U^{-1}f"]\\
+  N\tensor_A U^{-1} A \arrow[r,"\eta_N"] & U^{-1}N
+  \end{tikzcd}
+  \]
+  where $\eta_M$  and $\eta_N$ represent the canonical isomorphisms.
+\end{proposition}
+
+
+
+\begin{proposition} $U^{-1}A$ is a flat $A$-module.
+\end{proposition}
+
+As an immediate corollary we have:
+
+\begin{corollary} If the following sequence of $A$-modules is exact
+\[
+0\to M' \to M \to M'' \to 0,
+\]
+then
+\[
+0\to U^{-1}M' \to U^{-1}M \to U^{-1}M'' \to 0
+\]
+is exact.
+\end{corollary}
+
+
+\begin{definition}\index{Ma@$M_a$} For $a\in A$, if $U = \{1,a,a^2,a^3,\dots\}$, we denote $U^{-1}M$ by either $M_a$ or $M[\frac{1}{a}]$.
+\end{definition}
+
+\begin{definition}\index{field of fractions}\index{frac@$\ff(A)$} If $A$ is a domain, then the \dfn{field of fractions} is given by:
+\[
+\ff(A) :=(A-\{0\})^{-1}A
+\]
+\end{definition}
+
+
+\begin{definition}\index{Mp@$M_\i{p}$} If $U = A-\i{p}$ where $\i{p}$ is a prime ideal of $A$, we denote $U^{-1}M$ by $M_\i p$. We say this as ``$M$ localized at $\i p$.''
+\end{definition}
+
+
+\begin{definition}\index{local ring} A ring $A$ is \dfn{local} if it is Noetherian and has a unique maximal ideal. When dealing with local rings, one often writes
+\[
+(A,\m) \qquad \text{or}\qquad (A,\m,k)
+\]
+to denote the ring and its maximal ideal or the ring, its maximal ideal, and $k = A/\m$ respectively.
+\end{definition}
+
+\begin{remark} Some authors do not insist that local rings are Noetherian. We will call local rings which are not Noetherian \dfn{quasilocal}.\index{quasilocal}
+\end{remark}
+
+
+\begin{proposition} $A_\i p$ is a local ring with maximal ideal $\i p$. 
+\end{proposition}
+
+
+\begin{definition}\index{residue field}\index{kp@$\k(\p)$} For a ring $A$ with a prime ideal $\i{p}$ we define the \dfn{residue field} of $\i{p}$, denoted $\k(\i{p})$, by
+\[
+\k(\i{p}) := A_\i{p}/\i{p}A_\i{p}= (A/\i{p})_\i{p} = \ff(A/\p).
+\] 
+\end{definition}
+
+Now we come to some very important properties of localization:
+
+\begin{proposition} Given an $A$-module $M$, the following are equivalent:
+\begin{enumerate}
+\item $M \ne 0$.
+\item $M_\m \ne 0$ for some maximal ideal $\m$ of $A$.
+\item $M_\p \ne 0$ for some prime ideal $\p$ of $A$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{corollary} Let $M$, $M'$, and $M''$, be $A$-modules. The following are equivalent:
+\begin{enumerate}
+\item $0\to M' \to M \to M'' \to 0$ is exact.
+\item $0\to M'_\p \to M_\p \to M''_\p \to 0$ is exact for all prime ideals $\p$ in $A$.
+\item $0\to M'_\m \to M_\m \to M''_\m \to 0$ is exact for all maximal ideals $\m$ in $A$.
+\end{enumerate}
+\end{corollary}
+
+
+
+The above corollary tells us that if we can show that an $A$-module homomorphism is injective (resp.\ surjective) after localizing at an arbitrary prime or maximal ideal, then we can conclude that the homomorphism is injective (resp.\ surjective). This is why it is sometimes said that the injectivity or surjectivity of an $A$-module homomorphism is a \dfn{local property}\index{local property}.
+
+\end{document}

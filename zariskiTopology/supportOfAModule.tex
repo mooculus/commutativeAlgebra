@@ -1,0 +1,113 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{The support of a module}
+
+
+\begin{document}
+\begin{abstract}
+  We introduce the support of a module. Sources and references:
+  \cite{AM1969, mR1995}.
+\end{abstract}
+\maketitle
+
+Let's take an aside, and think about the set of all continuous
+functions mapping $\R$ to itself.
+
+\begin{definition}
+  Let $X$ and $Y$ be topological spaces. The set $\mathcal{C}(X,Y)$
+  will be the continuous functions from $X$ to $Y$.
+\end{definition}
+
+\begin{exercise}
+  Show that $\mathcal{C}(\R,\R)$ is a ring.
+\end{exercise}
+
+If we want to understand $\mathcal{C}(\R,\R)$ locally, we want to view
+functions in a neighborhood of a specific point, say $x=3$. To do
+this, let's create equivalence classes of continuous functions if
+those functions agree on local neighborhoods of $x=3$.
+
+\begin{definition}
+  Let $p\in X$, we'll call this set of equivalence classes of
+  continuous functions that agree on a neighborhood of $p$ the
+  \textit{germs of continuous functions at $p$}, and denote this by
+  $\mathcal{C}(X,Y)_p$.
+\end{definition}
+
+
+\begin{exercise}
+  Show that $\mathcal{C}(\R,\R)_{x=3}$ is a local ring whose maximal
+  ideal consists of the germs that are zero when evaluated at $x=3$.
+\end{exercise}
+
+
+\begin{definition}
+  The \dfn{support} of a function $f:A\to B$ is the set of points in $A$
+  where $f$ is nonzero. 
+\end{definition}
+
+The continuous functions (morphisms) on an affine algebraic variety
+$V$ are elements of $k[\X]/\I(V)$, a $k[\X]$-module. While the points
+of affine space correspond to maximal ideals, it is more convenient to
+think about irreducible varieties. Hence we arrive a the definition of
+the support of a module.
+
+
+\begin{definition}
+  Let $M$ be an $R$-module. The \dfn{support} of $M$ is a subset of $\spec(R)$ where
+  \[
+  \supp(M) = \{\p\in\spec(R):M_\p \ne 0\}.
+  \]
+\end{definition}
+
+\begin{proposition}%% AM and MR
+  Let $R$ be a ring and $L,M,N$ be $R$-modules.
+  \begin{enumerate}
+  \item If $M = mR$, then $\supp(M) = V(\ann(m))$.
+  \item If $M = \directsum_{i\in I} M_i$, then $\supp(M) = \union_{i\in I} \supp(M_i)$.
+  \item Given a short exact sequence
+    \[
+    0 \to L \to M \to N \to 0,
+    \]
+    $\supp(M) = \supp(L) \cup \supp(N)$.
+  \item If $M$ is finitely generated, then $\supp(M) = V(\ann(M))$.
+  \item If $\p\in\supp(M)$, then $V(\p)\subseteq\supp(M)$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{exercise}
+  Explain why the support of any finitely generated $R$-module is a
+  closed subset of $\spec(R)$.
+
+  Now consider the $\Z$-module $M = \coprod_{\p\in U} \Z/\p\Z$ where $U$
+  is a subset of $\spec(\Z)$ that is not closed. Explain why the
+  support of $M$ is not a closed subset of $\spec(\Z)$.
+\end{exercise}
+
+
+
+\begin{exercise}
+  Given a morphism $\Phi:\supp(M) \to \supp(N)$, can you induce
+  \[
+  \Phi^* : N\to M?
+  \]
+\end{exercise}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

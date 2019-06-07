@@ -1,0 +1,74 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{The nullstellensatz}
+
+
+\begin{document}
+\begin{abstract}
+  We prove Noether normalization, the weak nullstellensatz and the
+  strong nullstellensatz. Sources and references:
+  \cite{dE1995,hM1986,mR1995}.
+\end{abstract}
+\maketitle
+
+
+At this point we should believe there is a correspondence between:
+affine algebraic varieties and ideals; and affine space and the prime
+spectrum. Let's make this precise. We start by proving Noether
+normalization. We will prove it now for infinite fields. Later we will
+give a general proof.
+
+\begin{theorem}[Noether normalization]
+  Let $k$ be an infinite field and $A$ be a finitely generated
+  $k$-algebra. There exist $\alpha_1,\dots,\alpha_m\in A$ such that
+  \begin{enumerate}
+  \item $\alpha_i$ are algebraically independent over $k$.
+  \item $A$ is module-finite over $k[\boldsymbol{\alpha}]$.
+  \end{enumerate}
+  In other words, 
+  \[
+  k\subset k[\boldsymbol{\alpha}] \subset A,
+  \]
+  where $k[\boldsymbol{\alpha}]$ is a polynomial ring over $k$, and
+  $A$ is a finitely generated as a $k[\boldsymbol{\alpha}]$-module.
+\end{theorem}
+
+
+Now we prove the so-called ``weak nullstellensatz.'' Again we will
+insist that the field be infinite so that we can apply the version of
+Noether normalization above. Later, when we prove Noether
+normalization in generality, a more general version of the weak
+nullstellensatz will also hold.
+
+\begin{theorem}[Weak nullstellensatz]
+  Let $k$ be a(n infinite) field, and $K$ be a finitely generated
+  $k$-algebra that is also a field. In this case, $K$ is an algebraic
+  extension of $k$.
+  \end{theorem}
+
+
+
+
+\begin{theorem}[Nullstellensatz]
+  Let $k$ be an algebraically closed field with $I \subsetneq k[X_1,\dots,X_n]$.
+  \begin{enumerate}
+  \item $\V(I) \ne \emptyset$.
+  \item $\I(\V(I)) = \rad{I}$.
+  \end{enumerate}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

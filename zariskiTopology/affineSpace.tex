@@ -1,0 +1,175 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Affine space}
+
+
+\begin{document}
+\begin{abstract}
+  We introduce affine space. Sources and references:
+  \cite{mR1995, SKKT2002}.
+\end{abstract}
+\maketitle
+
+\begin{definition}
+  Let $k$ be a field and let $\vec{F} = \{F_{i}\}_{i\in I}$ be polynomials
+  $k[\X]$, an \dfn{affine algebraic variety} is the set
+  \[
+  \V(\vec{F}) := \{\x: \text{$F_i(\x) = 0$ for all $i\in I$}\}.
+  \]
+\end{definition}
+
+
+\begin{exercise}
+  Give examples and nonexamples of algebraic varieties.
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+  Let $\mathsf{M}$ be a $m\times m$ matrix with entries in some field
+  $k$ and $\det(\mathsf{M}) \ne 0$. Is $\V( \mathsf{M} \vec{F}) =
+  \V(\vec{F})$?
+\end{exercise}
+
+
+\begin{exercise}
+  Show that if $I\subset J$, then $\V(J) \subset \V(I)$.
+\end{exercise}
+
+\begin{exercise}
+  Let $F,G\in k[\X]$. Show that $\V(F) \cap\V(G) = \V(\{F,G\})$.
+\end{exercise}
+
+
+\begin{exercise}
+  Let $F,G\in k[\X]$. Show that $\V(F) \cup\V(G) = \V(F\cdot G)$.
+\end{exercise}
+
+
+
+
+
+\begin{definition}
+  Let $V$ be an algebraic variety defined by some polynomials in
+  $k[\X]$. Define
+  \[
+  \I(V) = \{F\in k[\X]:F[\x] = 0 \text{ for } \x \in V\}.
+  \]
+\end{definition}
+
+\begin{exercise}
+  Given an algebraic variety defined by polynomials in $k[\X]$, show
+  that $\I(V)$ is an ideal of $k[\X]$.
+\end{exercise}
+
+
+\begin{exercise}
+  Let $\vec{F} = \{F_i\}_{i\in I}\subset k[\X]$. Show that every
+  algebraic variety $\V(\vec{F})$ is the set of common zeros of
+  finitely many polynomials in $k[\X]$.
+\end{exercise}
+
+\begin{exercise}
+  Let $V$ be an algebraic variety defined by elements of $k[\X]$ and
+  let $I$ be an ideal of $k[\X]$. Which of the following are true?
+  \begin{enumerate}
+  \item $\V(\I(V)) = V$
+  \item $\I(\V(I)) = I$
+  \end{enumerate}
+\end{exercise}
+
+
+This brings us to a question:
+
+
+\begin{question}
+  To what extent are varieties and ideals dual?
+\end{question}
+
+We will need to take some time to answer this question. Until then, we
+press on.
+
+
+
+
+\begin{proposition}
+  The space $k^n$ where closed sets are defined to be the algebraic
+  varieties is a topological space. This topology is called the
+  \dfn{Zariski topology}, and when $k^n$ is equipped with this
+  topology, we denote it $\A_k^n$, or simply $\A^n$.
+  \begin{sketch}
+    Check the conditions for a topology.
+  \end{sketch}
+\end{proposition}
+
+\begin{exercise}
+  Let $F\in k[X_1,\dots,X_n]$. Show that $F:\A^n\to \A^1$ is
+  continuous. Hint: First show that the only closed subsets of $\A^1$
+  are finite subsets and all of $\A^1$.
+\end{exercise}
+
+
+\begin{definition}
+  Given an algebraic variety $\V(\vec{F})$, the \dfn{ring of regular
+    functions} on $\V(\vec{F})$, is $k[\vec{X}]/(\vec{F})$.
+\end{definition}
+
+\begin{exercise}
+  Show that the closed subsets of $\V(\vec{F})$ are of the form
+  \[
+  \{x\in \V(\vec{F}): G(x) = 0\text{ for all $G \in I$ an ideal of $k[\vec{X}]/(\vec{F})$}\}.
+  \]
+\end{exercise}
+
+
+\begin{exercise}
+  Given $G\in k[\vec{X}]/(\vec{F})$, show that $G: \V(\vec{F})\to
+  \A^1$ is continuous with respect to the Zariski topology.
+\end{exercise}
+
+
+
+\begin{definition}
+  Let $U\subseteq\A^m$ and $V\subseteq\A^n$ be affine algebraic
+  varieties. A map $\vec{F} = (F_1,\dots,F_n)$
+  \[
+  \vec{F}: U\to V
+  \]
+  is a \dfn{morphism} of algebraic varieties if $F_1,\dots,F_n\in k[\X]/\I(U)$.
+\end{definition}
+
+\begin{exercise}
+  Prove that every morphism of varieties is continuous with respect to
+  the Zariski topology.
+\end{exercise}
+
+\begin{exercise}
+   Let $U\subseteq\A^m$ and $V\subseteq\A^n$ be affine algebraic varieties. Show that a
+   morphism $\vec{F}: U\to V$ induces a map of $k$-algebras
+   \begin{align*}
+     \vec{F}^*:  k[\X]/\I(V) &\to k[\X]/\I(U)\\
+     G &\mapsto G\circ \vec{F}.
+    \end{align*}
+\end{exercise}
+
+
+\begin{proposition}%% From mR1995 5.7
+  Show that an algebraic variety $V$ is irreducible if and only if
+  $\I(V)$ is prime.
+  %% \begin{sketch}
+    
+  %% \end{sketch}
+\end{proposition}
+
+
+This last propositon suggests that we might want to look into the set
+of prime ideas of a ring.
+
+
+\end{document}
