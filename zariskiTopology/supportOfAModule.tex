@@ -64,30 +64,37 @@ the support of a module.
   \]
 \end{definition}
 
+
+
+\begin{exercise}
+  \item Let $M$ be an $R$-module. If $\p\in\supp(M)$, then
+    $V(\p)\subseteq\supp(M)$.
+\end{exercise}
+
+
+
 \begin{proposition}%% AM and MR
   Let $R$ be a ring and $L,M,N$ be $R$-modules.
   \begin{enumerate}
   \item If $M = mR$, then $\supp(M) = V(\ann(m))$.
-  \item If $M = \directsum_{i\in I} M_i$, then $\supp(M) = \union_{i\in I} \supp(M_i)$.
+  \item If $M = \directsum_{i\in \mathcal I} M_i$, then $\supp(M) = \union_{i\in \mathcal I} \supp(M_i)$.
   \item Given a short exact sequence
     \[
     0 \to L \to M \to N \to 0,
     \]
     $\supp(M) = \supp(L) \cup \supp(N)$.
-  \item If $M$ is finitely generated, then $\supp(M) = V(\ann(M))$.
-  \item If $\p\in\supp(M)$, then $V(\p)\subseteq\supp(M)$.
   \end{enumerate}
 \end{proposition}
 
 \begin{exercise}
-  Explain why the support of any finitely generated $R$-module is a
+  If $M$ is a finitely generated $R$-module, then $\supp(M) = V(\ann(M))$.  This
+  shows that the support of any finitely generated $R$-module is a
   closed subset of $\spec(R)$.
 
   Now consider the $\Z$-module $M = \coprod_{\p\in U} \Z/\p\Z$ where $U$
   is a subset of $\spec(\Z)$ that is not closed. Explain why the
   support of $M$ is not a closed subset of $\spec(\Z)$.
 \end{exercise}
-
 
 
 
