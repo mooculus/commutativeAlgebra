@@ -28,19 +28,19 @@
 
 \begin{exercise}
   Specialize the idea of an irreducible submodule to an irreducible
-  algebraic varietiy.
+  algebraic variety.
 \end{exercise}
 
 
 \begin{lemma}\label{L:irrdecomp}
   Let $R$ be a Noetherian ring and $M$ be a finitely generated
   $R$-module. The $R$-module $N\subsetneq M$ can be written as a finite
-  interesection of irreducible submodules of $M$.
+  intersection of irreducible submodules of $M$.
   \begin{sketch}
     Seek a contradiction by setting $\mathcal{S}$ to be the set of
     submodules of $M$ that cannot be expressed as a finite
     intersection of irreducible submodules. Use the fact that $M$ is
-    noetherian to conclude $\mathcal{S}$ must have a maximal element
+    Noetherian to conclude $\mathcal{S}$ must have a maximal element
     which cannot be irreducible. Find a contradiction.
   \end{sketch}
 \end{lemma}
@@ -106,9 +106,18 @@ What is the nature of the irreducible submodules described above?
   $Q$, denoted by $\ass(Q)$, is a set such that:
   \begin{itemize}
   \item $\ass(Q)\subset\spec(R)$.
-  \item $Q$ contains a submodule isomorphic to $R/\p$.
+  \item For each $\p\in\ass(Q)$, $Q$ contains a submodule isomorphic
+    to $R/\p$.
   \end{itemize}
+  The set of prime ideals in $\ass(Q)$ is often called the
+  \dfn{associated primes} of $Q$.
 \end{definition}
+
+\begin{exercise}
+  Let $Q$ be an $R$-module. Show that if $\p\in\ass(Q)$, then there
+  exists and element $x\in Q$ such that $\ann(x) = \p$, hence one
+  could call $\p$ an \textit{assassin}.
+\end{exercise}
 
 \begin{exercise}
   Consider $\Z_6$ as a $\Z$-module. Find the assassins of $\Z_6$.
@@ -124,10 +133,38 @@ What is the nature of the irreducible submodules described above?
   the assassins of $k[x,y]/(xy)$.
 \end{exercise}
 
+\begin{exercise}
+  Show that if $T$ is an $R$-submodule of the $R$-module $Q$, that
+  $\ass(T) \subset \ass(Q)$.
+\end{exercise}
+
+
+\begin{exercise}
+  Let $Q$ and $T$ be $R$-modules. Prove that $\ass(Q\dsum T) = \ass(Q)\cup\ass(T)$.
+\end{exercise}
+
+
+\begin{proposition}
+  Let $R$ be a Noetherian ring and $Q$ be a finitely generated
+  $R$-module. In this case $\ass(Q) \ne \emptyset$.
+  \begin{sketch}
+    Let $q\in Q$ be nonzero and consider the set of ideals:
+    \[
+    \{\ann(xq): x\in R\text{ and }xq\ne 0 \}
+    \]
+    Show this set is nonempty and argue it has a maximal element, call
+    it $\p$. Show $\p$ is prime by seeking a contradiction, ending by
+    constructing an ideal larger than $\p$, the maximal element.
+  \end{sketch}
+\end{proposition}
+
 
 \begin{proposition}
   Let $Q$ be an $R$-module. If $\p\in\ass(Q)$, then $V(\p)\subset
   \supp(Q)$.
+  \begin{sketch}
+    
+  \end{sketch}
 \end{proposition}
 
 \begin{proposition}
@@ -136,10 +173,27 @@ What is the nature of the irreducible submodules described above?
 \end{proposition}
 
 
+\begin{proposition}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, then there is a finite filtration
+  \[
+  0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
+  \]
+  where $Q_i/Q_{i+1} \iso R/\p_i$ and $\ass(Q) \subset
+  \{\p_1,\dots,p_n\}$.
+\end{proposition}
+
+\begin{corollary}
+  Given a Noetherian ring and a finitely generated module $Q$,
+  $\ass(Q)$ is finite.
+\end{corollary}
+
+
+
 
 
 \begin{proposition}
-  Let $R$ be a ring, $S$ be a multiplicacitvely closed subset of $R$,
+  Let $R$ be a ring, $S$ be a multiplicatively closed subset of $R$,
   and $Q$ be an $R$-module. Then
   \[
   \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}}(S^{-1}(Q))
@@ -254,7 +308,7 @@ What is the nature of the irreducible submodules described above?
     \bigcap_{i=2}^n N_i/N \into M/N_1.
     \]
     Since $\ass(M/N_1) = \{\p\}$, by Lemma~\ref{},
-    $\ass\left(\bigcap_{i=2}^n N_i/N\right) = \{\p\}$, and so
+    $\p\in\ass\left(\bigcap_{i=2}^n N_i/N\right)$, and so
     $\p\in\ass(M/N)$.
   \end{sketch}
 \end{theorem}
