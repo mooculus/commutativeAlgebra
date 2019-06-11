@@ -9,7 +9,7 @@
 \begin{document}
 \begin{abstract}
   We prove the primary decomposition theorem. Sources and references:
-  \cite{AM1969, sD08, dE95, mR1995}.
+  \cite{AM1969, sD2008, dE1995, mR1995}.
 \end{abstract}
 \maketitle
 
@@ -26,9 +26,14 @@
   ideal.
 \end{exercise}
 
+\begin{exercise}
+  Specialize the idea of an irreducible submodule to an irreducible
+  algebraic varietiy.
+\end{exercise}
 
-\begin{lemma}
-  Let $R$ be a noetherian ring and $M$ be a finitely generated
+
+\begin{lemma}\label{L:irrdecomp}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated
   $R$-module. The $R$-module $N\subsetneq M$ can be written as a finite
   interesection of irreducible submodules of $M$.
   \begin{sketch}
@@ -64,7 +69,7 @@ What is the nature of the irreducible submodules described above?
 \end{exercise}
 
 
-\begin{lemma}
+\begin{lemma}\label{L:irrcoprimary}
   Let $R$ be a Noetherian ring and $N\subset M$ be finitely generated
   $R$-modules. If $N$ is an irreducible submodule of $M$, then $Q=M/N$
   is coprimary.
@@ -120,6 +125,18 @@ What is the nature of the irreducible submodules described above?
 \end{exercise}
 
 
+\begin{proposition}
+  Let $Q$ be an $R$-module. If $\p\in\ass(Q)$, then $V(\p)\subset
+  \supp(Q)$.
+\end{proposition}
+
+\begin{proposition}
+  If $R$ is Noetherian, then $\ass(Q)$ contains a minimal element of
+  $\supp(Q)$.
+\end{proposition}
+
+
+
 
 \begin{proposition}
   Let $R$ be a ring, $S$ be a multiplicacitvely closed subset of $R$,
@@ -157,11 +174,99 @@ What is the nature of the irreducible submodules described above?
   A module is $Q$ is \dfn{$\boldsymbol{\p}$-coprimary} if $\ass(Q) = \{\p\}$.
 \end{definition}
 
+\begin{lemma}
+  Let $Q$ be a finitely generated $\p$-coprimary $R$-module. Any
+  nonzero submodule $T\subset Q$ is also $\p$-coprimary.
+  \begin{sketch}
+    %% $T$ is clearly coprimary, since the assassins are minimal, it must
+    %% be $\p$-coprimary.
+  \end{sketch}
+\end{lemma}
+
+
+
+
+\begin{definition}
+  Given a ring $R$, an $R$-module $M$, and an $R$-submodule $N\subset
+  M$, a \dfn{primary decomposition} of $N$ is
+  \[
+  N = \bigcap_{i=1}^n N_i
+  \]
+  where each $M/N_i$ is coprimary. 
+\end{definition}
+
+
+\begin{lemma}\label{L:intersectcoprimary}
+  Given a ring $R$, an $R$-module $M$, and an $R$-submodules $N_1,N_2\subset
+  M$, if $M/N_1$ and $M/N_2$ are $\p$-coprimary, then so is $M/(N_1\cap N_2)$.
+\end{lemma}
+
+
+\begin{theorem}[Primary decomposition]
+  Let $R$ be a Noetherian ring. Given an $R$-module $M$ and an
+  $R$-submodule $N\subset M$, there exist $R$-submodules $N_i\subset
+  M$ such that
+  \[
+  N = \bigcap_{i=1}^n N_i
+  \]
+  where
+  \begin{enumerate}
+  \item $M/N_i$ is $\p_i$-coprimary for each $i$.
+  \item If $i\ne j$, then $\p_i\ne\p_j$.
+  \item $\ass(M/N) = \{\p_1,\dots,\p_n\}$.
+  \end{enumerate}
+  \begin{sketch}
+    Use Lemmas~\ref{L:irrdecomp},~\ref{L:irrcoprimary},~\ref{L:intersectcoprimary},
+    to show the first parts of the theorem.
+    
+    What remains is to show that $\ass(M/N) =
+    \{\p_1,\dots,\p_n\}$. Use double containment.
+    
+    $(\subset)$ We will show that $\ass(M/N)
+    \subset\{\p_1,\dots,\p_n\}$.
+    \begin{align*}
+      \frac{M}{N} = \frac{M}{N_1\cap\dots\cap N_n} &\lto^\eta \coprod_{i=1}^n M/N_i\\
+        m &\mapsto (m + N_1,\dots, m+ N_n)
+    \end{align*}
+    Here $\ker(\eta) = N_1\cap\dots\cap N_n = N$, hence $\eta$ is an
+    injection. Thus
+    \[
+    \ass(M/N) \subset \bigcup_{i=1}^n \ass(M/N_i) = \{\p_1,\dots,\p_n\}.
+    \]
+
+
+    $(\supset)$ We will show that $\{\p_1,\dots,\p_n\} \subset
+    \ass(M/N)$. WLOG we'll show that $\p=\p_1\in\ass(M/N)$. Note
+    \[
+    \bigcap_{i=2}^n N_i/N \subset M/N
+    \]
+    and from before we have the injection
+    \[
+    \frac{M}{N_1\cap\dots\cap N_n} \lto^\eta \coprod_{i=1}^n M/N_i.
+    \]
+    This map can be restricted to
+    \[
+    \bigcap_{i=2}^n N_i/N \to \coprod_{i=1}^n M/N_i.
+    \]
+    however, the only nonzero part (and hence injective) part of this
+    map is
+    \[
+    \bigcap_{i=2}^n N_i/N \into M/N_1.
+    \]
+    Since $\ass(M/N_1) = \{\p\}$, by Lemma~\ref{},
+    $\ass\left(\bigcap_{i=2}^n N_i/N\right) = \{\p\}$, and so
+    $\p\in\ass(M/N)$.
+  \end{sketch}
+\end{theorem}
+
+
+
+
 
 \begin{theorem}
   Given a Noetherian ring $R$, and a finitely generated $R$-module $M$, we may embed
   \[
-  M\into \prod_{\p\in\ass(M)} Q(\p)
+  M\into \coprod_{\p\in\ass(M)} Q(\p)
   \]
   where each $Q(\p)$ is a $\p$-coprimary module.
 \end{theorem}
@@ -169,120 +274,6 @@ What is the nature of the irreducible submodules described above?
 
 
 
-\begin{definition}
-  Let $R$ be a ring, with $N\subset M$ being $R$-modules. The module
-  $N$ is called \dfn{primary} if for all $x\in\R$, the $R$-module
-  homomorphism defined via ``multiplication by $x$''
-  \[
-  M/N\lto^{x} M/N
-  \]
-  is either injective or nilpotnent.
-\end{definition}
-
-\begin{exercise}
-  Specialize this definition to ideals.
-\end{exercise}
-
-\begin{exercise}
-  Show that every prime ideal is primary.
-\end{exercise}
-
-
-\begin{theorem}
-  In a Noetherian ring $R$, irreducible modules are primary modules.
-\end{theorem}
-
-
-
-\begin{proposition}
-  Let $R$ be a ring and $N\subset M$ be $R$-modules. If $N$ is primary, then the set
-  \[
-  \{ x\in R : \text{$M/N\lto^x M/N$ is nilpotent}\} 
-  \]
-  forms a prime ideal in $R$. If we call this ideal $\p$, then we say
-  that $N$ is $\p$-primary.
-\end{proposition}
-
-
-\begin{exercise}
-  Specialize this proposition to ideals. Show that if an idea $\a$ is
-  $\p$-primary, then $\rad{\a} = \p$.
-\end{exercise}
-
-\begin{exercise}
-  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
-  is $\p$-primary, then we have an injection
-  \[
-  R/\p \into M/N
-  \]
-\end{exercise}
-
-
-\begin{exercise}
-  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
-  is $\p$-primary, $\q$ is a prime ideal of $R$, and we have an
-  injection
-  \[
-  R/\q \into M/N,
-  \]
-  then $\p = \q$.
-\end{exercise}
-
-\begin{exercise}
-  Let $R$ be a Noetherian ring, $\a$ be an ideal, and let $\m$ be a
-  maximal ideal. Show that if $\m^n \subset\a \subset \m$, then $\a$
-  is $\m$-primary.
-\end{exercise}
-
-\begin{exercise}
-  Let $k$ be a field, and consider $R=k[x,y,z]/(z^2-xy)$. Let $\p = (\bar{x},\bar{y})$.
-  \begin{enumerate}
-  \item Show that $\p$ is a prime ideal in $R$.
-  \item Show that $\p^2$ is not $\p$-primary.
-  \end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-  Let $R$ be a UFD and $\p = (p)$ where $p$ is a prime element. Show
-  that $\p^n$ is a $\p$-primary ideal for all $n>0$.
-\end{exercise}
-
-
-
-
-
-\begin{proposition}%hM1986 page 161
-   A Noetherian integral domain $R$ is a UFD if and only every minimal
-   prime ideal is principal.
-\end{proposition}
-
-
-
-\section{Examples and applications}
-
-\subsection{Prime factorization}
-
-\subsection{Fundamental theorem of finitely generated abelian groups}
-
-
-\subsection{Edge ideals} %% maybe bad title.
-
-See HH2011 for edge ideal stuff
-
-
-\subsection{Induced map}
-
-
-answer question:
-
-  Given a morphism $\Phi\supp(M) \to \supp(N)$, can you induce
-  \[
-  \Phi^\sharp : N\to M?
-  \]
-
-\subsection{Noetherian spectrum}
-
-See Proposition 3.26 of sD08.
 
 
 

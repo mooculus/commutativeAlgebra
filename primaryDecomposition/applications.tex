@@ -1,0 +1,136 @@
+\documentclass{ximera}
+
+\author{Bart Snapp}
+
+\title{Applications}
+
+\begin{document}
+\begin{abstract}
+  We give examples and applications of primary decompostion. Sources
+  and references: \cite{AM1969, sD02008, dE1995}.
+\end{abstract}
+\maketitle
+
+
+
+
+\begin{definition}
+  Let $R$ be a ring, with $N\subset M$ being $R$-modules. The module
+  $N$ is called \dfn{primary} if for all $x\in\R$, the $R$-module
+  homomorphism defined via ``multiplication by $x$''
+  \[
+  M/N\lto^{x} M/N
+  \]
+  is either injective or nilpotnent.
+\end{definition}
+
+\begin{exercise}
+  Specialize this definition to ideals.
+\end{exercise}
+
+\begin{exercise}
+  Show that every prime ideal is primary.
+\end{exercise}
+
+
+\begin{theorem}
+  In a Noetherian ring $R$, irreducible modules are primary modules.
+\end{theorem}
+
+
+
+\begin{proposition}
+  Let $R$ be a ring and $N\subset M$ be $R$-modules. If $N$ is primary, then the set
+  \[
+  \{ x\in R : \text{$M/N\lto^x M/N$ is nilpotent}\} 
+  \]
+  forms a prime ideal in $R$. If we call this ideal $\p$, then we say
+  that $N$ is $\p$-primary.
+\end{proposition}
+
+
+\begin{exercise}
+  Specialize this proposition to ideals. Show that if an idea $\a$ is
+  $\p$-primary, then $\rad{\a} = \p$.
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
+  is $\p$-primary, then we have an injection
+  \[
+  R/\p \into M/N
+  \]
+\end{exercise}
+
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $N\subset M$ be $R$-modules. If $N$
+  is $\p$-primary, $\q$ is a prime ideal of $R$, and we have an
+  injection
+  \[
+  R/\q \into M/N,
+  \]
+  then $\p = \q$.
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring, $\a$ be an ideal, and let $\m$ be a
+  maximal ideal. Show that if $\m^n \subset\a \subset \m$, then $\a$
+  is $\m$-primary.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, and consider $R=k[x,y,z]/(z^2-xy)$. Let $\p = (\bar{x},\bar{y})$.
+  \begin{enumerate}
+  \item Show that $\p$ is a prime ideal in $R$.
+  \item Show that $\p^2$ is not $\p$-primary.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a UFD and $\p = (p)$ where $p$ is a prime element. Show
+  that $\p^n$ is a $\p$-primary ideal for all $n>0$.
+\end{exercise}
+
+
+
+
+
+\begin{proposition}%hM1986 page 161
+   A Noetherian integral domain $R$ is a UFD if and only every minimal
+   prime ideal is principal.
+\end{proposition}
+
+
+
+\section{Examples and applications}
+
+\subsection{Prime factorization}
+
+\subsection{Fundamental theorem of finitely generated abelian groups}
+
+
+\subsection{Edge ideals} %% maybe bad title.
+
+See HH2011 for edge ideal stuff
+
+
+\subsection{Induced map}
+
+
+answer question:
+
+  Given a morphism $\Phi\supp(M) \to \supp(N)$, can you induce
+  \[
+  \Phi^\sharp : N\to M?
+  \]
+
+\subsection{Noetherian spectrum}
+
+See Proposition 3.26 of sD08.
+
+
+
+
+
+\end{document}
