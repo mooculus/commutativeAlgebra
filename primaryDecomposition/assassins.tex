@@ -1,0 +1,124 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Assassins}
+
+\begin{document}
+\begin{abstract}
+  We introduce associated primes, also known as assassins. Sources and
+  references: \cite{sD2008, dE1995, mR1995}.
+\end{abstract}
+\maketitle
+
+\begin{definition}
+  Let $R$ be a ring and $Q$ be a $R$-module. The \dfn{assassins} of
+  $Q$, denoted by $\ass(Q)$, is a set such that:
+  \begin{itemize}
+  \item $\ass(Q)\subset\spec(R)$.
+  \item For each $\p\in\ass(Q)$, $Q$ contains a submodule isomorphic
+    to $R/\p$.
+  \end{itemize}
+  The set of prime ideals in $\ass(Q)$ is often called the
+  \dfn{associated primes} of $Q$.
+\end{definition}
+
+\begin{exercise}
+  Let $Q$ be an $R$-module. Show that if $\p\in\ass(Q)$, then there
+  exists and element $x\in Q$ such that $\ann(x) = \p$, hence one
+  could call $\p$ an \textit{assassin}.
+\end{exercise}
+
+\begin{exercise}
+  Consider $\Z_6$ as a $\Z$-module. Find the assassins of $\Z_6$.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, consider the $k[x]$-module $k[x]/(x^5)$. Find
+  the assassins of $k[x]/(x^5)$.
+\end{exercise}
+
+\begin{exercise}
+  Let $k$ be a field, consider the $k[x,y]$-module $k[x,y]/(xy)$. Find
+  the assassins of $k[x,y]/(xy)$.
+\end{exercise}
+
+\begin{exercise}
+  Show that if $T$ is an $R$-submodule of the $R$-module $Q$, that
+  $\ass(T) \subset \ass(Q)$.
+\end{exercise}
+
+
+\begin{exercise}
+  Let $Q$ and $T$ be $R$-modules. Prove that $\ass(Q\dsum T) = \ass(Q)\cup\ass(T)$.
+\end{exercise}
+
+
+\begin{proposition}
+  Let $R$ be a Noetherian ring and $Q$ be a finitely generated
+  $R$-module. In this case $\ass(Q) \ne \emptyset$.
+  \begin{sketch}
+    Let $q\in Q$ be nonzero and consider the set of ideals:
+    \[
+    \{\ann(xq): x\in R\text{ and }xq\ne 0 \}
+    \]
+    Show this set is nonempty and argue it has a maximal element, call
+    it $\p$. Show $\p$ is prime by seeking a contradiction, ending by
+    constructing an ideal larger than $\p$, the maximal element.
+  \end{sketch}
+\end{proposition}
+
+
+\begin{proposition}
+  Let $Q$ be an $R$-module. If $\p\in\ass(Q)$, then $V(\p)\subset
+  \supp(Q)$.
+  \begin{sketch}
+    
+  \end{sketch}
+\end{proposition}
+
+\begin{proposition}
+  If $R$ is Noetherian, then $\ass(Q)$ contains a minimal element of
+  $\supp(Q)$.
+\end{proposition}
+
+
+\begin{proposition}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, then there is a finite filtration
+  \[
+  0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
+  \]
+  where $Q_i/Q_{i+1} \iso R/\p_i$ and $\ass(Q) \subset
+  \{\p_1,\dots,p_n\}$.
+\end{proposition}
+
+\begin{corollary}
+  Given a Noetherian ring and a finitely generated module $Q$,
+  $\ass(Q)$ is finite.
+\end{corollary}
+
+
+
+
+
+\begin{proposition}
+  Let $R$ be a ring, $S$ be a multiplicatively closed subset of $R$,
+  and $Q$ be an $R$-module. Then
+  \[
+  \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}}(S^{-1}(Q))
+  \]
+  whenever $S\cap\p = \emptyset$.
+  \begin{sketch}
+    $(\Rightarrow)$
+
+    $(\Leftarrow)$
+  \end{sketch}
+\end{proposition}
+
+\end{document}
+
+
+

@@ -8,27 +8,26 @@
 
 \begin{document}
 \begin{abstract}
-  We review several fundamental theorems, all of which are special cases of primary decomposition.
+  We review several fundamental theorems, all of which are special
+  cases of primary decomposition. Sources and references:
+  \cite{dE1995,hS2003}.
 \end{abstract}
 \maketitle
 
-\section{The fundamental theorem of arithmetic}
+Let's review several fundamental theorems:
 
-\begin{theorem}
+\begin{theorem}[Fundamental theorem of arithmetic]
   Every integer greater than $1$ can be factored uniquely (up to
   ordering) into primes.
 \end{theorem}
 
 Of course, you've now seen this in more generality.
 
-\begin{theorem}
-  Let $R$ be a euclidean domain\dots
-\end{theorem}
+%% \begin{theorem}
+%%   Let $R$ be a euclidean domain\dots
+%% \end{theorem}
 
-
-\section{The fundamental theorem of finitely generated abelian groups}
-
-\begin{theorem}
+\begin{theorem}[Fundamental theorem of finitely generated abelian groups]
   Every finitely generated abelian group $G$ is isomorphic to a
   direct sum of cyclic groups of prime-power order and infinite cyclic
   groups,
@@ -38,7 +37,77 @@ Of course, you've now seen this in more generality.
   where the $p_i$ are not necessarily distinct prime numbers.
 \end{theorem}
 
+%% \begin{theorem}[Structure theorem for finitely generated modules over a PID]
+%%   Every finitely generated abelian group $G$ is isomorphic to a
+%%   direct sum of cyclic groups of prime-power order and infinite cyclic
+%%   groups,
+%%   \[
+%%   G \iso \Z^n \dsum \directsum_{i=1}^{m} \Z_{p_i^{k_i}},
+%%   \]
+%%   where the $p_i$ are not necessarily distinct prime numbers.
+%% \end{theorem}
 
-Structure theorem for finitely generated modules over a PID
+\begin{theorem}[Decomposing varieties]
+  Let $V\subset\A^n$ be an affine algebraic variety over an
+  algebraically closed field. We may express
+  \[
+  V = \bigcup_{i=1}^n U_i
+  \]
+  uniquely and minimally where each $U_i$ is an irreducible variety.
+\end{theorem}
+
+
+\begin{theorem}[Primary decomposition of ideals]
+  Let $R$ be a Noetherian ring, and $I$ be an ideal of $R$. We may write
+  \[
+  I = \bigcap_{i=1}^n \q_i
+  \]
+  uniquely and minimally where each $\q$ is \dfn{primary}, meaning $\q\ne R$ and
+  \[
+  xy\in\q \quad \Rightarrow \quad x\in\q\text{ or }y^m\in\q.
+  \]
+\end{theorem}
+
+
+
+
+
+\begin{definition}
+  Let $R$ be a ring and $N$, $N_1$, and $N_2$ be proper submodules of
+  some $R$-module $M$. The $R$-module $N$ is called \dfn{irreducible}
+  if $N = N_1\cap N_2$ implies $N=N_1$ or $N=N_2$.
+\end{definition}
+
+
+\begin{exercise}
+  Specialize the idea of an irreducible submodule to an irreducible
+  ideal.
+\end{exercise}
+
+\begin{exercise}
+  Specialize the idea of an irreducible submodule to an irreducible
+  algebraic variety.
+\end{exercise}
+
+
+\begin{lemma}\label{L:irrdecomp}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated
+  $R$-module. The $R$-module $N\subsetneq M$ can be written as a finite
+  intersection of irreducible submodules of $M$.
+  \begin{sketch}
+    Seek a contradiction by setting $\mathcal{S}$ to be the set of
+    submodules of $M$ that cannot be expressed as a finite
+    intersection of irreducible submodules. Use the fact that $M$ is
+    Noetherian to conclude $\mathcal{S}$ must have a maximal element
+    which cannot be irreducible. Find a contradiction.
+  \end{sketch}
+\end{lemma}
+
+\begin{question}
+What is the nature of the irreducible submodules described above?
+\end{question}
+
+
+
 
 \end{document}
