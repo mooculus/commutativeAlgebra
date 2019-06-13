@@ -45,32 +45,35 @@
   the assassins of $k[x,y]/(xy)$.
 \end{exercise}
 
-\begin{exercise}
-  Show that if $T$ is an $R$-submodule of the $R$-module $Q$, that
-  $\ass(T) \subset \ass(Q)$.
-\end{exercise}
 
-
-\begin{exercise}
-  Let $Q$ and $T$ be $R$-modules. Prove that $\ass(Q\dsum T) = \ass(Q)\cup\ass(T)$.
-\end{exercise}
 
 \begin{proposition}
-  Let $R$ be a Noetherian ring, and $Q$ be a finitely generated $R$-module. Consider
+  Let $R$ be a Noetherian ring, and $Q$ be a finitely generated
+  $R$-module. Consider
   \[
-  \mathcal{S} = \{\ann(q): q\in Q\text{ and } q\ne0\}.
+  \mathcal{S} = \{\ann(x): x\in Q\text{ and } x\ne0\}.
   \]
   The maximal elements of $\mathcal{S}$ are prime.
-  \begin{sketch}
-  \end{sketch}
+  \begin{proof}
+    Since $Q$ is Noetherian, and $\mathcal{S}$ is nonempty, it
+    contains $(0)$, $\mathcal{S}$ contains a maximal element, call it
+    $\p$.  Let $x$ be a nonzero element of $Q$ such that $\ann(x) =
+    \p$.  Suppose $ab\in\p$, and $a\notin\p$.  I this case,
+    $\p=\ann(x) \subset \ann(ax)$. Since $\p$ is maximal, $\p =
+    \ann(ax)$. However, $b\in\ann(ax) = \p$, hence $\p$ is prime.
+  \end{proof}
 \end{proposition}
 
 To quote David Eisenbud, ``ideals maximal with respect to some
 property have an uncanny tendency to be prime.''
 
 
-\begin{corollary}
+\begin{corollary}[Assassins are nonempty]
   If $Q\ne 0$, then $\ass(Q) \ne \emptyset$.
+  \begin{proof}
+    Since $\mathcal{S}$ from above is nonempty, it contains maximal
+    elements and these elements are prime.
+  \end{proof}
 \end{corollary}
 
 \begin{corollary}
@@ -80,6 +83,14 @@ property have an uncanny tendency to be prime.''
   0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
   \]
   where $Q_i/Q_{i+1} \iso R/\p_i$, where $\p_i\in\spec(R)$.
+  \begin{proof}
+    By the corollary above, $Q$ contains a submodule isomorphic to
+    $R/\p_1$. This submodule will be $Q_1$. If $Q = Q_1$, we are
+    done. Proceed inductively, suppose that we can prove our statement
+    for up to $n$ submodules. If $Q \ne Q_n$, then $Q/Q_n$ contains a
+    submodule isomorphic to $R/\p_{n+1}$, call it $Q_{n+1}/Q_n$. Since
+    $Q$ is Noetherian, this ascending chain stabilizes.
+  \end{proof}
 \end{corollary}
 
 \begin{exercise}
@@ -92,51 +103,181 @@ property have an uncanny tendency to be prime.''
 
 
 
-\begin{proposition}
-  Let $R$ be a ring, $S$ be a multiplicatively closed subset of $R$,
-  $\p\in\spec(R)$ with $\p\cap S = \emptyset$, and $Q$ be an
-  $R$-module. Then
+\begin{proposition}\label{P:assassinlocal}
+  Let $R$ be a Noetherian ring, $S$ be a multiplicatively closed
+  subset of $R$, $\p\in\spec(R)$ with $\p\cap S = \emptyset$, and $Q$
+  be an $R$-module. Then
   \[
-  \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}R}(S^{-1}(Q))
+  \p \in \ass_R(Q) \Leftrightarrow S^{-1}\p\in \ass_{S^{-1}R}(S^{-1}Q)
   \]
   whenever $S\cap\p = \emptyset$.
-  \begin{sketch}
-    $(\Rightarrow)$
+  \begin{proof}
+    $(\Rightarrow)$ If $\p\in\ass_R(Q)$, then for some $x\in Q$
+    \begin{align*}
+    x\cdot p &= 0\\
+    \frac{x}{1} \cdot \frac{p}{1} &= 0
+    \end{align*}
+    so $S^{-1} \p\in \ass(S^{-1}Q)$.
 
-    $(\Leftarrow)$
-  \end{sketch}
+    $(\Leftarrow)$ If $S^{-1}\p\in \ass_{S^{-1}R}(S^{-1}Q)$, then
+    there is an injective homomorphism
+    \[
+    \iota:\frac{S^{-1}R}{S^{-1}\p}\into S^{-1}Q
+    \]
+    Since $\p$ is finitely generated (see \cite[Proposition 2.10]{dE1995})
+    \[
+    \hom_{S^{-1}R}\left(\frac{S^{-1}R}{S^{-1}\p},S^{-1}Q\right) = S^{-1}\hom_{R}(R/\p,Q)
+    \]
+    Since $S\cap\p=0$ we can clear denominators of $\iota$ to find the
+    injection we are looking for.
+  \end{proof}
 \end{proposition}
 
 
 
-\begin{theorem}
+
+
+\begin{theorem}[Assassins are minimal]
   If $R$ is a Noetherian ring and $Q$ is a finitely generated
   $R$-module, consider the finite filtration
   \[
   0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
   \]
-  where $Q_i/Q_{i+1} \iso R/\p_i$. In this case
+  where $Q_i/Q_{i-1} \iso R/\p_i$. In this case
   \[
   \ass(Q) \subset \{\p_1,\dots,\p_n\}\subset \supp(Q)
   \]
   and each of these sets have the same minimal elements.
+  \begin{proof}
+    First we'll show that $\{\p_1,\dots,\p_n\}\subset \supp(Q)$ and
+    that these sets have the same minimal elements. Localize the
+    finite filtration
+    \[
+    0 = (Q_0)_\p \subsetneq (Q_1)_\p \subsetneq \dots \subsetneq (Q_n)_\p = Q_\p,
+    \]
+    with the factors being
+    \begin{align*}
+      (Q_i)_\p/(Q_{i-1})_\p &\iso \left(Q_i/Q_{i-1}\right)_\p\\
+      &\iso \left(R/\p_i\right)_\p.
+    \end{align*}
+    Hence, $Q_\p \ne 0$ if and only if there is $\p_i$ such that
+    $\left(R/\p_i\right)_\p \ne 0$. This can only happen if
+    $\p_i\subset\p$, hence $\{\p_1,\dots,\p_n\}\subset \supp(Q)$, and
+    these sets have the same minimal elements.
+
+    Now we'll show that $\ass(Q)\subset\{\p_1,\dots,\p_n\}$. Let
+    $\p\in\ass(Q)$, this means that
+    \[
+    R/\p \iso N \subset Q.
+    \]
+    Intersect $N$ with our finite filtration, and consider the
+    smallest $i$ such that $N\cap M_i\ne 0$. Write
+    \[
+    0=N\cap M_{i-1}\to N\cap M_i,
+    \]
+    and we must have that $R/\p \into (N\cap Q_i)/(N\cap Q_{i-1})$, and so
+    \[
+    R/\p \into Q_i/Q_{i-1} \iso R/\p_i
+    \]
+    and so $\p=\p_i$. Thus
+    \[
+    \ass(Q)\subset\{\p_1,\dots,\p_n\}\subset \supp(Q).
+    \]
+
+    Finally, we will show that the minimal elements of $\supp(Q)$ are
+    in $\ass(Q)$. Let $\p$ be a minimal element of
+    $\supp(Q)$. Localize to obtain
+    \[
+    \supp(Q_\p) =\{\p R_\p\}.
+    \]
+    Since $\ass(Q_\p)\ne \emptyset$, and
+    $\ass(Q_\p)\subset\supp(Q_\p)$, we have that $\p
+    R_\p\in\ass(Q_\p)$. So by Proposition~\ref{P:assassinlocal},
+    $\p\in\ass(Q)$.
+  \end{proof}
 \end{theorem}
 
 
-\begin{corollary}
+\begin{corollary}[Assassins are finite]
   If $R$ is a Noetherian ring and $Q$ is a finitely generated
   $R$-module, then $\ass(Q)$ is finite.
+  \begin{sketch}
+    Our filtration above is finite.
+  \end{sketch}
 \end{corollary}
 
 
 \begin{proposition}
-  Let $R$ be a Noetherian ring and $L,M,N$ be finitely genenerated
+  Let $R$ be a Noetherian ring and $L,M,N$ be finitely generated
   $R$-modules. Given a short exact sequence
   \[
   0 \to L \to M \to N \to 0,
   \]
   $\ass(L) \subset \ass(M) \subset \ass(L) \cup \ass(N)$.
+  \begin{proof}
+    Since $L\into M$, we see $\ass(L) \subset \ass(M)$.
+
+    Suppose that $\p\in\ass(M)$, meaning $M$ contains a submodule $Q$
+    isomorphic to $R/\p$.
+
+    If $Q\cap L \ne \emptyset$, then there exists $x\in Q\cap L$ such
+    that $\p = \ann(x)$, so $\p\in\ass(L)$.
+
+    If $Q\cap L = 0$, $Q$ is isomorphic to a submodule of $M/L\iso N$,
+    and so $\p\in\ass(N)$.
+  \end{proof}
 \end{proposition}
+
+
+
+
+
+
+
+\begin{lemma}[Irreducibility and assassins]\label{L:irrassassin}
+  Let $R$ be a Noetherian ring and $M$ be finitely generated
+  $R$-module. If $N$ is an irreducible submodule of $M$, then
+  $\ass(M/N)=\{\p\}$.
+  \begin{proof}
+    Let $N$ be an irreducible submodule of $M$. Seeking a
+    contradiction, suppose that $\ass(M/N) = \{\p,\q\}$. Then there
+    are elements $\bar{x}$ and $\bar{y}$ such that $\p=\ann(\bar{x})$
+    and $\q=\ann(\bar{y})$. In this case
+    \[
+    \bar{x}R \cap \bar{y}R = 0,
+    \]
+    and this means that $(xR +N)\cap(yR+N) = N$, contradicting the
+    irreducibility of $N$.
+  \end{proof}
+\end{lemma}
+
+
+\begin{lemma}[Intersections and assassins]\label{L:intersectassassin}
+  Consider a Noetherian ring $R$ and a finitely generated $R$-module
+  $M$ with $R$-submodules $N_1,N_2\subset M$. If
+  \[
+  \ass(M/N_1) = \{\p\} \quad\text{and}\quad \ass(M/N_2) = \{\p\}
+  \]
+  then $\ass(M/(N_1\cap N_2) = \{\p\}$.
+  \begin{proof}
+    The surjection
+    \[
+    M \to M/N_1\dsum M/N_2
+    \]
+    has kernel $N = N_1\cap N_2$. Hence
+    \[
+    M/(N_1\cap N_2)\iso M/N_1\dsum M/N_2
+    \]
+    We can write a finite filtration,
+    \[
+    0 \subset M/N_1 \subset M/N_1\dsum M/N_2
+    \]
+    and so
+    \[
+    \ass(M/(N_1\cap N_2)) \subset{\p}. 
+    \]
+  \end{proof}
+\end{lemma}
 
 
 
