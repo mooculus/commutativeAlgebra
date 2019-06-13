@@ -9,7 +9,7 @@
 \begin{document}
 \begin{abstract}
   We introduce associated primes, also known as assassins. Sources and
-  references: \cite{sD2008, dE1995, mR1995}.
+  references: \cite{sD2008, dE1995, mR1995,jpS2000}.
 \end{abstract}
 \maketitle
 
@@ -26,9 +26,9 @@
 \end{definition}
 
 \begin{exercise}
-  Let $Q$ be an $R$-module. Show that if $\p\in\ass(Q)$, then there
-  exists and element $x\in Q$ such that $\ann(x) = \p$, hence one
-  could call $\p$ an \textit{assassin}.
+  Let $Q$ be an $R$-module. Show there exists $x\in Q$ such that
+  $\ann(x) = \p$ if and only if $Q$ contains a submodule isomorphic to
+  $R/\p$. This explains why one might call $\p$ an assassin of $Q$.
 \end{exercise}
 
 \begin{exercise}
@@ -54,6 +54,99 @@
 \begin{exercise}
   Let $Q$ and $T$ be $R$-modules. Prove that $\ass(Q\dsum T) = \ass(Q)\cup\ass(T)$.
 \end{exercise}
+
+\begin{proposition}
+  Let $R$ be a Noetherian ring, and $Q$ be a finitely generated $R$-module. Consider
+  \[
+  \mathcal{S} = \{\ann(q): q\in Q\text{ and } q\ne0\}.
+  \]
+  The maximal elements of $\mathcal{S}$ are prime.
+  \begin{sketch}
+  \end{sketch}
+\end{proposition}
+
+To quote David Eisenbud, ``ideals maximal with respect to some
+property have an uncanny tendency to be prime.''
+
+
+\begin{corollary}
+  If $Q\ne 0$, then $\ass(Q) \ne \emptyset$.
+\end{corollary}
+
+\begin{corollary}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, then there is a finite filtration
+  \[
+  0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
+  \]
+  where $Q_i/Q_{i+1} \iso R/\p_i$, where $\p_i\in\spec(R)$.
+\end{corollary}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated $R$-module. Consider the canonical map
+  \[
+  M\to \prod_{\p\in\ass(M)} M_\p.
+  \]
+  Prove that this map is injective.
+\end{exercise}
+
+
+
+\begin{proposition}
+  Let $R$ be a ring, $S$ be a multiplicatively closed subset of $R$,
+  $\p\in\spec(R)$ with $\p\cap S = \emptyset$, and $Q$ be an
+  $R$-module. Then
+  \[
+  \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}R}(S^{-1}(Q))
+  \]
+  whenever $S\cap\p = \emptyset$.
+  \begin{sketch}
+    $(\Rightarrow)$
+
+    $(\Leftarrow)$
+  \end{sketch}
+\end{proposition}
+
+
+
+\begin{theorem}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, consider the finite filtration
+  \[
+  0 = Q_0 \subsetneq Q_1 \subsetneq \dots \subsetneq Q_n = Q 
+  \]
+  where $Q_i/Q_{i+1} \iso R/\p_i$. In this case
+  \[
+  \ass(Q) \subset \{\p_1,\dots,\p_n\}\subset \supp(Q)
+  \]
+  and each of these sets have the same minimal elements.
+\end{theorem}
+
+
+\begin{corollary}
+  If $R$ is a Noetherian ring and $Q$ is a finitely generated
+  $R$-module, then $\ass(Q)$ is finite.
+\end{corollary}
+
+
+\begin{proposition}
+  Let $R$ be a Noetherian ring and $L,M,N$ be finitely genenerated
+  $R$-modules. Given a short exact sequence
+  \[
+  0 \to L \to M \to N \to 0,
+  \]
+  $\ass(L) \subset \ass(M) \subset \ass(L) \cup \ass(N)$.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+\hrule
 
 
 \begin{proposition}
@@ -104,19 +197,6 @@
 
 
 
-\begin{proposition}
-  Let $R$ be a ring, $S$ be a multiplicatively closed subset of $R$,
-  and $Q$ be an $R$-module. Then
-  \[
-  \p \in \ass_R(Q) \Leftrightarrow \ass_{S^{-1}}(S^{-1}(Q))
-  \]
-  whenever $S\cap\p = \emptyset$.
-  \begin{sketch}
-    $(\Rightarrow)$
-
-    $(\Leftarrow)$
-  \end{sketch}
-\end{proposition}
 
 \end{document}
 
