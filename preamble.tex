@@ -142,6 +142,11 @@
 
 %\renewcommand{\proofname}{Sketch of Proof}
 
+
+\renewenvironment{proof}[1][Proof]
+  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]\upshape}
+{\qed\end{trivlist}}
+
 \newenvironment{sketch}[1][Sketch of Proof]
-  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]}
+  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]\upshape}
 {\qed\end{trivlist}}

@@ -9,96 +9,113 @@
 \begin{document}
 \begin{abstract}
   We prove the primary decomposition theorem. Sources and references:
-  \cite{AM1969, sD2008, dE1995, mR1995}.
+  \cite{sD2008,jpS2000}.
 \end{abstract}
 \maketitle
 
-
 We are now ready to classifiy irreducible modules based on their
-assassins.
+assassins. For your convienence, we've collected key lemmas into one lemma.
 
-\begin{definition}
-  Let $R$ be a Noetherian ring. A nonzero finitely generated
-  $R$-module $Q$ is called \dfn{coprimary} if for all $x\in R$, the
-  homothety map (defined by multiplication by $x$)
-  \[
-  Q\lto^x Q
-  \]
-  is either injective or nilpotnent.
-\end{definition}
-
-\begin{exercise}
-  Consider these questions:
+\begin{lemma}\label{L:biglempd}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated
+  $R$-module with a submodule $N$. The following are true:
   \begin{enumerate}
-  \item Is the $\Z$-module $\Z_{18}$ is coprimary?
-  \item Is the $\Z$-module $\Z_{9}$ is coprimary?
+    \item The $R$-module $N\subsetneq M$ can be written as a finite
+      intersection of irreducible submodules of $M$. See Lemma~\ref{L:irrdecomp}.
+    \item If $N_i$ is an irreducible submodule of $M$, then
+      $\ass(M/N_i)=\{\p_i\}$. See Lemma~\ref{L:irrassassin}.
+    \item If $\ass(M/N_1) = \{\p\}$ and $\ass(M/N_2) = \{\p\}$ then
+      $\ass(M/(N_1\cap N_2) = \{\p\}$. See
+      Lemma~\ref{L:intersectassassin}.
   \end{enumerate}
-  Make wild conjectures connecting the assassins of a module to
-  whether it is coprimary or not.
-\end{exercise}
+\end{lemma}
 
 
-\begin{lemma}\label{L:irrcoprimary}
-  Let $R$ be a Noetherian ring and $N\subset M$ be finitely generated
-  $R$-modules. If $N$ is an irreducible submodule of $M$, then $Q=M/N$
-  is coprimary.
-  \begin{sketch}
-    Construct an ascending chain of kernels of the homothety map
-    defined via multiplication by $x\in R$. Use the fact that $R$ is
-    Noetherian and $M$ is finitely generated.
+
+
+
+%% \begin{definition}
+%%   Let $R$ be a Noetherian ring. A nonzero finitely generated
+%%   $R$-module $Q$ is called \dfn{coprimary} if for all $x\in R$, the
+%%   homothety map (defined by multiplication by $x$)
+%%   \[
+%%   Q\lto^x Q
+%%   \]
+%%   is either injective or nilpotnent.
+%% \end{definition}
+
+%% \begin{exercise}
+%%   Consider these questions:
+%%   \begin{enumerate}
+%%   \item Is the $\Z$-module $\Z_{18}$ is coprimary?
+%%   \item Is the $\Z$-module $\Z_{9}$ is coprimary?
+%%   \end{enumerate}
+%%   Make wild conjectures connecting the assassins of a module to
+%%   whether it is coprimary or not.
+%% \end{exercise}
+
+
+%% \begin{lemma}\label{L:irrcoprimary}
+%%   Let $R$ be a Noetherian ring and $N\subset M$ be finitely generated
+%%   $R$-modules. If $N$ is an irreducible submodule of $M$, then $Q=M/N$
+%%   is coprimary.
+%%   \begin{sketch}
+%%     Construct an ascending chain of kernels of the homothety map
+%%     defined via multiplication by $x\in R$. Use the fact that $R$ is
+%%     Noetherian and $M$ is finitely generated.
     
-    Supposing that $x q= 0$, we must show that $q= 0$ or that $x$ is
-    nilpotent on $Q$.
+%%     Supposing that $x q= 0$, we must show that $q= 0$ or that $x$ is
+%%     nilpotent on $Q$.
 
-    Let $a \in x^n Q \cap qR$. If $a\in qR$, argue $xa$ must be zero.
-    Then suppose $a\in x^n Q$, so for $b\in Q$,
-    \begin{align*}
-      &\Rightarrow a = x^nb\\
-      &\Rightarrow xa = x^{n+1}b\\
-      &\Rightarrow x^n b = 0\\
-      &\Rightarrow a=0.
-    \end{align*}
-    Use the fact that $0$ is an irreducible submodule of $Q$ to
-    complete the proof.
-  \end{sketch}
-\end{lemma}
-
-
-\begin{exercise}
-  Specialize this lemma to ideals.
-\end{exercise}
+%%     Let $a \in x^n Q \cap qR$. If $a\in qR$, argue $xa$ must be zero.
+%%     Then suppose $a\in x^n Q$, so for $b\in Q$,
+%%     \begin{align*}
+%%       &\Rightarrow a = x^nb\\
+%%       &\Rightarrow xa = x^{n+1}b\\
+%%       &\Rightarrow x^n b = 0\\
+%%       &\Rightarrow a=0.
+%%     \end{align*}
+%%     Use the fact that $0$ is an irreducible submodule of $Q$ to
+%%     complete the proof.
+%%   \end{sketch}
+%% \end{lemma}
 
 
+%% \begin{exercise}
+%%   Specialize this lemma to ideals.
+%% \end{exercise}
 
-\begin{lemma}
-  If $R$ is a Noetherian ring and $Q$ is a finitely generated
-  $R$-module, then $Q$ is coprimary if and only if it has exactly one
-  assassin.
-  \begin{sketch} 
-    $(\Rightarrow)$ Suppose that $Q$ is a coprimary module. Use double
-    containment to show any assassin is equal to $\rad{\ann(Q)}$.
+
+
+%% \begin{lemma}
+%%   If $R$ is a Noetherian ring and $Q$ is a finitely generated
+%%   $R$-module, then $Q$ is coprimary if and only if it has exactly one
+%%   assassin.
+%%   \begin{sketch} 
+%%     $(\Rightarrow)$ Suppose that $Q$ is a coprimary module. Use double
+%%     containment to show any assassin is equal to $\rad{\ann(Q)}$.
 
     
-    $(\Leftarrow)$ Seeking a contradiction, suppose there is a single
-    assassin of $Q$, call it $\p$, but $Q$ is not coprimary . If $x\in
-    \p$, but $x$ is not nilpotent on $Q$, localize at $x$. Contract
-    the canonical map to find a second prime ideal in $\ass(Q)$.
-  \end{sketch}
-\end{lemma}
+%%     $(\Leftarrow)$ Seeking a contradiction, suppose there is a single
+%%     assassin of $Q$, call it $\p$, but $Q$ is not coprimary . If $x\in
+%%     \p$, but $x$ is not nilpotent on $Q$, localize at $x$. Contract
+%%     the canonical map to find a second prime ideal in $\ass(Q)$.
+%%   \end{sketch}
+%% \end{lemma}
 
 
-\begin{definition}
-  A module is $Q$ is \dfn{$\boldsymbol{\p}$-coprimary} if $\ass(Q) = \{\p\}$.
-\end{definition}
+%% \begin{definition}
+%%   A module is $Q$ is \dfn{$\boldsymbol{\p}$-coprimary} if $\ass(Q) = \{\p\}$.
+%% \end{definition}
 
-\begin{lemma}
-  Let $Q$ be a finitely generated $\p$-coprimary $R$-module. Any
-  nonzero submodule $T\subset Q$ is also $\p$-coprimary.
-  \begin{sketch}
-    %% $T$ is clearly coprimary, since the assassins are minimal, it must
-    %% be $\p$-coprimary.
-  \end{sketch}
-\end{lemma}
+%% \begin{lemma}
+%%   Let $Q$ be a finitely generated $\p$-coprimary $R$-module. Any
+%%   nonzero submodule $T\subset Q$ is also $\p$-coprimary.
+%%   \begin{sketch}
+%%     %% $T$ is clearly coprimary, since the assassins are minimal, it must
+%%     %% be $\p$-coprimary.
+%%   \end{sketch}
+%% \end{lemma}
 
 
 
@@ -113,10 +130,10 @@ assassins.
 \end{definition}
 
 
-\begin{lemma}\label{L:intersectcoprimary}
-  Given a ring $R$, an $R$-module $M$, and an $R$-submodules $N_1,N_2\subset
-  M$, if $M/N_1$ and $M/N_2$ are $\p$-coprimary, then so is $M/(N_1\cap N_2)$.
-\end{lemma}
+%% \begin{lemma}\label{L:intersectcoprimary}
+%%   Given a ring $R$, an $R$-module $M$, and an $R$-submodules $N_1,N_2\subset
+%%   M$, if $M/N_1$ and $M/N_2$ are $\p$-coprimary, then so is $M/(N_1\cap N_2)$.
+%% \end{lemma}
 
 
 \begin{theorem}[Primary decomposition]
@@ -133,8 +150,7 @@ assassins.
   \item $\ass(M/N) = \{\p_1,\dots,\p_n\}$.
   \end{enumerate}
   \begin{sketch}
-    Use Lemmas~\ref{L:irrdecomp},~\ref{L:irrcoprimary},~\ref{L:intersectcoprimary},
-    to show the first parts of the theorem.
+    Use Lemma~\ref{L:biglempd} to show the first parts of the theorem.
     
     What remains is to show that $\ass(M/N) =
     \{\p_1,\dots,\p_n\}$. Use double containment.
@@ -170,7 +186,7 @@ assassins.
     \[
     \bigcap_{i=2}^n N_i/N \into M/N_1.
     \]
-    Since $\ass(M/N_1) = \{\p\}$, by Lemma~\ref{},
+    Since $\ass(M/N_1) = \{\p\}$, by Proposition~\ref{P:subsetassassin},
     $\p\in\ass\left(\bigcap_{i=2}^n N_i/N\right)$, and so
     $\p\in\ass(M/N)$.
   \end{sketch}
