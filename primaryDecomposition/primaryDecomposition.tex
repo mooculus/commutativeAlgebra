@@ -34,109 +34,18 @@ assassins. For your convienence, we've collected key lemmas into one lemma.
 
 
 
-%% \begin{definition}
-%%   Let $R$ be a Noetherian ring. A nonzero finitely generated
-%%   $R$-module $Q$ is called \dfn{coprimary} if for all $x\in R$, the
-%%   homothety map (defined by multiplication by $x$)
-%%   \[
-%%   Q\lto^x Q
-%%   \]
-%%   is either injective or nilpotnent.
-%% \end{definition}
-
-%% \begin{exercise}
-%%   Consider these questions:
-%%   \begin{enumerate}
-%%   \item Is the $\Z$-module $\Z_{18}$ is coprimary?
-%%   \item Is the $\Z$-module $\Z_{9}$ is coprimary?
-%%   \end{enumerate}
-%%   Make wild conjectures connecting the assassins of a module to
-%%   whether it is coprimary or not.
-%% \end{exercise}
-
-
-%% \begin{lemma}\label{L:irrcoprimary}
-%%   Let $R$ be a Noetherian ring and $N\subset M$ be finitely generated
-%%   $R$-modules. If $N$ is an irreducible submodule of $M$, then $Q=M/N$
-%%   is coprimary.
-%%   \begin{sketch}
-%%     Construct an ascending chain of kernels of the homothety map
-%%     defined via multiplication by $x\in R$. Use the fact that $R$ is
-%%     Noetherian and $M$ is finitely generated.
-    
-%%     Supposing that $x q= 0$, we must show that $q= 0$ or that $x$ is
-%%     nilpotent on $Q$.
-
-%%     Let $a \in x^n Q \cap qR$. If $a\in qR$, argue $xa$ must be zero.
-%%     Then suppose $a\in x^n Q$, so for $b\in Q$,
-%%     \begin{align*}
-%%       &\Rightarrow a = x^nb\\
-%%       &\Rightarrow xa = x^{n+1}b\\
-%%       &\Rightarrow x^n b = 0\\
-%%       &\Rightarrow a=0.
-%%     \end{align*}
-%%     Use the fact that $0$ is an irreducible submodule of $Q$ to
-%%     complete the proof.
-%%   \end{sketch}
-%% \end{lemma}
-
-
-%% \begin{exercise}
-%%   Specialize this lemma to ideals.
-%% \end{exercise}
-
-
-
-%% \begin{lemma}
-%%   If $R$ is a Noetherian ring and $Q$ is a finitely generated
-%%   $R$-module, then $Q$ is coprimary if and only if it has exactly one
-%%   assassin.
-%%   \begin{sketch} 
-%%     $(\Rightarrow)$ Suppose that $Q$ is a coprimary module. Use double
-%%     containment to show any assassin is equal to $\rad{\ann(Q)}$.
-
-    
-%%     $(\Leftarrow)$ Seeking a contradiction, suppose there is a single
-%%     assassin of $Q$, call it $\p$, but $Q$ is not coprimary . If $x\in
-%%     \p$, but $x$ is not nilpotent on $Q$, localize at $x$. Contract
-%%     the canonical map to find a second prime ideal in $\ass(Q)$.
-%%   \end{sketch}
-%% \end{lemma}
-
-
-%% \begin{definition}
-%%   A module is $Q$ is \dfn{$\boldsymbol{\p}$-coprimary} if $\ass(Q) = \{\p\}$.
-%% \end{definition}
-
-%% \begin{lemma}
-%%   Let $Q$ be a finitely generated $\p$-coprimary $R$-module. Any
-%%   nonzero submodule $T\subset Q$ is also $\p$-coprimary.
-%%   \begin{sketch}
-%%     %% $T$ is clearly coprimary, since the assassins are minimal, it must
-%%     %% be $\p$-coprimary.
-%%   \end{sketch}
-%% \end{lemma}
-
-
-
-
 \begin{definition}
   Given a ring $R$, an $R$-module $M$, and an $R$-submodule $N\subset
   M$, a \dfn{primary decomposition} of $N$ is
   \[
   N = \bigcap_{i=1}^n N_i
   \]
-  where each $M/N_i$ is coprimary. 
+  where for each $i$, $\ass(M/N_i)$ contains exactly one prime ideal
+  of $R$ and if $i\ne j$, then $\ass(M/N_i) \ne \ass(M/N_j)$.
 \end{definition}
 
 
-%% \begin{lemma}\label{L:intersectcoprimary}
-%%   Given a ring $R$, an $R$-module $M$, and an $R$-submodules $N_1,N_2\subset
-%%   M$, if $M/N_1$ and $M/N_2$ are $\p$-coprimary, then so is $M/(N_1\cap N_2)$.
-%% \end{lemma}
-
-
-\begin{theorem}[Primary decomposition]
+\begin{theorem}[Primary decomposition]\label{T:primarydecomp}
   Let $R$ be a Noetherian ring. Given an $R$-module $M$ and an
   $R$-submodule $N\subset M$, there exist $R$-submodules $N_i\subset
   M$ such that
@@ -145,12 +54,13 @@ assassins. For your convienence, we've collected key lemmas into one lemma.
   \]
   where
   \begin{enumerate}
-  \item $M/N_i$ is $\p_i$-coprimary for each $i$.
+  \item $\ass(M/N_i) = \{\p_i\}$.
   \item If $i\ne j$, then $\p_i\ne\p_j$.
   \item $\ass(M/N) = \{\p_1,\dots,\p_n\}$.
   \end{enumerate}
   \begin{sketch}
-    Use Lemma~\ref{L:biglempd} to show the first parts of the theorem.
+    Use Lemma~\ref{L:biglempd} to show parts (a) and (b) of the
+    theorem.
     
     What remains is to show that $\ass(M/N) =
     \{\p_1,\dots,\p_n\}$. Use double containment.
@@ -158,7 +68,7 @@ assassins. For your convienence, we've collected key lemmas into one lemma.
     $(\subset)$ We will show that $\ass(M/N)
     \subset\{\p_1,\dots,\p_n\}$.
     \begin{align*}
-      \frac{M}{N} = \frac{M}{N_1\cap\dots\cap N_n} &\lto^\eta \coprod_{i=1}^n M/N_i\\
+      \frac{M}{N} = \frac{M}{N_1\cap\dots\cap N_n} &\lto^\eta \directsum_{i=1}^n M/N_i\\
         m &\mapsto (m + N_1,\dots, m+ N_n)
     \end{align*}
     Here $\ker(\eta) = N_1\cap\dots\cap N_n = N$, hence $\eta$ is an
@@ -169,26 +79,25 @@ assassins. For your convienence, we've collected key lemmas into one lemma.
 
 
     $(\supset)$ We will show that $\{\p_1,\dots,\p_n\} \subset
-    \ass(M/N)$. WLOG we'll show that $\p=\p_1\in\ass(M/N)$. Note
+    \ass(M/N)$. WLOG we'll show that $\p_1\in\ass(M/N)$. Note from
+    before we have the injection
     \[
-    \bigcap_{i=2}^n N_i/N \subset M/N
+    \frac{M}{N} \into \directsum_{i=1}^n M/N_i.
     \]
-    and from before we have the injection
+    Since $\bigcap_{i=2}^n N_i/N \subset \frac{M}{N}$, this map can be
+    restricted
     \[
-    \frac{M}{N_1\cap\dots\cap N_n} \lto^\eta \coprod_{i=1}^n M/N_i.
+    \bigcap_{i=2}^n N_i/N \into \directsum_{i=1}^n M/N_i.
     \]
-    This map can be restricted to
-    \[
-    \bigcap_{i=2}^n N_i/N \to \coprod_{i=1}^n M/N_i.
-    \]
-    however, the only nonzero part (and hence injective) part of this
-    map is
+    The injective part of this map is
     \[
     \bigcap_{i=2}^n N_i/N \into M/N_1.
     \]
-    Since $\ass(M/N_1) = \{\p\}$, by Proposition~\ref{P:subsetassassin},
-    $\p\in\ass\left(\bigcap_{i=2}^n N_i/N\right)$, and so
-    $\p\in\ass(M/N)$.
+    Since $\ass(M/N_1) = \{\p_1\}$, by
+    Proposition~\ref{P:subsetassassin},
+    $\p_1\in\ass\left(\bigcap_{i=2}^n N_i/N\right)$, and so applying
+    Proposition~\ref{P:subsetassassin} again, we see
+    $\p_1\in\ass(M/N)$.
   \end{sketch}
 \end{theorem}
 
