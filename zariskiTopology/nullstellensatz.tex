@@ -127,15 +127,16 @@ nullstellensatz will also hold.
   Let $k$ be an algebraically closed field. An ideal $I$ is maximal in
   $k[\X]$ if and only if $I= (X_1-a_1,\dots,X_n-a_n)$ for some $a_i\in
   k$.
+\begin{sketch}
+  $(\Rightarrow)$ If $I$ is maximal then $k[\X] / I$ is a field. By
+  the weak nullstellansatz, it is an algebraic extension of $k$ where
+  $k$ is an algebraically closed field. Therefore, $k[\X] / I = k$.
+
+  $(\Leftarrow)$ The evalutaion map is a surjective homomorphism to
+  $k$. So, $I$ is maximal.
+\end{sketch}
 \end{corollary}
 
-\begin{sketch}
-
-
-The evalutaion map is a surjective homomorphism to k. So, $I$ is maximal. For the other direction, if $I$ is maximal then $k[\X] / I$ is a field and by Weak nullstellansatz it is an algebraic extension of k where k is an algebraically closed field.Therefore, $k[\X] / I = k$
-
-
-\end{sketch}
 
 
 
@@ -145,15 +146,41 @@ The evalutaion map is a surjective homomorphism to k. So, $I$ is maximal. For th
   \item $\V(I) \ne \emptyset$.
   \item $\I(\V(I)) = \rad{I}$.
   \end{enumerate}
-\end{theorem}
-
 \begin{sketch}
 Assume k is an algebraically closed field and $I$ is a proper ideal.
   \begin{enumerate}
-    \item $I$ is contained in a maximal ideal. Use the Corollary above to finish.
-    \item Say $I=(f_1,...,f_m)$ and $f \in \I(\V(I))$. Introduce a new variable $Y$ and consider the ideal $J=(f_1,...,f_m, fY-1)$. Observe that $V(J)$ is empty and conclude from part (a) that $J=k[X_1,...,X_n,Y]$. Write $1=\sum_{i=1}^m f_i g_i + (fY-1) h$. Working in the field of fractions, put $Y=\frac{1}{f}$. Clear denominators to get $f^n \in I$
+    \item $I$ is contained in a maximal ideal. Use the corollary above
+      to finish.
+    \item $(\subset)$ Say $I=(F_1,\dots,F_m)$ and $F_i\in
+      \I(\V(I))$. Now we will use the ``Rabinowitz Trick.'' This
+      means, we'll introduce a new variable $Y$ and consider the ideal
+      $J=(F_1,\dots,F_m, F\cdot Y-1)$. Observe that $\V(J)$ is empty
+      and conclude from part (a) that $J=k[X_1,\dots,X_n,Y]$. Write
+      \[
+      1=\sum_{i=1}^m F_i G_i + (F\cdot Y-1) h.
+      \]
+      Working in the field of fractions, put $Y=\frac{1}{F}$. Clear
+      denominators to get $F^n \in I$.
+
+      $(\supset)$ Note that that in $k[\X]$, $F(\x) = 0$ if and only
+      if $F(\x)^n = 0$.
   \end{enumerate}
 \end{sketch}
+\end{theorem}
+
+\begin{remark}%https://mathoverflow.net/questions/90661/the-rabinowitz-trick
+  To make the ``Rabinowitz Trick'' more intuitative, consider a
+  paraphrase of \link[Martin Brandenburg's answer on MathOverflow]{https://mathoverflow.net/questions/90661/the-rabinowitz-trick}:
+
+  Let $I\subset k[\X]$ be an ideal and $F\in\I(\V(I))$. We want to
+  prove $F\in\rad{T}$. In other words, we want to prove that $F$ is
+  nilpotent in $k[\X]/I$, or in other words, that the localization
+  $(k[\X]/I)_F$ vanishes. By general nonsense this algebra is
+  isomorphic to $k[\X,Y]/(I,F\cdot Y−1)$. But, clearly $\V(I,F\cdot
+  Y−1)=\emptyset$ and therefore the weak nullstellensatz implies that
+  $(I,F\cdot Y−1)=(1)$, i.e. that the quotient vanishes.
+\end{remark}
+
 
 
 \begin{corollary}
