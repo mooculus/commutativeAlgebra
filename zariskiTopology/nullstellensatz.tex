@@ -129,7 +129,13 @@ nullstellensatz will also hold.
   k$.
 \end{corollary}
 
+\begin{sketch}
 
+
+The evalutaion map is a surjective homomorphism to k. So, $I$ is maximal. For the other direction, if $I$ is maximal then $k[\X] / I$ is a field and by Weak nullstellansatz it is an algebraic extension of k where k is an algebraically closed field.Therefore, $k[\X] / I = k$
+
+
+\end{sketch}
 
 
 
@@ -140,6 +146,14 @@ nullstellensatz will also hold.
   \item $\I(\V(I)) = \rad{I}$.
   \end{enumerate}
 \end{theorem}
+
+\begin{sketch}
+Assume k is an algebraically closed field and $I$ is a proper ideal.
+  \begin{enumerate}
+    \item $I$ is contained in a maximal ideal. Use the Corollary above to finish.
+    \item Say $I=(f_1,...,f_m)$ and $f \in \I(\V(I))$. Introduce a new variable $Y$ and consider the ideal $J=(f_1,...,f_m, fY-1)$. Observe that $V(J)$ is empty and conclude from part (a) that $J=k[X_1,...,X_n,Y]$. Write $1=\sum_{i=1}^m f_i g_i + (fY-1) h$. Working in the field of fractions, put $Y=\frac{1}{f}$. Clear denominators to get $f^n \in I$
+  \end{enumerate}
+\end{sketch}
 
 
 \begin{corollary}
