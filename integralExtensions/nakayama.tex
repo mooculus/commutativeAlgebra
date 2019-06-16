@@ -13,7 +13,7 @@
 
 We start by introducing the ``determinant trick.''
 
-\begin{proposition}
+\begin{proposition}[Determinant trick]
   Let $M$ be a finitely generated $R$-module and $I\subset R$ an ideal
   of $R$. If $\phi:M\to M$ is an $R$-module homomorphism such that
   $\phi(M)\subset I M$, then $\phi$ satisfies and equation of the form
@@ -21,7 +21,47 @@ We start by introducing the ``determinant trick.''
   \phi^n + a_{n-1}\phi^{n-1} + \dots + \phi a_1 + a_0 = 0.
   \]
   \begin{proof}
-    Let $\{m_1,\dots, m_n\}$ be a set of generators for $M$. Hence $\phi(m_i) \in I M$. 
+    Let $\{m_1,\dots, m_n\}$ be a set of generators for $M$. Hence $\phi(m_i) \in I M$. Letting $a_{i,j}\in I$, we may write this:
+    \begin{align*}
+      \phi(m_1) &= a_{1,1}m_1 + a_{1,2}m_2 + \dots + a_{1,n}m_n\\
+      \phi(m_2) &= a_{2,1}m_1 + a_{2,2}m_2 + \dots + a_{2,n}m_n\\
+      &\hspace{.5em}  \vdots \\
+      \phi(m_n) &= a_{n,1}m_1 + a_{n,2}m_2 + \dots + a_{n,n}m_n. 
+    \end{align*}
+    We can express this relationship as the following matrix equation:
+    \[
+    \begin{bmatrix}
+      \phi - a_{1,1} & - a_{1,2} & \cdots & - a_{1,n}\\
+      - a_{2,1} & \phi - a_{2,2} & \cdots & - a_{2,n}\\
+      \vdots & \vdots & & \vdots \\
+      -a_{n,1} & -a_{n,2} & \cdots & \phi - a_{n,n}
+    \end{bmatrix}
+    \begin{bmatrix}
+      m_1\\
+      m_2\\
+      \vdots \\
+      m_n
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0\\
+      0\\
+      \vdots\\
+      0
+    \end{bmatrix}
+    \]
+    Let $X$ be the $n \times n$ matrix shown.  Let $Y_i$ be the
+    identity $n \times n$ matrix with the $i$th column replaced by the
+    column in the above equation with entries $c_1,\ldots,c_n$.  Then
+    by the above equation, the $i$th column in the product $X\cdot
+    Y_i$ will be the $0$ column for all $i$.  Thus $\det(X\cdot Y_i)
+    =0$.  Therefore
+    \[
+    \det(X) m_i = \det(X) \det(Y_i) = \det(X \cdot Y_i) = 0.
+    \]
+    This means that $\det(X)$ is the zero endomorphism of
+    $M$. Computing the determinant gives an equation of the desired
+    form.
   \end{proof}
 \end{proposition}
 
