@@ -105,9 +105,9 @@ I + J = \{x + y : x\in I \text{ and }y\in J\}.
 We can perform operations on ideals using \macaulay:
 
 \begin{macaulay2}
-R = ZZ/101[x,y,z]
-I = ideal(x^2-y^2)
-J = ideal(z*x^2-y^2*z)
+R = ZZ/101[x,y,z];
+I = ideal(x^2-y^2);
+J = ideal(z*x^2-y^2*z);
 I+J
 \end{macaulay2}
 
@@ -197,9 +197,9 @@ Moreover if $M$ is an $A$-module and $N$ is a submodule of $M$, then this can be
 We can compute colon ideals using \macaulay:
 
 \begin{macaulay2}
-R = ZZ/101[x,y,z]
-I = ideal(x^2*y-z^2, x*y-z^3)
-J = ideal(x,y,z)
+R = ZZ/101[x,y,z];
+I = ideal(x^2*y-z^2, x*y-z^3);
+J = ideal(x,y,z);
 I:J
 \end{macaulay2}
 

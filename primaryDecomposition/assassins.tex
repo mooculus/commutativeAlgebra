@@ -131,7 +131,7 @@ property have an uncanny tendency to be prime.''
     are elements $\bar{x},\bar{y}\in M/N$ such that $\p=\ann(\bar{x})$
     and $\q=\ann(\bar{y})$. We claim
     \[
-    \bar{x}R \cap \bar{y}R = 0,
+    \bar{x}R \cap \bar{y}R = 0.
     \]
     To see this, consider $a\in\bar{x}R \cap \bar{y}R$, $r,s\in R$,
     $p\in \p-\q$, and write
@@ -290,22 +290,19 @@ property have an uncanny tendency to be prime.''
   \]
   then $\ass(M/(N_1\cap N_2)) = \{\p\}$.
   \begin{proof}
-    The surjection
+    The map
     \[
     M \to M/N_1\dsum M/N_2
     \]
     has kernel $N = N_1\cap N_2$. Hence
     \[
-    M/(N_1\cap N_2)\iso M/N_1\dsum M/N_2
+    M/(N_1\cap N_2)\into M/N_1\dsum M/N_2
     \]
-    We can write a finite filtration,
+    So
     \[
-    0 \subset M/N_1 \subset M/N_1\dsum M/N_2
+    \ass(M/(N_1\cap N_2)) \subset\ass(M/N_1\dsum M/N_2) = {\p}. 
     \]
-    and so
-    \[
-    \ass(M/(N_1\cap N_2)) \subset{\p}. 
-    \]
+    Thus, $\ass(M/(N_1\cap N_2))=\{\p\}$.
   \end{proof}
 \end{lemma}
 

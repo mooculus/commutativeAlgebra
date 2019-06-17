@@ -54,7 +54,7 @@
 We can play with the nilradical in \macaulay. Note, we need to insist
 that $0$ is the zero of our ring:
 \begin{macaulay2}
-R = ZZ/101[x,y]/ideal(x^4,y^7)
+R = ZZ/101[x,y]/ideal(x^4,y^7);
 radical ideal 0_R
 \end{macaulay2}
 
@@ -85,10 +85,10 @@ We can generalize the idea of the nilradical as follows:
 
 We can play with the radicals in \macaulay:
 \begin{macaulay2}
-R = ZZ/101[x,y]
-I = ideal(x^4,y^7)
-J = ideal(y^3 - 3*y^2*x + 3*y*x^2 - x^3)
-p = ideal(x^2+y^3+1)
+R = ZZ/101[x,y];
+I = ideal(x^4,y^7);
+J = ideal(y^3 - 3*y^2*x + 3*y*x^2 - x^3);
+p = ideal(x^2+y^3+1);
 isPrime p
 rI=radical I
 rJ=radical J
