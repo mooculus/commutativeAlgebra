@@ -24,7 +24,7 @@ give a general proof. See \cite{iK1966,gK2011,eK1991} for alternate
 proofs at this level.
 
 
-\begin{proposition}
+\begin{proposition}\label{P:finiteext}
   Let $R$ be a ring, $R[X]/(f)$ is a finitely generated module over
   $R$ if $f$ is a monic polynomial.
   \begin{proof}
@@ -127,8 +127,15 @@ nullstellensatz will also hold.
   Let $k$ be an algebraically closed field. An ideal $I$ is maximal in
   $k[\X]$ if and only if $I= (X_1-a_1,\dots,X_n-a_n)$ for some $a_i\in
   k$.
-\end{corollary}
+\begin{sketch}
+  $(\Rightarrow)$ If $I$ is maximal then $k[\X] / I$ is a field. By
+  the weak nullstellansatz, it is an algebraic extension of $k$ where
+  $k$ is an algebraically closed field. Therefore, $k[\X] / I = k$.
 
+  $(\Leftarrow)$ The evalutaion map is a surjective homomorphism to
+  $k$. So, $I$ is maximal.
+\end{sketch}
+\end{corollary}
 
 
 
@@ -139,7 +146,47 @@ nullstellensatz will also hold.
   \item $\V(I) \ne \emptyset$.
   \item $\I(\V(I)) = \rad{I}$.
   \end{enumerate}
+\begin{sketch}
+Assume k is an algebraically closed field and $I$ is a proper ideal.
+  \begin{enumerate}
+    \item $I$ is contained in a maximal ideal. Use the corollary above
+      to finish.
+    \item $(\subset)$ Consider $F(\X)\in\I(\V(I))$. We want to prove
+      $F(\X)\in\rad{I}$. We will use the ``Rabinowitz Trick.'' This
+      means, we'll introduce a new variable $Y$ and consider the ideal
+      $J= I + (F(\X)\cdot Y-1)\subset k[\X,Y]$. Observe that $\V(J) =
+      \emptyset$ and conclude from part (a) that $J=k[\X,Y]$. Write
+      \[
+      1= G_0(\X,Y)\cdot (F(\X)\cdot Y-1) H_i(\X) + \sum_{i=1}^m G_i(\X,Y)
+      \cdot H_i(\X)
+      \]
+      where $H_i(\X) \in I$ and $G_i(\X,Y) \in k[\X,Y]$.  Working in
+      the field of fractions, set $Y=\frac{1}{F(\X)}$. Clear
+      denominators to see that a power of $F(\X)$ is an element of $I$.
+
+      $(\supset)$ Note that that in $k[\X]$, $F(\x) = 0$ if and only
+      if $F(\x)^n = 0$ where $\x\in k$.
+  \end{enumerate}
+\end{sketch}
 \end{theorem}
+
+\begin{remark}%https://mathoverflow.net/questions/90661/the-rabinowitz-trick
+  To make the ``Rabinowitz Trick'' more intuitative, consider a
+  paraphrase of \link[Martin Brandenburg's answer on MathOverflow]{https://mathoverflow.net/questions/90661/the-rabinowitz-trick}:
+\begin{quote}
+  We want to prove that $F(\X)$ is nilpotent in $k[\X]/I$, or in other
+  words, that the localization $(k[\X]/I)_{F(\X)}$ vanishes. We have that the rings
+  \[
+  (k[\X]/I)_{F(\X)}\iso k[\X,Y]/(I,F(\X)\cdot Y-1)
+  \]
+  are isomorphic as rings as $Y$ is congruent to $F(X)^{-1}$ in the
+  right hand ring.  But, clearly $\V(I,F(\X)\cdot Y-1)=\emptyset$ and
+  therefore the weak nullstellensatz implies that $(I,F(\X)\cdot
+  Y-1)=(1)$, meaning that the quotient vanishes, and hence $F(\X)$ is
+  nilpotent.
+\end{quote}
+\end{remark}
+
 
 
 \begin{corollary}
@@ -148,7 +195,7 @@ nullstellensatz will also hold.
   \[
   \vec{F}(\x) \ne 0
   \]
-  for all $\x\in\k^m$ if and only if there exist $G_i\in k[\X]$ such that
+  for all $\x\in k^m$ if and only if there exist $G_i\in k[\X]$ such that
   \[
   1 = \sum_{i=1}^m G_i F_i.
   \]
@@ -173,7 +220,7 @@ nullstellensatz will also hold.
 
 \begin{corollary}
   The category of affine algebraic varieties and morphisms is
-  equivalent to the category of $k$ algebras of the form
+  equivalent to the category of $k$-algebras of the form
   $k[\X]/\rad{I}$ and $k$-algebra homomorphisms with the arrows
   reversed.
 \end{corollary}

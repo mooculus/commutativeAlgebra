@@ -1,0 +1,74 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\title{Integral extensions}
+
+\begin{document}
+\begin{abstract}
+  We introduce integral extensions. Sources and references:
+  \cite{AM1969}.
+\end{abstract}
+\maketitle
+
+
+We've already used the most basic facts about integral extensions when
+we proved Noether normalization. Let's restate the important parts.
+\begin{definition}
+  Let $R\subset S$ be rings, with $R$ a subring of $S$. An element
+  $x\in S$ is called \dfn{integral} over $R$, if $x$ satifies a monic
+  polynomial in $R[X]$, meaning
+  \[
+  x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0  = 0
+  \]
+  where $a_i\in R$.
+\end{definition}
+
+\begin{exercise}
+  Let $f(x)\in\Z[x]$ be a monic polynomial. Prove that if $x\in\Q$,
+  then $x\in\Z$.
+\end{exercise}
+
+The exercise above gives some rational to our definition
+above. Compare the next proposition to Proposition~\ref{P:finiteext}.
+
+\begin{proposition}
+  Let $R\subset S$ be rings, with $R$ a subring of $S$. The following are equivalent:
+  \begin{enumerate}
+  \item $x$ is integral over $R$.
+  \item $R[x]$ is a finitely generated $R$-module.
+  \item We have the containment of rings $R\subset R[x] \subset
+    A\subset S$ where $A$ is a finitely generated $R$-algebra.
+  \item There exists an $R[x]$-module $M$ such that $\ann_{R[x]}(M) =
+    0$ and $M$ is finitely generated as an $R$-module.
+  \end{enumerate}
+  \begin{proof}
+    $\text{(a)}\Rightarrow \text{(b)}$ Let $a_i\in R$. Now, 
+    \[
+    x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0  = 0
+    \]
+    so we have that
+    \[
+    x^n = - a_{n-1} x^{n-1} - \dots - a_1 x - a_0,
+    \] 
+    thus $R[x]$ is finitely generated as an $R$-module.
+
+    
+    $\text{(b)}\Rightarrow \text{(c)}$ Set $A=R[x]$.
+
+
+    $\text{(c)}\Rightarrow \text{(d)}$ Set $M=A$, so $M$ is finitely
+    generated and $\ann_{R[x]}(A)=0$.
+
+
+    $\text{(d)}\Rightarrow \text{(a)}$  BASICALLY NAK?
+  \end{proof}
+\end{proposition}
+
+
+
+
+
+
+
+\end{document}

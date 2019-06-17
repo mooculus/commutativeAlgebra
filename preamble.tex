@@ -109,12 +109,15 @@
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
 \newcommand{\dfn}{\textbf}
+\let\hom\relax
 \DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\hom}{Hom}
 \DeclareMathOperator{\spec}{Spec}
 \DeclareMathOperator{\supp}{Supp}
 \DeclareMathOperator{\ass}{Ass}
 \DeclareMathOperator{\ff}{Frac}
 \DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\syz}{Syz}
 \renewcommand{\ker}{\mathop{\mathrm{Ker}}\nolimits}
 \newcommand{\lps}{[\hspace{-0.25ex}[}
 \newcommand{\rps}{]\hspace{-0.25ex}]}
@@ -140,6 +143,11 @@
 
 %\renewcommand{\proofname}{Sketch of Proof}
 
+
+\renewenvironment{proof}[1][Proof]
+  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]\upshape}
+{\qed\end{trivlist}}
+
 \newenvironment{sketch}[1][Sketch of Proof]
-  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]}
+  {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]\upshape}
 {\qed\end{trivlist}}
