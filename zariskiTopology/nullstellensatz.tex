@@ -151,19 +151,21 @@ Assume k is an algebraically closed field and $I$ is a proper ideal.
   \begin{enumerate}
     \item $I$ is contained in a maximal ideal. Use the corollary above
       to finish.
-    \item $(\subset)$ Say $I=(F_1,\dots,F_m)$ and $F_i\in
-      \I(\V(I))$. Now we will use the ``Rabinowitz Trick.'' This
+    \item $(\subset)$ Consider $F(\X)\in\I(\V(I))$. We want to prove
+      $F(\X)\in\rad{I}$. We will use the ``Rabinowitz Trick.'' This
       means, we'll introduce a new variable $Y$ and consider the ideal
-      $J=(F_1,\dots,F_m, F\cdot Y-1)$. Observe that $\V(J)$ is empty
-      and conclude from part (a) that $J=k[X_1,\dots,X_n,Y]$. Write
+      $J= I + (F(\X)\cdot Y-1)\subset k[\X,Y]$. Observe that $\V(J) =
+      \emptyset$ and conclude from part (a) that $J=k[\X,Y]$. Write
       \[
-      1=\sum_{i=1}^m F_i G_i + (F\cdot Y-1) h.
+      1= G_0(\X,Y)\cdot (F(\X)\cdot Y-1) H_i(\X) + \sum_{i=1}^m G_i(\X,Y)
+      \cdot H_i(\X)
       \]
-      Working in the field of fractions, put $Y=\frac{1}{F}$. Clear
-      denominators to get $F^n \in I$.
+      where $H_i(\X) \in I$ and $G_i(\X,Y) \in k[\X,Y]$.  Working in
+      the field of fractions, set $Y=\frac{1}{F(\X)}$. Clear
+      denominators to see that a power of $F(\X)$ is an element of $I$.
 
       $(\supset)$ Note that that in $k[\X]$, $F(\x) = 0$ if and only
-      if $F(\x)^n = 0$.
+      if $F(\x)^n = 0$ where $\x\in k$.
   \end{enumerate}
 \end{sketch}
 \end{theorem}
@@ -171,14 +173,18 @@ Assume k is an algebraically closed field and $I$ is a proper ideal.
 \begin{remark}%https://mathoverflow.net/questions/90661/the-rabinowitz-trick
   To make the ``Rabinowitz Trick'' more intuitative, consider a
   paraphrase of \link[Martin Brandenburg's answer on MathOverflow]{https://mathoverflow.net/questions/90661/the-rabinowitz-trick}:
-
-  Let $I\subset k[\X]$ be an ideal and $F\in\I(\V(I))$. We want to
-  prove $F\in\rad{T}$. In other words, we want to prove that $F$ is
-  nilpotent in $k[\X]/I$, or in other words, that the localization
-  $(k[\X]/I)_F$ vanishes. By general nonsense this algebra is
-  isomorphic to $k[\X,Y]/(I,F\cdot Y−1)$. But, clearly $\V(I,F\cdot
-  Y−1)=\emptyset$ and therefore the weak nullstellensatz implies that
-  $(I,F\cdot Y−1)=(1)$, i.e. that the quotient vanishes.
+\begin{quote}
+  We want to prove that $F(\X)$ is nilpotent in $k[\X]/I$, or in other
+  words, that the localization $(k[\X]/I)_{F(\X)}$ vanishes. We have that the rings
+  \[
+  (k[\X]/I)_{F(\X)}\iso k[\X,Y]/(I,F(\X)\cdot Y-1)
+  \]
+  are isomorphic as rings as $Y$ is congruent to $F(X)^{-1}$ in the
+  right hand ring.  But, clearly $\V(I,F(\X)\cdot Y-1)=\emptyset$ and
+  therefore the weak nullstellensatz implies that $(I,F(\X)\cdot
+  Y-1)=(1)$, meaning that the quotient vanishes, and hence $F(\X)$ is
+  nilpotent.
+\end{quote}
 \end{remark}
 
 
@@ -189,7 +195,7 @@ Assume k is an algebraically closed field and $I$ is a proper ideal.
   \[
   \vec{F}(\x) \ne 0
   \]
-  for all $\x\in\k^m$ if and only if there exist $G_i\in k[\X]$ such that
+  for all $\x\in k^m$ if and only if there exist $G_i\in k[\X]$ such that
   \[
   1 = \sum_{i=1}^m G_i F_i.
   \]
