@@ -149,7 +149,7 @@ press on.
   the Zariski topology.
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}\label{E:affinemap}
    Let $U\subseteq\A^m$ and $V\subseteq\A^n$ be affine algebraic varieties. Show that a
    morphism $\vec{F}: U\to V$ induces a map of $k$-algebras
    \begin{align*}
@@ -157,6 +157,49 @@ press on.
      G &\mapsto G\circ \vec{F}.
     \end{align*}
 \end{exercise}
+
+
+\begin{example}
+	Let's look at a simple explicit example of an induced map of
+        $k$-algebras given a map of varieties, as in
+        Exercise~\ref{E:affinemap}. Consider the varieties
+	\[
+	U=\{(x,y)\in\mathbb C^2:y-x=0\} \quad\text{and}\quad
+	V=\{(x,y)\in\mathbb C^2:y-2x=0\}
+	\]
+	and the map $\vec F:U\to V:(x,y)\mapsto(x,2y)$. Following the notation of Exercise~\ref{E:affinemap},
+	\[
+	\I(U)=(y-x) \quad\text{and}\quad
+	\I(V)=(y-2x)
+	\]
+	so we wish to calculate
+	\[
+	\vec F^*:\mathbb C[x,y]/(y-2x)\to\mathbb C[x,y]/(y-x).
+	\]
+	Trying to write this map abstractly, we get
+        \[
+        G(x,y)\mapsto G(\vec F(x,y)=G(x,2y).
+        \]
+        We can explicitly map $G(x,y)=x^2+y^3x$ by
+	\begin{equation*}
+	\begin{tikzcd}
+	x^2+y^3x \arrow[leftrightarrow]{r}{=}\arrow[mapsto]{d}{\vec F^*} & x^2+8x^4 \arrow[leftrightarrow]{r}{=}\arrow[mapsto]{d}{\vec F^*} & \tfrac14y^2+\tfrac12y^4 \arrow[mapsto]{d}{\vec F^*}\\
+	x^2+8y^3x \arrow[leftrightarrow]{r}{=} & x^2+8x^4 \arrow[leftrightarrow]{r}{=} & y^2+8y^4
+	\end{tikzcd}
+	\end{equation*}
+	so we see that our above interpretation of the map $\vec F^*$ really is well-defined.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{proposition}%% From mR1995 5.7
@@ -168,34 +211,36 @@ press on.
 \end{proposition}
 
 
-\begin{example}
-	Let's look at a simple explicit example of an induced map of $k$-algebras given a map of varieties, as in exercise 5.2. Consider the varieties
-	\[
-	U=\{(x,y)\in\mathbb C^2:y-x=0\}, \quad\text{and}\quad
-	V=\{(x,y)\in\mathbb C^2:y-2x=0\}
-	\]
-	and the map $\vec F:U\to V:(x,y)\mapsto(x,2y)$. Following the notation of exercise 5.2,
-	\[
-	\I(U)=(y-x), \quad\text{and}\quad
-	\I(V)=(y-2x)
-	\]
-	so we wish to calculate
-	\[
-	\vec F^*:\mathbb C[x,y]/(y-2x)\to\mathbb C[x,y]/(y-x).
-	\]
-	Trying to write this map abstractly, we get $[G(x,y)]\mapsto[G(\vec F(x,y)]=[G(x,2y)]$. We can explicitly map $[G(x,y)]=[x^2+y^3x]$ by
-	\begin{equation*}
-	\begin{tikzcd}
-	x^2+y^3x \arrow[leftrightarrow]{r}{=}\arrow[mapsto]{d}{\vec F^*} & x^2+8x^4 \arrow[leftrightarrow]{r}{=}\arrow[mapsto]{d}{\vec F^*} & \tfrac14y^2+\tfrac12y^4 \arrow[mapsto]{d}{\vec F^*}\\
-	x^2+8y^3x \arrow[leftrightarrow]{r}{=} & x^2+8x^4 \arrow[leftrightarrow]{r}{=} & y^2+8y^4
-	\end{tikzcd}
-	\end{equation*}
-	so we see that our above interpretation of the map $\vec F^*$ really is well-defined.
-\end{example}
+
+
+
+
+
+
 
 
 This last propositon suggests that we might want to look into the set
 of prime ideas of a ring.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

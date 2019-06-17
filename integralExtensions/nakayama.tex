@@ -28,7 +28,7 @@ We start by introducing the \textit{Jacobson radical}, an ideal related to the n
   Let $R$ be a ring, $j\in\i J(R)$ if and only if $1-jr$ is a unit in
   $R$ for all $r\in R$.
   \begin{proof}
-    $(\Rightarrow)$ Seeking a contradicition, suppose that $j\in \i
+    $(\Rightarrow)$ Seeking a contradiction, suppose that $j\in \i
     J(R)$ but $1-jr$ is not a unit in $R$. There is a maximal ideal
     $\m$ such that $1-jr\in\m$. However, $j\in\m$, implying that
     $jr\in\m$, and hence $1\in\m$. This would mean that $\m = R$, a
@@ -123,56 +123,107 @@ We now introduce the ``determinant trick.''
   \end{proof}
 \end{corollary}
 
-\begin{corollary}[Nakayama's lemma]
-  Let $R$ be a ring, $M$ be a finitely generated $R$-module, and
-  $I\subset R$ be an ideal with $I\subset \i J(R)$. In this case
-  \[
-  IM = M \quad\Rightarrow\quad M = 0.
-  \]
-  \begin{proof}
-    By the corollary above, there exists $x$ comaximal to $\i J(R)$
-    such that $xM = 0$. This means
+%% \begin{corollary}[Nakayama's lemma]
+%%   Let $R$ be a ring, $M$ be a finitely generated $R$-module, and
+%%   $I\subset R$ be an ideal with $I\subset \i J(R)$. In this case
+%%   \[
+%%   IM = M \quad\Rightarrow\quad M = 0.
+%%   \]
+%%   \begin{proof}
+%%     By the corollary above, there exists $x$ comaximal to $\i J(R)$
+%%     such that $xM = 0$. This means
+%%     \begin{align*}
+%%       xy + j &= 1\\
+%%       xy &= 1-j,
+%%     \end{align*}
+%%     but $1-j$ is a unit by Proposition~\ref{P:CharJR}, hence $x$ is a
+%%     unit. Thus $M = x^{-1}x M = 0$.
+%%   \end{proof}
+%% \end{corollary}
+
+%% \begin{corollary}
+%%   Let $R$ be a ring, $I\subset R$ be an ideal of $R$ with $I\subset \i
+%%   J(R)$, $M$ be a finitely generated $R$-module, and $N\subset M$ a
+%%   submodule of $M$. In this case
+%%   \[
+%%   M = IM + N \quad \Rightarrow \quad M = N.
+%%   \]
+%%   \begin{sketch}
+%%     Apply Nakayama's lemma to $(M/N)$ and note by an isomorphism
+%%     theorem that $I(M/N)\iso (IM + N)/N$.
+%%   \end{sketch}
+%% \end{corollary}
+
+%% \begin{exercise}
+%%   Let $(A,\m)$ be a local ring and $M$ a finitely generated
+%%   $A$-module. Show that $M/\m M$ is a finitely generated $A/\m$-vector space.
+%% \end{exercise}
+
+
+%% We now come to an important fact when studying finitely generated
+%% modules over local rings.
+
+%% \begin{corollary}
+%%   Let $(A,\m)$ be a local ring and $M$ a finitely generated
+%%   $A$-module. Consider the canonical surjection
+%%   \[
+%%   M \to  M/\m M
+%%   \]
+%%   If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
+%%   space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
+%%   \begin{proof}
+%%     The map
+%%     \[
+%%     \sum_{i=1}^n m_iA \to M \to M/\m M
+%%     \]
+%%     maps $\{m_1,\dots, m_n\}A$ onto $M/\m M$, so
+%%     \[
+%%     M = \m M + \sum_{i=1}^n m_iA 
+%%     \]
+%%     and $M = \sum_{i=1}^n m_iA$ by the corollary above.
+%%   \end{proof}
+%% \end{corollary}
+
+
+\begin{theorem}[Nakayama's lemma]
+  Let $R$ be a ring $M$ be a finitely generated $R$-module. The
+  following are equivalent:
+  \begin{enumerate}
+    \item Let $I\subset R$ be an ideal of $R$ such that $IM = M$. Then
+      there is $x$ comaximal to $I$ such that $xM = 0$.
+    \item Let $I\subset \i J(R)$ be an ideal of $R$. In this case
+      \[
+      IM = M \quad\Rightarrow\quad M = 0.
+      \]
+    \item $I\subset \i J(R)$ be an ideal of $R$ and $N\subset M$ a
+      submodule of $M$. In this case
+      \[
+      M = IM + N \quad \Rightarrow \quad M = N.
+      \]
+    \item Let $(A,\m)$ be a local ring and $M$ a finitely generated
+      $A$-module. Consider the canonical surjection
+      \[
+      M \to  M/\m M.
+      \]
+      If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
+      space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
+  \end{enumerate}
+  \begin{proof} 
+    (a)$\Rightarrow$(b) There exists $x$ comaximal to $\i J(R)$ such
+    that $xM = 0$. This means
     \begin{align*}
       xy + j &= 1\\
       xy &= 1-j,
     \end{align*}
     but $1-j$ is a unit by Proposition~\ref{P:CharJR}, hence $x$ is a
     unit. Thus $M = x^{-1}x M = 0$.
-  \end{proof}
-\end{corollary}
 
-\begin{corollary}
-  Let $R$ be a ring, $I\subset R$ be an ideal of $R$ with $I\subset \i
-  J(R)$, $M$ be a finitely generated $R$-module, and $N\subset M$ a
-  submodule of $M$. In this case
-  \[
-  M = IM + N \quad \Rightarrow \quad M = N.
-  \]
-  \begin{sketch}
-    Apply Nakayama's lemma to $(M/N)$ and note by an isomorphism
-    theorem that $I(M/N)\iso (IM + N)/N$.
-  \end{sketch}
-\end{corollary}
+    
+    (b)$\Rightarrow$(c) Apply Nakayama's lemma to $(M/N)$ and note by
+    an isomorphism theorem that $I(M/N)\iso (IM + N)/N$.
 
-\begin{exercise}
-  Let $(A,\m)$ be a local ring and $M$ a finitely generated
-  $A$-module. Show that $M/\m M$ is a finitely generated $A/\m$-vector space.
-\end{exercise}
-
-
-We now come to an important fact when studying finitely generated
-modules over local rings.
-
-\begin{corollary}
-  Let $(A,\m)$ be a local ring and $M$ a finitely generated
-  $A$-module. Consider the canonical surjection
-  \[
-  M \to  M/\m M
-  \]
-  If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
-  space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
-  \begin{proof}
-    The map
+    
+    (c)$\Rightarrow$(d) The map
     \[
     \sum_{i=1}^n m_iA \to M \to M/\m M
     \]
@@ -181,37 +232,35 @@ modules over local rings.
     M = \m M + \sum_{i=1}^n m_iA 
     \]
     and $M = \sum_{i=1}^n m_iA$ by the corollary above.
+
+    
+    (d)$\Rightarrow$(a) Suppose that $x$ is comaximal to $I$, hence
+    \begin{align*}
+      x + I &= R
+      xM + IM &= M
+    \end{align*}
+    Localize at $\m$, where $I\subset\m$
+    \[
+    xM_\m + I_\m M_\m = M_\m
+    \]
+    and mod out by $\m$,
+    \[
+    \frac{xM_\m + I_\m M_\m}{\m M_\m} = M_\m/\m M_\m
+    \]
+    since this is a $R_\m/\m R_\m$-vector space, we may break up the sum to see
+    \[
+    xM_\m/\m M_\m + I_\m M_\m/\m M_\m = M_\m/\m M_\m
+    \]
+    however, since $I\subset\m$ and $M = IM$ we have
+    \[
+    xM_\m/\m M_\m =0.
+    \]
+    Since $x$ is comaximal with $\m$, this means $xM = 0$.
   \end{proof}
-\end{corollary}
+\end{theorem}
 
 
-%% \begin{theorem}[Nakayama's lemma]
-%%   Let $R$ be a ring $M$ be a finitely generated $R$-module. The
-%%   following are equivalent:
-%%   \begin{enumerate}
-%%     \item Let $I\subset R$ be an ideal of $R$ such that $IM = M$. Then
-%%       there is $x$ comaximal to $I$ such that $xM = 0$.
-%%     \item Let $I\subset \i J(R)$ be an ideal of $R$. In this case
-%%       \[
-%%       IM = M \quad\Rightarrow\quad M = 0.
-%%       \]
-%%     \item $I\subset \i J(R)$ be an ideal of $R$ and $N\subset M$ a
-%%       submodule of $M$. In this case
-%%       \[
-%%       M = IM + N \quad \Rightarrow \quad M = N.
-%%       \]
-%%     \item Let $(A,\m)$ be a local ring and $M$ a finitely generated
-%%       $A$-module. Consider the canonical surjection
-%%       \[
-%%       M \to  M/\m M.
-%%       \]
-%%       If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
-%%       space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
-%%   \end{enumerate}
-%% \end{theorem}
-
-
-\section{applications}
+\section{Applications}
 
 \begin{corollary}
   Let $(A,\m)$ be a local ring, then
@@ -227,7 +276,7 @@ modules over local rings.
     $(\supset)$ We must show $I\subset \m I$. Consider a primary
     decomposition of $\m I$
     \[
-    \m I = \cap_{i=1}^n \q_i.
+    \m I = \bigcap_{i=1}^n \q_i.
     \]
     Let $\ass(A/\q_i) = \{\p\}$. Now consider
     \begin{align*}
