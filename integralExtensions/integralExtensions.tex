@@ -38,7 +38,7 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
   \item $x$ is integral over $R$.
   \item $R[x]$ is a finitely generated $R$-module.
   \item We have the containment of rings $R\subset R[x] \subset
-    A\subset S$ where $A$ is a finitely generated $R$-algebra.
+    A\subset S$ where $A$ is a finitely generated $R$-module.
   \item There exists an $R[x]$-module $M$ such that $\ann_{R[x]}(M) =
     0$ and $M$ is finitely generated as an $R$-module.
   \end{enumerate}
@@ -61,12 +61,33 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
     generated and $\ann_{R[x]}(A)=0$.
 
 
-    $\text{(d)}\Rightarrow \text{(a)}$  BASICALLY NAK?
+    $\text{(d)}\Rightarrow \text{(a)}$ Suppose $M$ is finitely
+    generated. Consider $\phi:M \to M$, where
+    \[
+    \phi(m) = x\cdot m.
+    \]
+    Now apply Proposition~\ref{P:determinanttrick}, where $I= R$. So
+    we have $\phi(M) = xM \subset M$, and since $\ann_{R[x]}(M) = 0$,
+    \[
+    x^n+ a_{n-1}x^{n-1} + \dots + a_1 x  + a_0 = 0.
+    \]
+    Hence, $x$ is integral over $R$.
   \end{proof}
 \end{proposition}
 
 
+\begin{corollary}
+\end{corollary}
 
+\begin{definition}
+  \dfn{integral closure}
+\end{definition}
+
+\begin{corollary}
+\end{corollary}
+
+\begin{corollary}
+\end{corollary}
 
 
 

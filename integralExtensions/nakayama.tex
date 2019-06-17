@@ -6,20 +6,64 @@
 
 \begin{document}
 \begin{abstract}
-  We prove the primary decomposition theorem. Sources and references:
+  We introduce and prove Nakayama's lemma. Sources and references:
   \cite{AM1969,jpS2000}.
 \end{abstract}
 \maketitle
 
-We start by introducing the ``determinant trick.''
+We start by introducing the \textit{Jacobson radical}, an ideal related to the nilradical.
 
-\begin{proposition}[Determinant trick]
+\begin{definition}\index{JA@$\i J(A)$}
+  If $R$ is a ring we define the \dfn{Jacobson radical} to be
+  \[
+  \i J(R) := \bigcap_{\m \text{ maximal}}\m.
+  \]
+\end{definition}
+
+\begin{exercise}
+  Prove that the Jacobson radical is an ideal.
+\end{exercise}
+
+\begin{proposition}\label{P:CharJR}
+  Let $R$ be a ring, $j\in\i J(R)$ if and only if $1-jr$ is a unit in
+  $R$ for all $r\in R$.
+  \begin{proof}
+    $(\Rightarrow)$ Seeking a contradicition, suppose that $j\in \i
+    J(R)$ but $1-jr$ is not a unit in $R$. There is a maximal ideal
+    $\m$ such that $1-jr\in\m$. However, $j\in\m$, implying that
+    $jr\in\m$, and hence $1\in\m$. This would mean that $\m = R$, a
+    contradiction.
+
+    $(\Leftarrow)$ Suppose that $j\notin\i J(R)$, hence there is some
+    maximal ideal $\m$ such that $j\notin\m$. Now, $(j)+\m = R$, so
+    there is $r\in\R$ and $m\in\m$ such that $jr+m = 1$. This means
+    $1-jr\in\m$ and cannot be a unit.
+  \end{proof}
+\end{proposition}
+
+\begin{exercise}
+  Let $R$ be a ring. Show that $\rad{0}\subset \i J(R)$.
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a ring and consider $R[X]$. Show that $\rad{0_{R[X]}} =
+  \i J(R)$.
+\end{exercise}
+
+
+
+
+
+We now introduce the ``determinant trick.''
+
+\begin{proposition}[Determinant trick]\label{P:determinanttrick}
   Let $M$ be a finitely generated $R$-module and $I\subset R$ an ideal
   of $R$. If $\phi:M\to M$ is an $R$-module homomorphism such that
   $\phi(M)\subset I M$, then $\phi$ satisfies and equation of the form
   \[
-  \phi^n + a_{n-1}\phi^{n-1} + \dots + \phi a_1 + a_0 = 0.
+  \phi^n(x) + a_{n-1}\phi^{n-1}(x) + \dots + a_1 \phi(x)  + a_0 = 0.
   \]
+  for all $x\in M$ and $a_i\in I$.
   \begin{proof}
     Let $\{m_1,\dots, m_n\}$ be a set of generators for $M$. Hence $\phi(m_i) \in I M$. Letting $a_{i,j}\in I$, we may write this:
     \begin{align*}
@@ -52,7 +96,7 @@ We start by introducing the ``determinant trick.''
     \]
     Let $X$ be the $n \times n$ matrix shown.  Let $Y_i$ be the
     identity $n \times n$ matrix with the $i$th column replaced by the
-    column in the above equation with entries $c_1,\ldots,c_n$.  Then
+    column in the above equation with entries $m_1,\dots,m_n$.  Then
     by the above equation, the $i$th column in the product $X\cdot
     Y_i$ will be the $0$ column for all $i$.  Thus $\det(X\cdot Y_i)
     =0$.  Therefore
@@ -66,10 +110,142 @@ We start by introducing the ``determinant trick.''
 \end{proposition}
 
 \begin{corollary}
+  Let $R$ be a ring, $M$ be a finitely generated $R$-module, and
+  $I\subset R$ be an ideal of $R$ such that $IM = M$. Then there is
+  $x$ comaximal to $I$ such that $xM = 0$.
+  \begin{proof}
+    In the proposition above, set $\phi$ to be the identity map, and
+    so for any $m\in M$,
+    \[
+    m + m a_{n-1} + \dots + m a_1 + m a_0 = 0.
+    \]
+    We set $x = 1 + a_{n-1} + \dots + a_1 + a_0$.
+  \end{proof}
 \end{corollary}
 
 \begin{corollary}[Nakayama's lemma]
+  Let $R$ be a ring, $M$ be a finitely generated $R$-module, and
+  $I\subset R$ be an ideal with $I\subset \i J(R)$. In this case
+  \[
+  IM = M \quad\Rightarrow\quad M = 0.
+  \]
+  \begin{proof}
+    By the corollary above, there exists $x$ comaximal to $\i J(R)$
+    such that $xM = 0$. This means
+    \begin{align*}
+      xy + j &= 1\\
+      xy &= 1-j,
+    \end{align*}
+    but $1-j$ is a unit by Proposition~\ref{P:CharJR}, hence $x$ is a
+    unit. Thus $M = x^{-1}x M = 0$.
+  \end{proof}
 \end{corollary}
+
+\begin{corollary}
+  Let $R$ be a ring, $I\subset R$ be an ideal of $R$ with $I\subset \i
+  J(R)$, $M$ be a finitely generated $R$-module, and $N\subset M$ a
+  submodule of $M$. In this case
+  \[
+  M = IM + N \quad \Rightarrow \quad M = N.
+  \]
+  \begin{sketch}
+    Apply Nakayama's lemma to $(M/N)$ and note by an isomorphism
+    theorem that $I(M/N)\iso (IM + N)/N$.
+  \end{sketch}
+\end{corollary}
+
+\begin{exercise}
+  Let $(A,\m)$ be a local ring and $M$ a finitely generated
+  $A$-module. Show that $M/\m M$ is a finitely generated $A/\m$-vector space.
+\end{exercise}
+
+
+We now come to an important fact when studying finitely generated
+modules over local rings.
+
+\begin{corollary}
+  Let $(A,\m)$ be a local ring and $M$ a finitely generated
+  $A$-module. Consider the canonical surjection
+  \[
+  M \to  M/\m M
+  \]
+  If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
+  space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
+  \begin{proof}
+    The map
+    \[
+    \sum_{i=1}^n m_iA \to M \to M/\m M
+    \]
+    maps $\{m_1,\dots, m_n\}A$ onto $M/\m M$, so
+    \[
+    M = \m M + \sum_{i=1}^n m_iA 
+    \]
+    and $M = \sum_{i=1}^n m_iA$ by the corollary above.
+  \end{proof}
+\end{corollary}
+
+
+%% \begin{theorem}[Nakayama's lemma]
+%%   Let $R$ be a ring $M$ be a finitely generated $R$-module. The
+%%   following are equivalent:
+%%   \begin{enumerate}
+%%     \item Let $I\subset R$ be an ideal of $R$ such that $IM = M$. Then
+%%       there is $x$ comaximal to $I$ such that $xM = 0$.
+%%     \item Let $I\subset \i J(R)$ be an ideal of $R$. In this case
+%%       \[
+%%       IM = M \quad\Rightarrow\quad M = 0.
+%%       \]
+%%     \item $I\subset \i J(R)$ be an ideal of $R$ and $N\subset M$ a
+%%       submodule of $M$. In this case
+%%       \[
+%%       M = IM + N \quad \Rightarrow \quad M = N.
+%%       \]
+%%     \item Let $(A,\m)$ be a local ring and $M$ a finitely generated
+%%       $A$-module. Consider the canonical surjection
+%%       \[
+%%       M \to  M/\m M.
+%%       \]
+%%       If $\{\bar{m}_1,\dots, \bar{m}_n\}$ form a basis for the $A/\m$-vector
+%%       space $M/\m M$, then $\{m_1,\dots, m_n\}$ generate $M$.
+%%   \end{enumerate}
+%% \end{theorem}
+
+
+\section{applications}
+
+\begin{corollary}
+  Let $(A,\m)$ be a local ring, then
+  \[
+  \bigcap_{n\ge 1} \m^n  = (0)
+  \]
+  \begin{proof}
+    Set $I = \bigcap_{n\ge 1} \m^n$. We will show that $\m I = I$, and
+    hence by Nakayama, $I = (0)$.
+
+    $(\subset)$ It is clear that $\m I \subset I$.
+
+    $(\supset)$ We must show $I\subset \m I$. Consider a primary
+    decomposition of $\m I$
+    \[
+    \m I = \cap_{i=1}^n \q_i.
+    \]
+    Let $\ass(A/\q_i) = \{\p\}$. Now consider
+    \begin{align*}
+      x &\in I -\p\\
+      y &\in \m = \p.
+    \end{align*}
+    From this we have $ab\in\m I \subset \q_i$. Hence $ab\in\ann(a)$
+    for some $a\in A/\q_i$, which means $ab\in \p$, a contradiction.
+
+    Now if $\ass(A/\q_i) = \m$, then $\m^n\in\q_i$, hence $I\in\q_i$,
+    and so $I\subset \m I$.
+  \end{proof}
+\end{corollary}
+
+
+
+
+
 
 
 
