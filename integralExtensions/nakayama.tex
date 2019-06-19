@@ -38,7 +38,7 @@ We start by introducing the \textit{Jacobson radical}, an ideal related to the n
 
     $(\Leftarrow)$ Suppose that $j\notin\i J(R)$, hence there is some
     maximal ideal $\m$ such that $j\notin\m$. Now, $(j)+\m = R$, so
-    there is $r\in\R$ and $m\in\m$ such that $jr+m = 1$. This means
+    there is $r\in R$ and $m\in\m$ such that $jr+m = 1$. This means
     $1-jr\in\m$ and cannot be a unit.
   \end{proof}
 \end{proposition}
@@ -61,11 +61,12 @@ We now introduce the ``determinant trick.''
 \begin{proposition}[Determinant trick]\label{P:determinanttrick}
   Let $M$ be a finitely generated $R$-module and $I\subset R$ an ideal
   of $R$. If $\phi:M\to M$ is an $R$-module homomorphism such that
-  $\phi(M)\subset I M$, then $\phi$ satisfies and equation of the form
+  $\phi(M)\subset I M$, then for some $a_i\in I$, $\phi$ satisfies and
+  equation of the form
   \[
-  \phi^n(x) + a_{n-1}\phi^{n-1}(x) + \dots + a_1 \phi(x)  + a_0 = 0.
+  \phi^n(x) + a_{n-1}\phi^{n-1}(x) + \dots + a_1 \phi(x)  + a_0 \phi^0(x)= 0.
   \]
-  for all $x\in M$ and $a_i\in I$.
+  for all $x\in M$.
   \begin{proof}
     Let $\{m_1,\dots, m_n\}$ be a set of generators for $M$. Hence $\phi(m_i) \in I M$. Letting $a_{i,j}\in I$, we may write this:
     \begin{align*}
@@ -186,10 +187,13 @@ We now introduce the ``determinant trick.''
 %%   \end{proof}
 %% \end{corollary}
 
+In the next theorem, we give four equivalent statements, each of which
+could be referred to as Nakayama's lemma. We will prove that the
+statements are equivalent in the theorem below (though the first
+follows from the proposition above).
 
 \begin{theorem}[Nakayama's lemma]
-  Let $R$ be a ring $M$ be a finitely generated $R$-module. The
-  following are equivalent:
+  Let $R$ be a ring $M$ be a finitely generated $R$-module. Then:
   \begin{enumerate}
     \item Let $I\subset R$ be an ideal of $R$ such that $IM = M$. Then
       there is $x$ comaximal to $I$ such that $xM = 0$.
@@ -221,11 +225,12 @@ We now introduce the ``determinant trick.''
     unit. Thus $M = x^{-1}x M = 0$.
 
     
-    (b)$\Rightarrow$(c) Apply Nakayama's lemma to $(M/N)$ and note by
-    an isomorphism theorem that $I(M/N)\iso (IM + N)/N$.
+    (b)$\Rightarrow$(c) Apply (b) to $(M/N)$ and note by an
+    isomorphism theorem that $I(M/N)\iso (IM + N)/N$.
 
     
-    (c)$\Rightarrow$(d) The map
+    (c)$\Rightarrow$(d) Let $\{\bar{m}_1,\dots,\bar{m}_n\}$ be a basis
+    for $M/\m M$ as a $A/\m$-vector space. The map
     \[
     \sum_{i=1}^n m_iA \to M \to M/\m M
     \]
@@ -233,7 +238,7 @@ We now introduce the ``determinant trick.''
     \[
     M = \m M + \sum_{i=1}^n m_iA 
     \]
-    and $M = \sum_{i=1}^n m_iA$ by the corollary above.
+    and $M = \sum_{i=1}^n m_iA$ by part (c) above.
 
     
     (d)$\Rightarrow$(a) Suppose that $x$ is comaximal to $I$, hence
@@ -289,8 +294,8 @@ We now introduce the ``determinant trick.''
       x &\in I -\q_i\\
       y &\in \m - \p_i.
     \end{align*}
-    From this we have $xy\in\m I \subset \q_i$. Hence $y\in\ann(x)$
-    for some $x\in A/\q_i$, which means $xy\in \p_i$, a contradiction.
+    From this we have $xy\in\m I \subset \q_i$. Hence $y\in\ann(\bar{x})$
+    for some $\bar{x}\in A/\q_i$, which means $y\in \p_i$, a contradiction.
   \end{proof}
 \end{corollary}
 

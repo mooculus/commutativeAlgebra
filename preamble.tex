@@ -8,6 +8,7 @@
 %%% This next bit of code defines all our theorem environments
 \makeatletter
 \let\c@theorem\relax
+\let\c@corollary\relax
 \makeatother
 
 \let\definition\relax
@@ -58,7 +59,7 @@
 %% \newtheorem*{eg}{Example}
 \newtheorem*{remark}{Remark}
 \newtheorem*{touchstone}{Touchstone}
-\newtheorem*{corollary}{Corollary}
+\newtheorem{corollary}{Corollary}[theorem]
 \newtheorem*{example}{Example}
 
 

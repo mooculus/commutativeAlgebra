@@ -18,7 +18,7 @@ We've already used the most basic facts about integral extensions when
 we proved Noether normalization. Let's restate the important parts.
 \begin{definition}
   Let $R\subset S$ be rings, with $R$ a subring of $S$. An element
-  $x\in S$ is called \dfn{integral} over $R$, if $x$ satifies a monic
+  $x\in S$ is called \dfn{integral} over $R$, if $x$ satisfies a monic
   polynomial in $R[X]$, meaning
   \[
   x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0  = 0
@@ -26,10 +26,19 @@ we proved Noether normalization. Let's restate the important parts.
   where $a_i\in R$.
 \end{definition}
 
+
+\begin{exercise}
+  Is $\Z[i]$ an integral extension of $\Z$? What about $\Z[i/2]$?
+\end{exercise}
+
+
 \begin{exercise}
   Let $f(x)\in\Z[x]$ be a monic polynomial. Prove that if $x\in\Q$,
   then $x\in\Z$.
 \end{exercise}
+
+
+
 
 The exercise above gives some rational to our definition
 above. Compare the next proposition to Proposition~\ref{P:finiteext}.
@@ -85,31 +94,44 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
 
 \begin{definition}
   Let $R\subset S$ be a rings. The \dfn{integral closure} of $R$ in
-  $S$ is the set of elements of $S$ that are integral over $R$.
+  $S$ is the set of elements of $S$ that are integral over $R$.  We
+  will write $\tilde{R}$ for the integral closure of
+  $R$.
 \end{definition}
 
 \begin{corollary}
   Let $R\subset S$ be rings. The integral closure of $R$ in $S$ is a
   subring of $S$ containing $R$.
-  \begin{proof}
-  \end{proof}
 \end{corollary}
 
 \begin{corollary}
   Let $R\subset S \subset T$ be rings. If $S$ is integral over $R$,
   and $T$ is integral over $S$, then $T$ is integral over $R$.
-  \begin{proof}
-  \end{proof}
 \end{corollary}
 
 
 \begin{corollary}
   Let $R\subset S$ be rings and let $A$ be the integral closure of $R$
   in $S$, then $A$ is integrally closed in $S$.
+  
 \end{corollary}
 
 
+\begin{definition}
+  Let $A$ be a domain. The \dfn{integral closure} of $A$, without
+  reference to another ring, means the integral closure of $A$ in its
+  field of fractions $\ff(A)$. In this case we write $\tilde{A}$ for
+  the integral closure.
+\end{definition}
+
+
 \begin{proposition}[Integrality and quotients]
+  Let $R\subset S$, with $S$ integral over $R$. Consider ideals
+  $J\subset S$ and $I= R\cap J$. Then $S/J$ is integral over $R/I$.
+  \begin{proof}
+    Given any equation for integrality, we may simply reduce it modulo
+    $J$.
+  \end{proof}
 \end{proposition}
 
 \begin{proposition}[Integrality and localization]
