@@ -2,6 +2,8 @@
 
 \input{../preamble.tex}
 
+\author{Bart Snapp}
+
 \title{Nakayama's lemma}
 
 \begin{document}
@@ -236,8 +238,8 @@ We now introduce the ``determinant trick.''
     
     (d)$\Rightarrow$(a) Suppose that $x$ is comaximal to $I$, hence
     \begin{align*}
-      x + I &= R
-      xM + IM &= M
+      x + I &= R\\
+      xM + IM &= M.
     \end{align*}
     Localize at $\m$, where $I\subset\m$
     \[
@@ -245,13 +247,14 @@ We now introduce the ``determinant trick.''
     \]
     and mod out by $\m$,
     \[
-    \frac{xM_\m + I_\m M_\m}{\m M_\m} = M_\m/\m M_\m
+    \frac{xM_\m + I_\m M_\m}{\m M_\m} = M_\m/\m M_\m.
     \]
-    since this is a $R_\m/\m R_\m$-vector space, we may break up the sum to see
+    Since this is a $R_\m/\m R_\m$-vector space, we may break up the
+    sum to see
     \[
-    xM_\m/\m M_\m + I_\m M_\m/\m M_\m = M_\m/\m M_\m
+    xM_\m/\m M_\m + I_\m M_\m/\m M_\m = M_\m/\m M_\m.
     \]
-    however, since $I\subset\m$ and $M = IM$ we have
+    However, since $I\subset\m$ and $M = IM$ we have
     \[
     xM_\m/\m M_\m =0.
     \]
@@ -278,24 +281,64 @@ We now introduce the ``determinant trick.''
     \[
     \m I = \bigcap_{i=1}^n \q_i.
     \]
-    Let $\ass(A/\q_i) = \{\p\}$. Now consider
+    We must show that $I\subset\q_i$.  Let $\ass(A/\q_i) =
+    \{\p_i\}$. If $\p_i = \m$, then $\q_i=\m$ and we are done, as
+    every ideal is contained in the maximal ideal. Now suppose that
+    $\p_i\ne\m$. Choose
     \begin{align*}
-      x &\in I -\p\\
-      y &\in \m = \p.
+      x &\in I -\q_i\\
+      y &\in \m - \p_i.
     \end{align*}
-    From this we have $ab\in\m I \subset \q_i$. Hence $ab\in\ann(a)$
-    for some $a\in A/\q_i$, which means $ab\in \p$, a contradiction.
+    From this we have $xy\in\m I \subset \q_i$. Hence $y\in\ann(x)$
+    for some $x\in A/\q_i$, which means $xy\in \p_i$, a contradiction.
+  \end{proof}
+\end{corollary}
 
-    Now if $\ass(A/\q_i) = \m$, then $\m^n\in\q_i$, hence $I\in\q_i$,
-    and so $I\subset \m I$.
+
+\begin{corollary}[Projective is free over a local ring]
+  Let $(A,\m)$ be a local ring and $M$ be a finitely generated
+  module. The module $M$ is projective if and only if it is free.
+  \begin{proof}
+    $(\Rightarrow)$ Let $M$ be a fintely generated projective
+    $A$-module. Write $M$ minimally in terms of generators
+    \[
+    M = m_1 A + \dots + m_n A
+    \]
+    where by Nakayama's lemma, each $m_i$ maps to a basis element of
+    the $A/\m$-vector space $M/\m M$.  Write
+    \begin{align*}
+      A^n &= M\dsum N \\
+      (A/\m)^n &= M/\m M \dsum N\m N
+    \end{align*}
+    Since $M/\m M$ is an $n$-dimensional vector space, $N/\m N$ must
+    be zero.
+
+    $(\Leftarrow)$ Now we must show every free module is
+    projective. Consider the following diagram:
+    \[
+    \begin{tikzcd}
+                         & A^n\arrow[dl,dashed,swap,"\tilde\phi"]\arrow[d,"\phi"] & \\
+      M \arrow[r,"\pi"]  & N  \arrow[r] & 0 
+    \end{tikzcd}
+    \]
+    We must construct $\tilde\phi$ so that the diagram above
+    commutes. The map $\phi$ is completely determined by where it maps
+    basis elements of $A^n$. Since $\pi$ is surjective, for all basis
+    elements $\vec{a}\in A^n$, there are $m\in M$ such that
+    \[
+    \phi(\vec{a}) = \pi(m).
+    \]
+    Hence for each basis element set $\tilde\phi(\vec{a}) = m$. This
+    can be extended linearly to the entire free module.
   \end{proof}
 \end{corollary}
 
 
 
-
-
-
-
+For some interesting extra reading check out:
+\begin{itemize}
+\item\link[\textit{Projective modules}, I.\ Kaplansky, Annals of
+  Mathematics, Second Series, Vol. 68, No. 2 (Sep., 1958), pp. 372--377]{https://www.jstor.org/stable/1970252}.
+\end{itemize}
 
 \end{document}
