@@ -182,7 +182,28 @@ here are some relations we might want.
   R=\p$, then $P_1$ is incomparable to $P_2$ in $\spec{S}$.
 \end{description}
 
+Perhaps the most confusing property above (at least for this author!)
+is the ``incomparable'' property. Let's check out a proposition to see
+if it helps. We'll need a definition.
 
+\begin{definition}
+  If $R$ is a Noetherian ring and $\p$ is a prime ideal of $R$, then the \textbf{height} of $\p$ is 
+  \[
+  \h(\p) = \sup\left\{n : \begin{minipage}{15em}there exists a chain of prime ideals $\p_0\subsetneq \p_1 \subsetneq \cdots \subsetneq \p_{n-1}\subsetneq \p_n =\p$\end{minipage} \right\}.
+  \]
+\end{definition}
+
+
+\begin{proposition}
+  Let $R\subset S$ be incomparable. If $\p\in\spec{R}$ and $P\in\spec(S)$, then $\h(P)\le \h(\p)$.
+  \begin{proof}
+    Consider the following chain:
+    \[
+    P_0 \subsetneq P_1 \subsetneq \dots \subsetneq P_n = P
+    \]
+    Since $S$ is incomparable to $R$, each $P_i$ contracts to a distinct prime in $R$. 
+  \end{proof}
+\end{proposition}
 
 
 \end{document}
