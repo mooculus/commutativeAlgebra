@@ -1,0 +1,99 @@
+\documentclass{ximera}
+
+\input{../preamble}
+
+\author{Bart Snapp}
+
+\title{Going-up}
+
+\begin{document}
+\begin{abstract}
+  We analyize the lying-over and going-up properties. Sources and references:
+  \cite{iK1966}.
+\end{abstract}
+\maketitle
+
+
+We begin with another example of Eisenbud's phrase: ``ideals maximal
+with respect to some property have an uncanny tendency to be prime.''
+
+
+\begin{proposition}
+  Let $R\subset S$ be rings and let $\p\in\spec(R)$. Consider the set
+  \[
+  \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and $(R-\p)\cap I = \emptyset$}\}.
+  \]
+  If $S$ has a maximal element $P$, then $P\in\spec(S)$.
+  \begin{proof}
+    Let $P$ be a maximal element of $\mathcal{S}$. Seeking a
+    contradiction, suppose that $xy\in P$ but $x\notin P$ and $y\notin
+    P$. This means that $x\in R-\p$ and $y\in R-\p$, but this means
+    that $xy\in R-\p$, a contradiction. Hence $P\in\spec(S)$.
+  \end{proof}
+\end{proposition}
+
+\begin{exercise}
+  If $R\subset S$ and $P\in\spec(S)$, show that $P\cap R\in\spec(R)$.
+\end{exercise}
+
+
+\begin{proposition}
+  Let $R\subset S$ be rings and $\p\in\spec(R)$. The ring $S$ has the
+  going-up property over $R$ if and only if $P\in\spec(S)$ is maximal in
+  \[
+  \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and
+    $(R-\p)\cap I = \emptyset$}\}
+  \]
+  implies that $P\cap R = \p$.
+  \begin{proof}
+    $(\Rightarrow)$ Suppose $P\in\spec{S}$ is maximal in
+    $\mathcal{S}$. We must show that the going-up property holds for
+    $\p$.
+
+    First note that $P\cap R\in\spec(R)$. Note, by the construction of
+    $P$, $P\cap R$ cannot properly contain $\p$. Hence if $P\cap
+    R\subset \p$, then enlarge $P\cap R$ to $\p$. By going-up, there
+    exists $P'\in\spec(S)$ with $P'\cap R = \p$. Since $P$ is maximal
+    in $\mathcal{S}$, we gave that $P=P'$.
+
+    $(\Leftarrow)$ Suppose that $\p'\subset\p\in\spec(R)$ and that
+    $P'\in\spec(S)$ with $P'\cap R = \p'$. Note, $P'\in\mathcal{S}$,
+    taking the maximal element $P\in\mathcal{S}$, we have that $P\cap
+    R = \p$. Hence $R\subset S$ has the going up property.
+  \end{proof}
+\end{proposition}
+
+
+\begin{corollary}
+  If a pair of rings $R\subset S$ has the going-up property, then they
+  have the lying-over property.
+  \begin{proof}
+    We can always find a maximal element of sets like $\mathcal{S}$,
+    so by our work above, going-up implies lying-over.
+  \end{proof}
+\end{corollary}
+
+
+\begin{proposition}
+  Let $R\subset S$ be rings and $\p\in\spec(R)$. The ring $S$ is
+  incomparable over $R$ if and only if $P\in\spec(S)$ $P\cap R =\p$
+  implies $P$ is maximal in
+  \[
+  \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and
+    $(R-\p)\cap I = \emptyset$}\}.
+  \]
+\end{proposition}
+
+
+\begin{theorem}
+  Let $R\subset S$ be rings with $S$ integral over $R$. In this case,
+  \begin{enumerate}
+  \item The pair $R\subset S$ has the lying-over property.
+  \item The pair $R\subset S$ has the incomparable property.
+  \item The pair $R\subset S$ has the going-up-property.
+  \end{enumerate}
+\end{theorem}
+
+
+
+\end{document}

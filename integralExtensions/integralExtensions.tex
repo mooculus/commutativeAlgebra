@@ -151,7 +151,7 @@ between $\spec(R)$ and $\spec(S)$. Suppose $R\subset S$ are rings,
 here are some relations we might want.
 
 \begin{description}
-\item[Lying-over] If $\p\in\spec(R)$, then there exists a
+\item[Lying-over]\index{lying-over} If $\p\in\spec(R)$, then there exists a
   $P\in\spec(S)$ such that $P\cap R = \p$.
   \[
   \begin{tikzcd}[row sep=0em,column sep=0em]
@@ -160,7 +160,7 @@ here are some relations we might want.
     \p   & \subset & \exists P
   \end{tikzcd}
   \]
-\item[Going-up] If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
+\item[Going-up]\index{going-up} If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
   $P_1\in\spec(S)$ with $P_1\cap R= \p$, then there exists $P_2$ with
   $P_1\subset P_2$ and $P_2\cap R = \p_2$.
   \[
@@ -172,7 +172,7 @@ here are some relations we might want.
     \p_1 & \subset & P_1  
   \end{tikzcd}
   \]
-\item[Going-down] If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
+\item[Going-down]\index{going-down} If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
   $P_2\cap R = \p_2$, then there exists $P_1$ with $P_1\subset P_2$
   and $P_1\cap R = \p_1$.
   \[
@@ -184,8 +184,9 @@ here are some relations we might want.
     \p_1 & \subset & \exists P_1  
   \end{tikzcd}
   \]
-\item[Incomparable] There exist $P_1,P_2\in\spec(S)$ with
-  $\p\in\spec(R)$ such that $P_1\cap R= \p$ and $P_2\cap R=\p$.
+\item[Incomparable]\index{incomparable} If $P_1,P_2\in\spec(S)$ are
+  distinct with $\p\in\spec(R)$ such that $P_1\cap R= \p$ and $P_2\cap
+  R=\p$, then $P_1$ is incomparable to $P_2$ in $\spec{S}$.
 \end{description}
 
 
