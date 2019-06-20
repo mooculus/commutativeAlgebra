@@ -8,8 +8,8 @@
 
 \begin{document}
 \begin{abstract}
-  We analyize the lying-over and going-up properties. Sources and references:
-  \cite{iK1966}.
+  We analyze the lying-over and going-up properties. Sources and references:
+  \cite{iK1974}.
 \end{abstract}
 \maketitle
 
@@ -85,15 +85,80 @@ with respect to some property have an uncanny tendency to be prime.''
 \end{proposition}
 
 
-\begin{theorem}
-  Let $R\subset S$ be rings with $S$ integral over $R$. In this case,
+\begin{theorem}[Going-up]
+  Let $R\subset S$ be rings with $S$ integral over $R$. In this case:
   \begin{enumerate}
   \item The pair $R\subset S$ has the lying-over property.
-  \item The pair $R\subset S$ has the incomparable property.
   \item The pair $R\subset S$ has the going-up-property.
+  \item The pair $R\subset S$ has the incomparable property.
   \end{enumerate}
+  \begin{proof}
+    From our work above, (b)$\Rightarrow$(a). Hence we will first
+    prove (b).
+
+    We must show that if $P$ is maximal in
+    \[
+    \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and
+      $(R-\p)\cap I = \emptyset$}\},
+    \]
+    then $P\cap R = \p$. Seeking a contradiction, suppose that
+    $x\in\p$ but $x\notin P\cap R$. Since $P$ is maximal in
+    $\mathcal{S}$, it must be that
+    \[
+    (P + (x)) \cap (R-\p) \ne \emptyset.
+    \]
+    Suppose that $c\in (P + (x)) \cap (R-\p)$ and write
+    \[
+    c = p + sx
+    \]
+    where $p\in P$, and $s\in S$. Since $S$ is integral over $R$, we
+    have an integral relation for $s$
+    \[
+    s^n + a_{n-1}s^{n-1} + \dots + a_1 s + a_0 = 0
+    \]
+    where $a_i\in R$. Multiply this by $x^n$ to get
+    \[
+    (sx)^n + a_{n-1}(sx)^{n-1}x + \dots + a_1 (sx)x^{n-1} + a_0x^n = 0.
+    \]
+    Noting that $sx = c-p$, we have that $sx\equiv c$ modulo $P$.
+    \[
+    (c)^n + a_{n-1}(c)^{n-1}x + \dots + a_1 (c)x^{n-1} + a_0x^n = 0 \pmod{P}.
+    \]
+    Now, the left-hand side of the equation above is in $R$ and $P$,
+    hence in
+    \[
+    (c)^n + a_{n-1}(c)^{n-1}x + \dots + a_1 (c)x^{n-1} + a_0x^n \in (P\cap R)\subset\p. 
+    \]
+    Since $x\in\p$, we see $c^n\in\p$, so $c\in\p$, a contradiction.
+
+
+    Now we will prove (c). We will assume that $P\cap R = \p$ and we
+    must show that $P$ is maximal in $\mathcal{S}$. Seeking a
+    contradiction, suppose that $P\subsetneq
+    I\in\mathcal{S}$. Consider $x\in I$ with $x\notin P$. Choose an
+    integral dependence relation of least degree modulo $P$
+    \[
+    x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0 \equiv 0 \pmod{P}
+    \]
+    We see that $a_0\in I$, and so $a_0\in I \cap R \subset \p \subset P$. But this means that
+    \[
+    x(x^{n-1} + a_{n-1}x^{n-2} + \dots + a_1)
+    \]
+    with neither $x$, nor $(x^{n-1} + a_{n-1}x^{n-2} + \dots + a_1)$
+    are in $P$, contradicting that $P$ is a prime ideal.
+  \end{proof}
 \end{theorem}
 
+
+\begin{definition}
+  Height
+\end{definition}
+
+\begin{corollary}
+\end{corollary}
+
+\begin{corollary}
+\end{corollary}
 
 
 \end{document}
