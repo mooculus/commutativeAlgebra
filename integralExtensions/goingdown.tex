@@ -17,11 +17,27 @@ The going-down property also is closely related to integral
 extensions. To start, we will strengthen Proposition~\ref{P:localint}.
 
 
-\begin{proposition}[Integral closure and localization]
+\begin{proposition}[Integral closure and localization]\label{P:localintS}
   Let $R\subset S$ with $A$ being the integral closure of $R$
   in $S$. If $U\subset R$ is a multiplicatively closed set, then
-  $U^{-1}\tilde{R}$ is the integral closure of $U^{-1}R$ in $U^{-1}S$.
+  $U^{-1}A$ is the integral closure of $U^{-1}R$ in $U^{-1}S$.
   \begin{proof}
+    First note that by Proposition~\ref{P:localint}, $U^{-1} A$ is
+    integral over $U^{-1} R$. Now suppose there is an element $s/u\in
+    U^{-1} S$, that is integral over $R$.  We must show that this
+    element is in $S^{-1} A$. Consider the integral dependence
+    equation for $s/u$ over $S^{-1} R$
+    \[
+    (s/u)^{n} + \left(r_{n-1}/u_{n-1}\right)(s/u)^{n-1}+\cdots +  \left(r_{1}/u_{1}\right)(s/u) + r_{0}/u_{0} = 0
+    \]
+    where $r_i\in R$ and $u_i\in U$. Clear denominators, by
+    multiplying by $(uu_{n-1}\cdots u_0)^n$, then this is the integral
+    dependence equation for $su_{n-1}\cdots u_0$. Since $A$ is the
+    integral closure of $R$, we see that
+    \[
+    su_{n-1}\cdots u_0\in A
+    \]
+    and hence $s/u\in U^{-1} A$.
   \end{proof}
 \end{proposition}
 
@@ -43,32 +59,117 @@ extensions. To start, we will strengthen Proposition~\ref{P:localint}.
   \item $A_\m$ is integrally closed for all maximal ideals.
   \end{enumerate}
   \begin{proof}
+    (a)$\Rightarrow$(b)$\vee$(c) Follows from Proposition~\ref{P:localintS}.
+
+    (b)$\vee$(c)$\Rightarrow$(a) Consider $\iota: A\into\tilde{A}$ via
+    the identity map. $A$ is integrally closed if and only if $\iota$
+    is surjective. However, if $A_\p\into\tilde{A}_\p$ is surjective
+    for all prime ideals (similarly maximal ideals), then
+    $A\into\tilde{A}$ is surjective.
   \end{proof}
 \end{proposition}
 
 
 \begin{definition}
-   Let $R\subset S$ with $I\subset R$ an ideal. The integral closure
-   of $I$ in $S$ is the subset of $S$ consisting of integral elements of
-
-   integral equation with coefficients in $I$.
+   Let $R\subset S$ with $I\subset R$ an ideal. The \dfn{integral
+     closure of an ideal} $I$ in $S$ is the set of all elements of $S$
+   that are integral over $I$.
 \end{definition}
 
 
-\begin{proposition}
-  Let $A$ be the integral closure of $R$ in $S$. Let $I$ be an ideal
-  of $R$. Then $\rad{IA}S$ is the integral closure of $I$  in $S$  
+\begin{proposition}\label{P:intideal}
+  Let $R\subset A\subset S$ be rings with $A$ being the integral
+  closure of $R$ in $S$. Let $I$ be an ideal of $R$. Then
+  \[
+  \{\text{integral closure of $I$ in $S$}\} = \rad{IA}.
+  \]
+  \begin{proof}
+    $(\subset)$ Suppose that $x$ is integral over $I$. Then
+    \[
+    x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0 = 0
+    \]
+    for $a_i\in I$. Hence, $x\in A$, and $x^n\in IA$, so $x\in
+    \rad{IA}$.
+
+    $(\supset)$ Suppose that $x\in\rad{IA}$. This means that
+    \[
+    x^n = \sum_{i=1}^m a_i x_i
+    \]
+    where $a_i\in I$ and $x_i\in A$. Set $M = R[x_1,\dots,
+      x_m]$. Since each $x_i$ is integral over $R$, $M$ is finitely
+    generated over $R$. Now, $x^n M \subset I M$, hence by the
+    determinant trick (Proposition~\ref{P:determinanttrick}) where
+    $\phi$ is multiplication by $x^n$, we have that $x^n$ is integral
+    over $R$, and we are done.
+  \end{proof}
 \end{proposition}
 
 
-\begin{proposition}
+\begin{proposition}\label{P:intff}
+  Let $A\subset B$ be integral domains with $A = \tilde{A}$. Let $b\in
+  B$ be integral over an ideal $I\subset A$.
+  \begin{enumerate}
+  \item The element $b$ is algebraic over $\ff(A)$.
+  \item If $x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$ is a minimal
+    polynomial for $b$ over $\ff(A)$, then $a_i\in \rad{I}$.
+  \end{enumerate}
+  \begin{proof}
+    It follows directly that $b$ is algebraic over $\ff(A)$.
+
+    Let $\ff(A)\subset K$ an extension field containing all of the
+    conjugates of $x$, call them $x_1,\dots, x_n$. Each $x_i$ is
+    integral over $A$ via the same integral dependence equation. By
+    Proposition~\ref{P:intideal}, they are integral over $I$, and are
+    in $\rad{I}$.
+  \end{proof}
 \end{proposition}
 
 
 \begin{theorem}[Going-down]
-  If $A\subset B$ are integral domains, $A$ is integrally closed in
-  its field of fractions, and $B$ is integrally closed, then the
-  going-down property holds.
+  If $A\subset B$ are integral domains, $A=\tilde{A}$, and $B$ is
+  integrally closed over $A$, then the going-down property holds.
+  \begin{proof}
+    We have the following setup:
+    \[
+    \begin{tikzcd}[row sep=0em,column sep=0em]
+      A=\tilde{A}    & \subset & B \\
+      \cup &         & \cup \\
+      \p_2 & \subset & P_2 \\
+      \cup &         & \cup \\
+      \p_1 & \subset & \exists P_1  
+    \end{tikzcd}
+    \]
+    We must show that $P_1$ exists. We claim that $P_1 = \p_1 B_{P_2}$.
+
+    Consider $x\in \p_1 B_{P_2}$. This means that $x = y/u$ where
+    $u\in B-P_2$ and $y\in \p_1 B$. By Proposition~\ref{P:intideal},
+    $y$ is integral over $\p_1$, and by Proposition~\ref{P:intff}, its
+    minimal polynomial over $\ff(A)$ is
+    \[
+    y^n + p_{n-1}y^{n-1} + \dots + p_1 y + p_0 = 0
+    \]
+    where each $p_i\in\p_1$.
+
+    Suppose further that $x\in \p_1 B_{P_2}\cap A$. Now since $x =
+    y/u$, we have $u = y/x$, where $x\in\ff(A)$. Now the minimal
+    polynomial for $u$ can be found by dividing the polynomial above
+    by $x^n$ to get
+    \[
+    u^n + q_{n-1} u^{n-1} + \dots + q_1 u + q_0 = 0
+    \]
+    where $q_i = p_i/x^i$. Thus
+    \[
+    x^i q_i = p_i \in \p_1.
+    \]
+    But $u$ is integral over $A$, so each $q_i\in A$. Now suppose that
+    $x\notin\p_1$, then the equation immediately above shows that
+    $q_i\in\p_1$, and so the equation above that shows
+    \[
+    u^n\in \p_1 B \subset \p_2 B \subset P_2
+    \]
+    and so $u\in P_2$, a contradiction. Hence $x\in \p_1$, and so
+    $\p_1 B_{P_2}\cap A = \p_1$.
+  \end{proof}
 \end{theorem}
 
 
