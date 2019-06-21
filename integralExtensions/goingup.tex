@@ -23,7 +23,7 @@ with respect to some property have an uncanny tendency to be prime.''
   \[
   \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and $(R-\p)\cap I = \emptyset$}\}.
   \]
-  If $S$ has a maximal element $P$, then $P\in\spec(S)$.
+  If $\mathcal{S}$ has a maximal element $P$, then $P\in\spec(S)$.
   \begin{proof}
     Let $P$ be a maximal element of $\mathcal{S}$. Seeking a
     contradiction, suppose that $xy\in P$ but $x\notin P$ and $y\notin
@@ -50,11 +50,19 @@ with respect to some property have an uncanny tendency to be prime.''
     $\mathcal{S}$. We must show that the going-up property holds for
     $\p$.
 
-    First note that $P\cap R\in\spec(R)$. Note, by the construction of
-    $P$, $P\cap R$ cannot properly contain $\p$. Hence if $P\cap
-    R\subset \p$, then enlarge $P\cap R$ to $\p$. By going-up, there
-    exists $P'\in\spec(S)$ with $P'\cap R = \p$. Since $P$ is maximal
-    in $\mathcal{S}$, we gave that $P=P'$.
+    First note that $P\cap R\in\spec(R)$. By the construction of $P$,
+    $P\cap R\subset \p$. Enlarge $P\cap R$ to $\p$.  By going-up,
+    there exists $P'\in\spec(S)$ with $P'\cap R = \p$.
+    \[
+    \begin{tikzcd}[row sep=0em,column sep=0em]
+      R    & \subset & S \\
+      \cup &         & \cup \\
+      \p & \subset & \exists P' \\
+      \cup &         & \cup \\
+      P\cap R & \subset & P  
+    \end{tikzcd}
+    \]
+    Since $P$ is maximal in $\mathcal{S}$, we gave that $P=P'$.
 
     $(\Leftarrow)$ Suppose that $\p'\subset\p\in\spec(R)$ and that
     $P'\in\spec(S)$ with $P'\cap R = \p'$. Note, $P'\in\mathcal{S}$,
@@ -76,8 +84,8 @@ with respect to some property have an uncanny tendency to be prime.''
 
 \begin{proposition}
   Let $R\subset S$ be rings and $\p\in\spec(R)$. The ring $S$ is
-  incomparable over $R$ if and only if $P\in\spec(S)$ $P\cap R =\p$
-  implies $P$ is maximal in
+  incomparable over $R$ if and only if $P\in\spec(S)$ with $P\cap R
+  =\p$ implies $P$ is maximal in
   \[
   \mathcal{S} = \{I\subset S: \text{$I$ is an ideal of $S$ and
     $(R-\p)\cap I = \emptyset$}\}.

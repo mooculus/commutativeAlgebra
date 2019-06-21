@@ -74,11 +74,11 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
 
 
     $\text{(d)}\Rightarrow \text{(a)}$ Suppose $M$ is finitely
-    generated. Consider $\phi:M \to M$, where
+    generated as an $R$-module. Consider $\phi:M \to M$, where
     \[
     \phi(m) = x\cdot m.
     \]
-    Now apply Proposition~\ref{P:determinanttrick}, where $I= R$. So
+    Now apply the determinant trick (Proposition~\ref{P:determinanttrick}), where $I= R$. So
     we have $\phi(M) = xM \subset M$, and since $\ann_{R[x]}(M) = 0$,
     \[
     x^n+ a_{n-1}x^{n-1} + \dots + a_1 x  + a_0 = 0.
@@ -95,9 +95,7 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
 
 \begin{definition}
   Let $R\subset S$ be a rings. The \dfn{integral closure} of $R$ in
-  $S$ is the set of elements of $S$ that are integral over $R$.  We
-  will write $\tilde{R}$ for the integral closure of
-  $R$.
+  $S$ is the set of elements of $S$ that are integral over $R$. 
 \end{definition}
 
 \begin{corollary}
@@ -140,6 +138,10 @@ above. Compare the next proposition to Proposition~\ref{P:finiteext}.
 \end{proposition}
 
 
+
+\section{Properties related to integral extensions}
+
+
 Integral extensions will allow us to state when have certain relations
 between $\spec(R)$ and $\spec(S)$. Suppose $R\subset S$ are rings,
 here are some relations we might want.
@@ -179,8 +181,14 @@ here are some relations we might want.
   \end{tikzcd}
   \]
 \item[Incomparable]\index{incomparable} If $P_1,P_2\in\spec(S)$ are
-  distinct with $\p\in\spec(R)$ such that $P_1\cap R= \p$ and $P_2\cap
-  R=\p$, then $P_1$ is incomparable to $P_2$ in $\spec{S}$.
+  distinct with $\p\in\spec(R)$ such that
+  \[
+  P_1\cap R= \p= P_2\cap R,
+  \]
+  then $P_1$ is incomparable to $P_2$ in $\spec(S)$, meaning
+  \[
+  P_1\not\subset P_2\quad\text{and}\quad P_2\not\subset P_1.
+  \]
 \end{description}
 
 Perhaps the most confusing property above (at least for this author!)
