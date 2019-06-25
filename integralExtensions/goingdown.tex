@@ -14,7 +14,24 @@
 \maketitle
 
 The going-down property also is closely related to integral
-extensions. To start, we will strengthen Proposition~\ref{P:localint}.
+extensions. Let's recall the going-down property:
+\begin{description}
+\item[Going-down]\index{going-down} If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
+  $P_2\cap R = \p_2$, then there exists $P_1$ with $P_1\subset P_2$
+  and $P_1\cap R = \p_1$.
+  \[
+  \begin{tikzcd}[row sep=0em,column sep=0em]
+    R    & \subset & S \\
+    \cup &         & \cup \\
+    \p_2 & \subset & P_2 \\
+    \cup &         & \cup \\
+    \p_1 & \subset & \exists P_1  
+  \end{tikzcd}
+  \]
+\end{description}
+
+
+We will strengthen Proposition~\ref{P:localint}.
 
 
 \begin{proposition}[Integral closure and localization]\label{P:localintS}
@@ -118,9 +135,10 @@ extensions. To start, we will strengthen Proposition~\ref{P:localint}.
 
     Let $\ff(A)\subset K$ an extension field containing all of the
     conjugates of $x$, call them $x_1,\dots, x_n$. Each $x_i$ is
-    integral over $A$ via the same integral dependence equation. By
-    Proposition~\ref{P:intideal}, they are integral over $I$, and are
-    in $\rad{I}$.
+    integral over $A$ via the same integral dependence equation. The
+    coefficients of the integral dependence equation are polynomials
+    in the $x_i$. By Proposition~\ref{P:intideal}, they are integral
+    over $I$, and are in $\rad{I}$.
   \end{proof}
 \end{proposition}
 

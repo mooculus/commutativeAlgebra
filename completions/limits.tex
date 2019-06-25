@@ -1,0 +1,97 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Limits}
+
+\begin{document}
+  \begin{abstract}
+    We review inverse limits.  Sources and references: \cite{sD2008}.
+  \end{abstract}
+\maketitle
+
+\subsection{Inverse Limits}
+
+\begin{definition}\index{inverse system}
+  A family of objects $(X_\alpha)_{\alpha\in \mathcal{I}}$ is a \textbf{inverse
+    system indexed by a directed set $\boldsymbol{\mathcal{I}}$} if for every
+  $\alpha,\beta \in \mathcal{I}$ with $\alpha \le \beta$ there exists a
+  morphism $\ph_{\alpha\beta}:X_\beta \to X_\alpha$ such that:
+  \begin{enumerate}
+  \item $\ph_{\alpha\alpha} = \1_{X_\alpha}$ for all $\alpha \in \mathcal{I}$.
+  \item For any $\alpha,\beta,\gamma \in \mathcal{I}$ where $\alpha\le \beta\le\gamma$, the following diagram commutes:
+    \[
+    \begin{tikzcd}
+      X_\beta \ar[rr,"\ph_{\alpha\beta}"] &    & X_\alpha\\
+      &  X_\gamma\ar[ul,"\ph_{\beta\gamma}"] \ar[ur,"\ph_{\alpha\gamma}"]  &
+    \end{tikzcd}
+    \]
+  \end{enumerate}
+\end{definition}
+
+
+\begin{definition}\index{inverse limit}\index{limit}
+  An \textbf{inverse limit}, which is an example of a \textbf{limit},
+  of a inverse system $(X_\alpha)_{\alpha\in \mathcal{I}}$, is an
+  object, denoted by $\invlim(X_\alpha)$, with morphisms
+  $\ph_\alpha:\invlim(X_\alpha)\to X_\alpha$ such that for all
+  $\alpha, \beta \in \mathcal{I}$ with $\alpha \le \beta$ we have
+  $\ph_{\alpha\beta} \circ \ph_\beta = \ph_\alpha$.  Further, for
+  every object $Y$ with compatible morphisms $\psi_\alpha:Y\to
+  X_\alpha$, there exists a unique morphism $\ph$ making the diagram
+  below commute for all $\alpha\le\beta$:
+\[
+\begin{tikzcd}
+  Y\ar[ddr,bend right=60,swap,"\psi_\alpha"] \ar[dr,swap,"\psi_\beta"]  \ar[dashed,rr,"\ph"] &   &  \invlim(X_{\alpha}) \ar[ddl,bend left=60,"\ph_\alpha"] \ar[dl,"\ph_\beta"]\\
+  & X_{\beta} \ar[d,"\ph_{\alpha\beta}"] &\\
+  & X_{\alpha}&
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{example} If we consider the category of sets, where the morphisms are set inclusion, then given $X_0\supset X_1\supset \cdots \supset X_n\supset \cdots$,
+\[
+\invlim(X_i) = \bigcap_{i=0}^\infty X_i.
+\]
+\end{example}
+
+\begin{example} The inverse limit can be constructed as follows: For a given inverse system, $(X_\alpha)_{\alpha\in \mathcal{I}}$, write
+\[
+\invlim(X_\alpha) = \{(x_\alpha)_{\alpha\in \mathcal{I}}:\text{if }\alpha\le \beta,\text{ then }x_\alpha = \ph_{\alpha\beta}(x_\beta) \}\subset \prod_{\alpha\in \mathcal{I}} X_\alpha.
+\]
+The reader should check that this construction agrees with the definition of an inverse limit.
+\end{example}
+
+We now will define the ring of formal power series as it will be very useful in this chapter: 
+
+\begin{definition}\index{formal power series ring}\index{power series ring}\index{AX@$A\lps X \rps$} Given a ring $A$, we can form the ring of \textbf{formal power series} in $X_1,\dots,X_n$ over $A$ by considering all infinite sums of the form
+\[
+\sum_{i=0}^\infty a_{i_1,\dots, i_n}X_1^{i_1}\cdots X_n^{i_n},\qquad\text{where} \qquad a_{i_1,\dots, i_n}\in A.
+\]
+Sums such as these form a ring under the canonical rules for summation and product. We denote the ring of formal power series over $A$ in $n$ variables by $A\lps X_1,\dots,X_n\rps$.
+\end{definition}
+
+\begin{exercise} If $B = A[X_1,\dots,X_n]$ and $I = (X_1,\dots,X_n)$. Show $(A/I^t)$ form an inverse system. Moreover, show that
+\[
+\invlim(B/I^n) \iso A\lps X_1,\dots,X_n\rps.
+\]
+\end{exercise}
+
+
+\begin{exercise} \label{invlimleftexact}
+Suppose we have inverse systems $(A_\alpha)_{\alpha \in \mathcal{I}}$, $(B_\alpha)_{\alpha \in \mathcal{I}}$, and $(C_\alpha)_{\alpha \in \mathcal{I}}$, over the directed set $\mathcal{I}$ and maps $(\ph_\alpha):(A_\alpha) \to (B_\alpha)$ and $(\psi_\alpha):(B_\alpha) \to (C_\alpha)$ such that for every $\alpha \in \mathcal{I}$
+\[
+0 \lto A_\alpha \lto^{\ph_\alpha} B_\alpha \lto^{\psi_\alpha} C_\alpha\lto 0
+\]
+is exact.  Then
+\[
+0 \lto \invlim A_\alpha \lto^{\invlim \ph_\alpha} \invlim B_\alpha \lto^{\invlim \psi_\alpha} \invlim C_\alpha
+\]
+is exact.  In other words, inverse limit is a left exact functor from the category of inverse systems of modules over a fixed directed set to the category of modules.
+\end{exercise}
+
+
+
+\end{document}

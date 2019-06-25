@@ -8,14 +8,48 @@
 
 \begin{document}
 \begin{abstract}
-  We analyze the lying-over and going-up properties. Sources and references:
+  We analyze the lying-over, going-up, and incomparable properties. Sources and references:
   \cite{iK1974}.
 \end{abstract}
 \maketitle
 
 
-We begin with another example of Eisenbud's phrase: ``ideals maximal
-with respect to some property have an uncanny tendency to be prime.''
+First recall the lying-over, going-up, and incomparable properties:
+\begin{description}
+\item[Lying-over]\index{lying-over} If $\p\in\spec(R)$, then there exists a
+  $P\in\spec(S)$ such that $P\cap R = \p$.
+  \[
+  \begin{tikzcd}[row sep=0em,column sep=0em]
+    R    & \subset & S \\
+    \cup &         & \cup \\
+    \p   & \subset & \exists P
+  \end{tikzcd}
+  \]
+\item[Going-up]\index{going-up} If $\p_1,\p_2\in\spec(R)$ with $\p_1\subset\p_2$ and
+  $P_1\in\spec(S)$ with $P_1\cap R= \p$, then there exists $P_2$ with
+  $P_1\subset P_2$ and $P_2\cap R = \p_2$.
+  \[
+  \begin{tikzcd}[row sep=0em,column sep=0em]
+    R    & \subset & S \\
+    \cup &         & \cup \\
+    \p_2 & \subset & \exists P_2 \\
+    \cup &         & \cup \\
+    \p_1 & \subset & P_1  
+  \end{tikzcd}
+  \]
+\item[Incomparable]\index{incomparable} If $P_1,P_2\in\spec(S)$ are
+  distinct with $\p\in\spec(R)$ such that
+  \[
+  P_1\cap R= \p= P_2\cap R,
+  \]
+  then $P_1$ is incomparable to $P_2$ in $\spec(S)$, meaning
+  \[
+  P_1\not\subset P_2\quad\text{and}\quad P_2\not\subset P_1.
+  \]
+\end{description}
+We will be setting up conditions where the these properties hold.  We
+begin with another example of Eisenbud's phrase: ``ideals maximal with
+respect to some property have an uncanny tendency to be prime.''
 
 
 \begin{proposition}
