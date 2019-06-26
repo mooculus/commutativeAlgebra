@@ -71,7 +71,7 @@ In this text, we require local rings to be Noetherian.
   \item The ideal $\m$ is principal and nonzero.
   \end{enumerate}
   \begin{proof}
-    (a)$\Rightarrow$(b) If $A$ is a DVR, then it is a PDF, hence it is
+    (a)$\Rightarrow$(b) If $A$ is a DVR, then it is a PID, hence it is
     a UFD, and it is integrally closed.  Since $A$ is local $\h(\m) =
     1$.
 
@@ -97,13 +97,14 @@ In this text, we require local rings to be Noetherian.
     over $A$, which is not the case since $A = \tilde{A}$.
 
     So, since $\m xm^{-1} \not\subset\m$ there must $g\in \m$ such
-    that $u = gxm^{-1}\in\m$ is invertible in $A$.  Now given any
+    that $u = gxm^{-1}\notin\m$ is invertible in $A$.  Now given any
     element $e\in\m$, we may write
     \begin{align*}
       e &= e xm^{-1} g^{-1} x^{-1} m g \\
-      &= (exm^{-1}) u^{-1} g
+      &= (exm^{-1}) u^{-1} g,
     \end{align*}
-    so $\m = g A$.
+    and since $\m xm^{-1}\subset A$, $exm^{-1}\in A$, and $u^{-1}\in
+    A$, so $\m = g A$.
 
     (d)$\Rightarrow$(a) We must show that $A$ is a PID. Suppose that
     $\m = gA$. So $\m^n = g^n A$, and by Corollary~\ref{C:intmax}, we
@@ -117,11 +118,11 @@ In this text, we require local rings to be Noetherian.
 \end{proposition}
 
 
-We will now give a criterion for a ring to be normal.
+We will now give a criterion for a ring to be a normal domain.
 
 \begin{theorem}[Criterion for normality]
-  Let $A$ be Noetherian, then $A$ is normal if and only if both of the
-  following hold:
+  Let $A$ be Noetherian, then $A$ is a normal domain if and only if
+  both of the following hold:
   \begin{enumerate}
   \item $A_\p$ is a DVR for all primes $\p$ of height $1$.
   \item For all $0 \neq m \in A$, if $\p \in \ass(A/mA)$, then $\h(\p) = 1$.
@@ -131,7 +132,7 @@ We will now give a criterion for a ring to be normal.
     normal. If $\h(\p) = 1$, then the previous proposition shows that
     $A_\p$ is a DVR.
 
-    If $m\ne 0$, and $\p \in \ass(A/mA)$, then apply the previous
+    If $m\ne 0$, and $\p \in \ass(A_\p/mA_\p)$, then apply the previous
     proposition to see that $\h(\p) = 1$.
 
     $(\Leftarrow)$ Suppose that (a) and (b) hold above. Consider
