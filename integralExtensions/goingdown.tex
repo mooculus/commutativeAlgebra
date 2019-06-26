@@ -157,7 +157,12 @@ We will strengthen Proposition~\ref{P:localint}.
       \p_1 & \subset & \exists P_1  
     \end{tikzcd}
     \]
-    We must show that $P_1$ exists. We claim that $P_1 = \p_1 B_{P_2}$.
+    We claim that $P_1 = \p_1 B_{P_2}$. Note, by construction we have that
+    \[
+    \p_1 \subset \p_1 B_{P_2}\cap A,
+    \]
+    hence we must show that if $x\in \p_1 B_{P_2}\cap A$, then
+    $x\in\p_1$.
 
     Consider $x\in \p_1 B_{P_2}$. This means that $x = y/u$ where
     $u\in B-P_2$ and $y\in \p_1 B$. By Proposition~\ref{P:intideal},
