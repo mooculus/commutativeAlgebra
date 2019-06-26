@@ -1,0 +1,70 @@
+\documentclass{ximera}
+
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{An example}
+
+\begin{document}
+\begin{abstract}
+  We start with an example. 
+\end{abstract}
+\maketitle
+
+We will use George Bergman's example here.
+
+Suppose you want to solve $x^2 =-1$ in $\Z$. Of course this is
+impossible, but we persist nevertheless. Here's our idea: if $n\gg 0$,
+then $\Z/n \Z$ is sort of like $\Z$. So we start by working in
+$\Z/5\Z$. Here, $2^2 = 4 \equiv -1\pmod{5}$. So, let
+\[
+x_1\equiv 2\pmod{5}
+\]
+be our first approximation.  Now set $x_2 = 5 y +2$. Write
+\begin{align*}
+  x_2^2 &= -1 \\
+  (5 y +2)^2 &= -1\\
+  20y &\equiv -5 \pmod{5^2}\\
+  4y &\equiv -1 \pmod{5}.
+\end{align*}
+Setting $y = 1$, $x_2 = 5y+2$, so we have that
+\[
+x_2 \equiv 7 \pmod{5^2}
+\]
+is our second approximation. Now set $x_3 = 25 y + 7$. Write
+\begin{align*}
+  x_3^2 &= -1\\
+  (25 y + 7)^2 &= -1\\
+  100y &\equiv -50 \pmod{5^3}\\
+  4y &\equiv -2 \pmod{5}.
+\end{align*}
+Setting $y = 2$, $x_3= 25 y + 7$, so we have that
+\[
+x_3 \equiv 57 \pmod{5^3}
+\]
+is our third approximation. Now set $x_4 = 125 y + 57$. Write
+\begin{align*}
+x_4^2 &= -1\\
+(125y + 57)^2 &=-1\\
+500y &\equiv -125 \pmod{5^4}\\
+4y &\equiv -1 \pmod{5}.
+\end{align*}
+Setting $y = 1$, $x_4 = 125y + 57$, so we have that
+\[
+x_4 \equiv 182 \pmod{5^4}
+\]
+We claim that this process can continue. In essence we have
+\[
+\begin{tikzcd}[row sep=0em,]
+  \cdots \ar[r] & \Z/5^4\Z \ar[r] & \Z/5^3\Z \ar[r] & \Z/5^2\Z \ar[r] & \Z/5\Z \\
+  & x_4\equiv 182 \ar[r,mapsto] & x_3\equiv 57 \ar[r,mapsto] & x_2\equiv 7 \ar[r,mapsto] &  x_1\equiv 2
+\end{tikzcd}
+\]
+It is a fact that for a given prime $p\in \Z$, $x\in\Z$ is uniquely
+determined by its image in $\Z/p^k\Z$ where $k\ge 1$.
+
+Let's see if we can figure out what is going on.
+
+\end{document}
