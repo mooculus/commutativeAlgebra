@@ -9,7 +9,7 @@
 \begin{document}
 \begin{abstract}
   We analyze the lying-over, going-up, and incomparable properties. Sources and references:
-  \cite{iK1974}.
+  \cite{GP2008,iK1974}.
 \end{abstract}
 \maketitle
 
@@ -190,6 +190,26 @@ respect to some property have an uncanny tendency to be prime.''
     are in $P$, contradicting that $P$ is a prime ideal.
   \end{proof}
 \end{theorem}
+
+
+
+Let's witness lying-over with \macaulay.  Consider $R=\Q[x,y]$ and the
+ideal $(x)\subset \Q[x,y]$, and $S = \Q[x,y,z]/(z^2 -xz -1)$. Note,
+this is an integral extension.
+
+We can use the \macaulay\ command \texttt{minimalPrimes} to find the
+minimal elements of $\ass_S(R/xR)$. These will be the primes lying
+over $(x)$ in $\spec(S)$.
+\begin{macaulay2}
+S = QQ[x,y,z]/(z^2-x*z-1);
+minimalPrimes ideal x
+\end{macaulay2}
+
+From this code, we see that primes $(z-1,x)\subset S$ and
+$(z+1,x)\subset S$ are the primes lying over $(x)$.
+
+
+
 
 
 \end{document}

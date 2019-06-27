@@ -5,73 +5,117 @@
 
 \author{Bart Snapp}
 
-\title{An example}
+\title{Iteratively solving equations}
 
 \begin{document}
 \begin{abstract}
-  We start with an example. 
+  We start by solving equations in using an iterative method.
 \end{abstract}
 \maketitle
 
-We will use George Bergman's example here.
+
+Suppose you want to solve a polynomial equation $f(x)=0$ in $\Z$. You
+have many options, but one option we will look at is based on the
+following idea.
+
 
 \begin{proposition}
-  It is a fact that for a given prime $p\in \Z$, $x\in\Z$ is uniquely
-  determined by its image in $\Z/p^k\Z$ where $k\ge 1$.
+  Let $x\in\Z$ and $p$ be a fixed prime in $\Z$. If $x$ is determined
+  uniquely by its image in $\Z/p^n\Z$ for $n\ge 1$.
+  \begin{sketch}
+    Look for $n$ such that $p^{n-1}\le x < p^n$.
+  \end{sketch}
 \end{proposition}
 
-DOES THIS EXTEND TO
+One intuition for the proposition above is that for $n\gg 0$,
+$Z/p^n\Z$ looks a bit like $\Z$ when the elements of $\Z$ are near
+zero.
 
-\begin{proposition}[?]
-  Let $R$ be a ring and $\p$ be a prime ideal. $x\in R$ is uniquely
-  determined by its image in $R/\p^n$ where $n\ge 1$.
-\end{proposition}
-
-solve $x^2-36 x+323$
-
-
-
-Suppose you want to solve $x^2 =-1$ in $\Z$. Of course this is
-impossible, but we persist nevertheless. Here's our idea: if $n\gg 0$,
-then $\Z/n \Z$ is sort of like $\Z$. So we start by working in
-$\Z/5\Z$. Here, $2^2 = 4 \equiv -1\pmod{5}$. So, let
+Armed with this fact, suppose you want to solve a terrible equation in
+$\Z$. As a toy example, we'll use
 \[
-x_1\equiv 2\pmod{5}
+x^2-36 x+323 = 0.
 \]
-be our first approximation.  Now set $x_2 = 5 y +2$. Write
+Of course, this equation is easy to solve. We'll use a method that can
+extend to a more general setting. Start by choosing a prime of $\Z$
+where the equation has a solution in $\Z/p \Z$, we use $\Z/5\Z$, and
+we'll call our first solution $x_1$. Write with me:
 \begin{align*}
-  x_2^2 &= -1 \\
-  (5 y +2)^2 &= -1\\
-  20y &\equiv -5 && \pmod{5^2}\\
-  4y &\equiv -1 &&\pmod{5}.
+  x_1^2- 36x_1 + 323 &\equiv 0 &&\pmod{5}\\
+  x_1^2 - x_1 + 3 &\equiv 0 &&\pmod{5}\\
+  x_1 &\equiv 2&&\pmod{5}.
 \end{align*}
-Setting $y = 1$, $x_2 = 5y+2$, so we have that
-\[
-x_2 \equiv 7 \pmod{5^2}
-\]
-is our second approximation. Now set $x_3 = 25 y + 7$. Write
+In this case, $x_1 = 5y + 2$ for some $y\in \Z$. So now we will work
+in $\Z/5^2\Z$. Write with me:
 \begin{align*}
-  x_3^2 &= -1\\
-  (25 y + 7)^2 &= -1\\
-  100y &\equiv -50 && \pmod{5^3}\\
-  4y &\equiv -2 &&\pmod{5}.
+  x_1^2- 36x_1 + 323 &\equiv 0&&\pmod{5^2}\\
+  15y+5 &\equiv 0 &&\pmod{5^2}\\
+  y &\equiv -2 &&\pmod{5^2}
 \end{align*}
-Setting $y = 2$, $x_3= 25 y + 7$, so we have that
-\[
-x_3 \equiv 57 \pmod{5^3}
-\]
-is our third approximation. Now set $x_4 = 125 y + 57$. Write
+Evaluating $x_1 = 5y+2$ at a representative of $y$, we obtain $x_2
+\equiv -8 \pmod{5^2}$. This means for some new $y$, $x_2 = 5^2 y
+-8$. Now we work in $\Z/5^3\Z$. Write with me:
 \begin{align*}
-x_4^2 &= -1\\
-(125y + 57)^2 &=-1\\
-500y &\equiv -125 && \pmod{5^4}\\
-4y &\equiv -1 && \pmod{5}.
+  x_2^2- 36x_2 + 323 &\equiv 0&&\pmod{5^3}\\
+  75y+50 &\equiv 0 &&\pmod{5^3}\\
+  y &\equiv 1 &&\pmod{5^3}.
 \end{align*}
-Setting $y = 1$, $x_4 = 125y + 57$, so we have that
+Evaluating $x_2 = 5^2 y-8$ at a representative of $y$, we obtain $x_3
+\equiv 17\pmod{5^3}$, so $x_3 = 5^3y+17$ for some new $y$. Now we work
+in $\Z/5^4\Z$. Write with me:
+\begin{align*}
+  x_3^2- 36x_3 + 323 &\equiv 0 &&\pmod{5^4}\\
+  375 &\equiv 0 &&\pmod{5^4}\\
+  y &\equiv 0 &&\pmod{5^4}.
+\end{align*}
+Evaluating $x_3 = 5^3 y+17$ at a representative of $y$, we obtain $x_4
+\equiv 17 \pmod{5^4}$.  Since we've obtained a residue of $17$ twice
+now, let's check it:  
 \[
-x_4 \equiv 182 \pmod{5^4}
+(17)^2-36 (17)+323 = 0.
 \]
-We claim that this process can continue. In essence we have
+OK, we've found a root.
+
+\begin{question}
+  How exactly does this algorithm work?
+\end{question}
+
+Let's try the algorithm now on an equation where we expect it to fail
+in finding a solution. Say
+\[
+x^2 +  1 = 0
+\]
+over $\Z$. Again we'll choose the prime $p=5$. Write with me:
+\begin{align*}
+  x_1^2+1 &\equiv 0&&\pmod{5}\\
+  x_1 &\equiv 2 &&\pmod{5}.
+\end{align*}
+In this case, $x_1 = 5y + 2$ for some $y\in \Z$. So now we will work
+in $\Z/5^2\Z$. Write with me:
+\begin{align*}
+  x_1^2+1 &\equiv 0&&\pmod{5^2}\\
+  20y+5 &\equiv 0 &&\pmod{5^2}\\
+  y &\equiv 1 &&\pmod{5^2}
+\end{align*}
+Evaluating $x_1 = 5 y+2$ at a representative of $y$, we obtain $x_2
+\equiv 7\pmod{5^2}$. So $x_2 = 5^2 y +7$. Now we work in
+$\Z/5^3\Z$. Write with me:
+\begin{align*}
+  x_2^2+1 &\equiv 0&&\pmod{5^3}\\
+  100y+50 &\equiv 0 &&\pmod{5^3}\\
+  y &\equiv 2 &&\pmod{5^3}
+\end{align*}
+Evaluating $x_2 = 5^2 y+7$ at a representative of $y$, we obtain $x_3
+\equiv 57\pmod{5^3}$. So $x_3 = 5^3 y +57$. Now we work in
+$\Z/5^4\Z$. Write with me:
+\begin{align*}
+  x_3^2+1 &\equiv 0&&\pmod{5^4}\\
+  500y+125 &\equiv 0 &&\pmod{5^4}\\
+  y &\equiv 1 &&\pmod{5^4}
+\end{align*}
+Evaluating $x_3 = 5^3 y+57$ at a representative of $y$, we obtain $x_4
+\equiv 182\pmod{5^4}$.  We claim that this process can continue. In
+essence we have
 \[
 \begin{tikzcd}[row sep=0em,]
   \cdots \ar[r] & \Z/5^4\Z \ar[r] & \Z/5^3\Z \ar[r] & \Z/5^2\Z \ar[r] & \Z/5\Z \\
