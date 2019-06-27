@@ -1,0 +1,53 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Topology and adic filtrations}
+
+\begin{document}
+\begin{abstract}
+  We introduce topology to our study of adic filtrations. Sources and
+  references: \cite{sD2008,jpS2000}.
+\end{abstract}
+\maketitle
+
+\begin{definition}\index{topological!ring}
+  A ring $R$ is a \dfn{topological ring} if there exists some topology
+  on $R$ such that the maps:
+  \begin{align*}
+    R\times R &\to R    & R\times R &\to R    & R &\to R\\
+    (x,y) &\mapsto x+y  & (x,y) &\mapsto xy   & x &\mapsto x^{-1}
+  \end{align*}
+  are all continuous maps.
+\end{definition}
+
+
+\begin{definition}\index{topological!module}
+  If $R$ is a topological ring, an $R$-module $M$ is a
+  \dfn{topological module} if there exists some topology $M$ such that
+  the maps:
+  \begin{align*}
+    M\times M &\to M    & R\times M &\to M \\
+    (m,n) &\mapsto m+n  & (x,m) &\mapsto mx 
+  \end{align*}
+  are both continuous maps.
+\end{definition}
+
+
+\begin{definition}
+  Let $R$ be a ring and $M$ an $R$-module. The
+  \textbf{$\boldsymbol{I}$-adic topology} on $M$ is where $U \subset
+  M$ is defined to be an open set if for each $x\in U$, there exists a
+  positive integer $n$ such that
+  \[
+  x + I^n M \subset U.
+  \]
+\end{definition}
+%https://en.wikipedia.org/wiki/Ideal_theory#Topology_determined_by_an_ideal
+
+
+
+
+\end{document}
