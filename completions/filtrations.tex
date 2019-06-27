@@ -1,0 +1,97 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{Filtrations}
+
+\begin{document}
+\begin{abstract}
+  We introduce filtrations. Sources and
+  references: \cite{sD2008,jpS2000}.
+\end{abstract}
+\maketitle
+
+
+
+\begin{definition}\index{filtration}\index{filtered!ring}
+  If $R$ is a ring, we call a descending chain of additive subgroups
+  \[
+  R = R_0 \supset R_1\supset \cdots \supset R_n\supset \cdots
+  \]
+  a \dfn{filtration} of $R$ if 
+  \[
+  R_i R_j \subset R_{i+j}.
+  \]
+  We say that a ring with a filtration is a \textbf{filtered ring}.
+\end{definition}
+
+
+
+\begin{definition}\index{filtered!module}
+  If $R$ is a filtered ring with filtration $(R_n)$ and $M$ is an
+  $R$-module, then $M$ is a \dfn{filtered module} if
+  \[
+  M = M_0  \supset M_1\supset \cdots \supset M_n\supset \cdots
+  \]
+  is a descending chain of subgroups of $M$ such that 
+  \[
+  R_i M_j \subset M_{i+j}.
+  \]
+\end{definition}
+
+
+We are not agnoistic with regard to our filtration. We are intrerested
+in what is called the \dfn{adic} filtration.
+
+\begin{definition}\index{filtration!adic}\index{adic!filtration}
+  Let $R$ be a ring, the \textbf{$\boldsymbol{I}$-adic filtration} of
+  $R$ is given by
+  \[
+  R \supset I \supset I^2 \supset \cdots \supset I^n \supset \cdots
+  \]
+  If $M$ is an $R$-module and $I$ is an ideal of $R$, then the
+  \textbf{$\boldsymbol{I}$-adic filtration} is the filtration:
+  \[
+  M \supset  I M \supset I^2 M \supset \cdots  \supset  I^n M \supset \cdots 
+  \]
+In other words, the filtration $(M_n)$ is given by $M_n = I^n M$.
+\end{definition}
+
+
+
+ 
+\begin{definition}\index{filtration!induced}\index{induced filtration}
+  Let $M$ be a filtered $R$-module with filtration $(M_n)$ and let $N$
+  be a submodule of $M$. Then setting $N_n= N\cap M_n$ forms a
+  filtration for $N$. This is called the \dfn{induced filtration}.
+\end{definition}
+
+\begin{definition}\index{filtration!image}\index{image filtration}
+  Let $M$ be a filtered $R$-module with filtration $(M_n)$ which
+  surjects onto another $R$-module $N$ via a module homomorphism
+  \[
+  \ph:M\onto N.
+  \]
+  Setting $N_n = \ph(M_n)$, we obtain the \dfn{image filtration}.
+\end{definition}
+
+\begin{definition}\index{filtered!map}
+  A module homomorphism $\ph:M\to N$ of filtered modules is called a
+  \dfn{filtered map} if
+\[
+\ph(M_n)\subset N_n.
+\]
+\end{definition}
+
+\begin{definition}\index{filtered!map!strict}\index{strict filtered map}
+  Suppose that $\ph:M\to N$ is a filtered map. Then $\ph$ is called
+  \dfn{strict} if:
+\[
+\underbrace{\ph(M_n)}_{\text{image filtration}} = \underbrace{\ph(M)\cap N_n}_{\text{induced filtration}}
+\] 
+\end{definition}
+
+
+\end{document}
