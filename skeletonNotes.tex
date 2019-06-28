@@ -2,6 +2,10 @@
 
 \input{preamble.tex}
 
+
+\usepackage{imakeidx}
+\makeindex[intoc]
+
 % Store usual maketitle as othermaketitle
 \let\othermaketitle\maketitle
 
@@ -33,6 +37,13 @@
 
 \begin{document}
 \maketitle
+
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+
+\cleardoublepage
 
 \pagestyle{main}
 \setcounter{titlenumber}{-2}
@@ -70,8 +81,10 @@
 \activity{completions/motivatingExample.tex}
 \activity{completions/filtrations.tex}
 \activity{completions/topologyAndAdicFiltrations.tex}
+%% \activity{completions/limits.tex}
 %% \activity{completions/gradings.tex}
 %% \activity{completions/adicCompletions.tex}
 
+\pdfOnly{\printindex}
 
 \end{document}

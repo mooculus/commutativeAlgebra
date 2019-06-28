@@ -4,7 +4,7 @@
 
 \author{Bart Snapp}
 
-\title{Filtrations}
+\title{Filtrations and gradings}
 
 \begin{document}
 \begin{abstract}
@@ -13,6 +13,8 @@
 \end{abstract}
 \maketitle
 
+
+\section{Filtrations}
 
 
 \begin{definition}\index{filtration}\index{filtered!ring}
@@ -93,5 +95,126 @@ In other words, the filtration $(M_n)$ is given by $M_n = I^n M$.
 \] 
 \end{definition}
 
+
+
+\section{Graded rings and modules}
+
+
+\begin{definition}\index{graded!ring}\index{homogeneous element}\index{homogeneous element!degree}
+  A ring $R$ is called a \dfn{graded ring} if it can be written as a
+  direct sum of subgroups
+  \[
+  R=\bigoplus_{n =0}^\infty R_n,
+  \]
+  where $R_i R_j \subset R_{i+j}$.  Further, elements of $R_i$ are
+  called \dfn{homogeneous} elements of degree $i$.  
+\end{definition}
+
+\begin{remark}
+  Our canonical example of a graded rings is a polynomial ring over a
+  field.
+\end{remark}
+
+
+
+\begin{definition}\index{irrelevant ideal}\index{irrevelent@$A_+$}
+  If $R$ is graded ring:
+  \[
+  R = R_0\oplus \underbrace{R_1\oplus \cdots R_n\oplus \cdots}_{R_+}
+  \]
+  Then $R_+$ is called the \dfn{irrelevant ideal} of $R$.
+\end{definition}
+
+\begin{exercise}
+  Let $R$ be a graded ring.
+  \begin{enumerate}
+  \item $1_R\in R_0$.
+  \item $R_0$ is a ring.
+  \item $R$ is Noetherian if and only if $R_0$ is Noetherian and $R_+$
+    is a finitely generated ideal of $R$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{definition}\index{graded!module}
+  A module $M$ is called a \dfn{graded module} if it can be written
+  as a direct sum of subgroups
+  \[
+  \bigoplus_{n =0}^\infty M_n,
+  \]
+  where $R_iM_j \subset M_{i + j}$.
+\end{definition}
+
+
+%% We will work in the adic filtrations, though more general statements
+%% can be made.
+
+
+%% \begin{definition}\index{Gr1@$\gr(R)$}\index{graded!ring!associated to a filtration}\index{filtered!ring!associated graded ring}
+%%   Let $R$ be a ring and $I\subset R$ be a proper ideal. The
+%%   \dfn{graded ring associated to the $\boldsymbol{I}$-adic filtration}
+%%   is defined to be
+%%   \[
+%%   \gr_I(R) := \bigoplus_{n=0}^\infty I^n/I^{n+1}
+%%   \]
+%%   Similarly, given an $R$-module $M$,  we have the associated graded module
+%%   \[
+%%   \gr_I(M) := \bigoplus_{n = 0}^\infty I^nM / I^{n+1}M.
+%%   \]
+%% \end{definition}
+
+
+
+
+
+
+\begin{theorem}[Artin-Rees]\label{L:ArtinRees}\index{Artin-Rees}
+  If $R$ is a Noetherian ring with an ideal $I$, and $M$ is a finitely
+  generated $R$-module with submodule $N$, then there exists $m\ge 0$
+  such that
+  \[
+  N\cap I^{m+n}M = I^n(N\cap I^m M)
+  \]
+  for all $n\ge 0$.
+  \begin{proof}
+    $(\subset)$ Set
+    \[
+    R^* = R \oplus I \oplus I^2 \oplus \cdots,
+    \]
+    \[
+    M^* = M \oplus IM \oplus I^2M \oplus \cdots,
+    \]
+    and
+    \[
+    N^* = N \oplus N \cap IM \oplus N \cap I^2M \oplus \cdots.
+    \]
+    Since $R$ is Noetherian, $I$ is finitely generated and hence $R^*$
+    is Noetherian as we can surject $R[\X]$ onto $R^*$.  Since $M$ is
+    finitely generated over $R$, $M^*$ is finitely generated over
+    $R^*$, and hence is also Noetherian.  Thus $N^*$ is finitely
+    generated over $R^*$.  We may choose generators of $N^*$,
+    $\eta_1,\ldots,\eta_k$, such that each is of homogeneous degree
+    $d_1,\ldots,d_k$ respectively, that is to say, $\eta_i\in N\cap
+    I^{d_i}M$.  Set
+    \[
+    m = \max\{d_1,\dots, d_k \}.
+    \]  
+    Suppose $x \in N \cap I^{m+n}M$ for $n \ge 0$.  Then we may write 
+    \[
+    x =  a_1 \eta_1 + a_2 \eta_2 + \dots + a_k \eta_k
+    \]
+    where $\deg(a_i) = m + n - d_i \ge n$.  Thus $a_i \in I^n$.  So we can write
+    \[
+    x = b_1a_1'\eta_1 + \cdots + b_ka_k'\eta_k
+    \]
+    where $b_i \in I^n$ and $a_i = b_ia_i'$.  Therefore $N \cap I^{m + n}M
+    \subset I^n(N \cap I^m M)$.
+
+    $(\supset)$ Write:
+    \begin{align*}
+      I^n(N\cap I^m M) &= I^n N\cap I^{m+n} M\\
+      &\subset N\cap I^{m+n}M.
+    \end{align*}
+  \end{proof}
+\end{theorem}
 
 \end{document}

@@ -13,12 +13,15 @@
 \end{abstract}
 \maketitle
 
+
+\section{Topological rings and modules}
+
 \begin{definition}\index{topological!ring}
   A ring $R$ is a \dfn{topological ring} if there exists some topology
   on $R$ such that the maps:
   \begin{align*}
-    R\times R &\to R    & R\times R &\to R    & R &\to R\\
-    (x,y) &\mapsto x+y  & (x,y) &\mapsto xy   & x &\mapsto x^{-1}
+    R\times R &\to R    & R\times R &\to R    \\
+    (x,y) &\mapsto x+y  & (x,y) &\mapsto xy   
   \end{align*}
   are all continuous maps.
 \end{definition}
@@ -30,22 +33,180 @@
   the maps:
   \begin{align*}
     M\times M &\to M    & R\times M &\to M \\
-    (m,n) &\mapsto m+n  & (x,m) &\mapsto mx 
+    (m,n) &\mapsto m+n  & (x,m) &\mapsto xm
   \end{align*}
   are both continuous maps.
 \end{definition}
 
 
+Now recall the open-set definition of a topology:
+
 \begin{definition}
-  Let $R$ be a ring and $M$ an $R$-module. The
-  \textbf{$\boldsymbol{I}$-adic topology} on $M$ is where $U \subset
-  M$ is defined to be an open set if for each $x\in U$, there exists a
-  positive integer $n$ such that
+  A \dfn{topological space} is a set $X$ with a set of subsets called
+  the \dfn{open sets} that satisfy the following properties:
+  \begin{enumerate}
+  \item The empty set and $X$ are open.
+  \item Unions of arbitrary collections of open sets are
+    open.
+  \item Finite intersections of open sets are open.
+  \end{enumerate}
+\end{definition}
+
+\begin{exercise}
+  Prove the equivalence of the open set definition of a topology and
+  the closed set definition of a topology.
+\end{exercise}
+
+
+While there is a more general presentation, we will stick to what we
+are most interested in, adic topologies.
+
+
+\begin{definition}
+  Let $R$ be a ring, $I \subset R$ be an ideal, and $M$ an
+  $R$-module. The \textbf{$\boldsymbol{I}$-adic topology} on $M$ is
+  where $U \subset M$ is defined to be an open set if for each $x\in
+  U$, there exists a positive integer $n$ such that
   \[
   x + I^n M \subset U.
   \]
 \end{definition}
-%https://en.wikipedia.org/wiki/Ideal_theory#Topology_determined_by_an_ideal
+
+
+
+\begin{proposition}
+  Let $R$ be a ring, $I\subset R$ be an ideal, and $M$ be a module
+  equipped with the $I$-adic topology. If $N$ is a submodule of $M$,
+  the closure $\bar{N}$ of $N$ is equal to
+  \[
+  \bigcap_{i=1}^\infty (N+I^n M).
+  \]
+  \begin{proof}
+    $(\subset)$ If $x\in \bar{N}$, then it is in every
+    neighborhood of $N$, and hence in the intersection.
+
+    $(\supset)$ If $x\notin\bar{N}$, then there is $n$ such that
+    $(x+I^nM)\cap N=\emptyset$ or $x\notin (N+I^nM)$.
+  \end{proof}
+\end{proposition}
+
+\begin{corollary}
+  Let $R$ be a ring, $I\subset R$ be an ideal, and $M$ be a module
+  equipped with the $I$-adic topology. $M$ is Hausdorff if and only if
+  \[
+  \bigcap_{i=1}^\infty I^n M  = 0.
+  \]
+\end{corollary}
+
+\begin{corollary}
+  Let $(A,\m)$ be a local ring equipped with the $\m$-adic
+  topology. In this case $A$ is Hausdorff.
+\end{corollary}
+
+
+
+
+
+\section{Cauchy sequences}
+
+Let's take a break from advanced algebra, and briefly switch to
+undergraduate analysis:
+
+\begin{definition}\index{pseudometric}\index{metric}
+  A function of sets $d:M\times M\to [0,\infty)$ is called a \dfn{pseudometric} if:
+    \begin{enumerate}
+    \item For all $x,y\in M$, $d(x,y) = d(y,x)$.
+    \item For all $x,y,z\in M$, $d(x,y) + d(y,z) \ge d(x,z)$.
+    \end{enumerate}
+    If in addition we have that for all $x,y \in M$, $d(x,y)=0$ if and
+    only if $x = y$, then $d$ is called a \dfn{metric}.
+\end{definition}
+
+\begin{definition}
+  A \dfn{metric space} is a set $M$ and a metric $d:M\times M \to
+  [0,\infty)$.
+\end{definition}
+
+If $M$ has the $I$-adic topology, one may define a
+pseudometric\index{pseudometric} on $M$ as follows: Fix any $c\in
+(0,1)$. For any $x,y\in M$ define
+\[
+d(x,y) := c^n
+\]
+where $n$ is the integer such that $(x-y)\in I^nM-I^{n+1}M$, if no
+such integer exists, then set $d(x,y) = 0$. If $M$ is
+Hausdorff\index{Hausdorff}, then we have defined a metric.
+
+
+\begin{corollary}
+  The $\m$-adic topology induces a metric.
+  \begin{proof}
+    We know from Corollary~\ref{C:intmax}, that given a local ring $(A,\m)$,
+    \[
+    \bigcap_{n\ge 1} \m^n  = (0).
+    \]
+  \end{proof}
+\end{corollary}
+
+There are other cases where the $I$-adic topology induces a metric.
+
+\begin{corollary}
+  Let $R$ be a Noetherian ring and $I \subset \i J(R)$. If $M$ is a
+  finitely generated module then
+  \[
+  \bigcap_{n=1}^\infty I^n M = 0.
+  \]
+  \begin{proof}
+    By Artin-Rees, Theorem~\ref{L:ArtinRees},\index{Artin-Rees} there
+    exists $k > 0$ such that for all $n$ we have
+    \[
+    N = N \cap I^{n + k}M = I^n(N \cap I^kM) = I^nN.
+    \]
+    Thus by \index{Nakayama's Lemma}Nakayama's Lemma
+    (Theorem~\ref{NAK}), $N = 0$.
+  \end{proof}
+\end{corollary}
+
+
+\begin{corollary}
+  Let $A$ be a Noetherian domain. If $I$ is a proper ideal of $A$,
+  then
+  \[
+  \bigcap_{n=1}^\infty I^n = 0.
+  \]
+  \begin{proof}
+    Let $J = \bigcap I^n$.  Then we have $J = I J$.  By Nakayama's
+    Lemma, Theorem \ref{NAK}, $J = 0$.
+  \end{proof}
+\end{corollary}
+
+
+
+
+
+
+
+
+
+\begin{definition}
+  A sequence $(c_1,c_2,\dots)$ in $(M,d)$ is called a \dfn{Cauchy
+    sequence} if for any $\epsilon>0$, there exists a positive integer
+  $N$ such that for all natural numbers $m,n>N$,
+  \[
+  d(c_m,c_n) < \epsilon.
+  \]
+\end{definition}
+
+\begin{definition}
+  A metric space $(M,d)$ is called \dfn{complete} if every Cauchy
+  sequence converges to an element of $X$, meaning if $(c_i)$ is a
+  Cauchy sequence, then there is $\l$ in $M$ such that for any
+  $\epsilon>0$, there is a positive integer $N$ such that whenever $n>N$
+  \[
+  d(\l,c_n) < \epsilon.
+  \]
+\end{definition}
+
 
 
 
