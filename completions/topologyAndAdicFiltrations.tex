@@ -107,10 +107,10 @@ are most interested in, adic topologies.
 
 
 
-\section{Cauchy sequences}
+\section{Metric spaces}
 
-Let's take a break from advanced algebra, and briefly switch to
-undergraduate analysis:
+
+Recall the definition of a metric space:
 
 \begin{definition}\index{pseudometric}\index{metric}
   A function of sets $d:M\times M\to [0,\infty)$ is called a \dfn{pseudometric} if:
@@ -179,36 +179,6 @@ There are other cases where the $I$-adic topology induces a metric.
     Lemma, Theorem \ref{NAK}, $J = 0$.
   \end{proof}
 \end{corollary}
-
-
-
-
-
-
-
-
-
-\begin{definition}
-  A sequence $(c_1,c_2,\dots)$ in $(M,d)$ is called a \dfn{Cauchy
-    sequence} if for any $\epsilon>0$, there exists a positive integer
-  $N$ such that for all natural numbers $m,n>N$,
-  \[
-  d(c_m,c_n) < \epsilon.
-  \]
-\end{definition}
-
-\begin{definition}
-  A metric space $(M,d)$ is called \dfn{complete} if every Cauchy
-  sequence converges to an element of $X$, meaning if $(c_i)$ is a
-  Cauchy sequence, then there is $\l$ in $M$ such that for any
-  $\epsilon>0$, there is a positive integer $N$ such that whenever $n>N$
-  \[
-  d(\l,c_n) < \epsilon.
-  \]
-\end{definition}
-
-
-
 
 
 \end{document}
