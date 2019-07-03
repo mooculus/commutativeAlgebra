@@ -166,7 +166,7 @@ construct $\hat{M}$ as follows:
 
 \begin{example}
   Let $\hat{\Z}_{(p)}$ be the Cauchy sequences in $\Z_{(p)}$ modulo the
-  null sequences. We claim $\hat{\Z}_{(p)}\iso\invlim(\Z/p^n/\Z)$.
+  null sequences. We claim $\hat{\Z}_{(p)}\iso\invlim(\Z/p^n\Z)$.
   \begin{proof}
     Consider the following diagram:
     \[
@@ -178,23 +178,24 @@ construct $\hat{M}$ as follows:
     \]
     We must show when bottom triangles commute, that we can find a
     unique ring homomorphism so that the top triangle commutes. Let
-    $(c_0,c_1,\dots)$ be a Cauchy sequence (actually an element) in
-    $\hat{\Z}_(p)$. This sequence is compatible with our maps above in
+    $\vec{c}=(c_0,c_1,\dots)$ be a Cauchy sequence (actually an element) in
+    $\hat{\Z}_{(p)}$. This sequence is compatible with our maps above in
     the sense that
     \[
     \phi_i(\vec{c}) = \phi_{j,i} \circ \phi_j(\vec{c}).
     \]
-    Now suppose $R$ is given along with other compatible maps,
+    Suppose some ring $R$ is given along with other compatible maps,
     \[
-    \psi_i(r) = \phi_{j,i}\circ \psi_j(r)
+    \psi_i(r) = \phi_{j,i}\circ \psi_j(r).
     \]
-    Now, looking at the image of $r$ in $\Z/p^i\Z$, we have
+    Looking at the image of $r$ in $\Z/p^i\Z$, we have
     \[
     (\psi_0(r), \psi_1(r),\dots)
     \]
-    which can be viewed as an element of $\hat{\Z}_{(p)}$. This map is
-    unique, as if another Cauchy sequence is found, it varies from the
-    original by a null sequence, which go to zero in $\hat{\Z}_{(p)}$.
+    and this can be viewed as an element of $\hat{\Z}_{(p)}$. This map
+    is unique, as if another Cauchy sequence is found, it varies from
+    the original by a null sequence, which go to zero in
+    $\hat{\Z}_{(p)}$.
   \end{proof}
 \end{example}
 
@@ -267,7 +268,7 @@ to the category of modules.
   Note that if $d_A$ is surjective in the proof above, then in fact we
   have a short exact sequence
   \[
-  0 \lto \invlim(A_i) \lto^{\invlim \ph_i} \invlim(B_i) \lto^{\invlim \psi_i} \invlim(C_i) \lto 0.
+  0 \lto \invlim(A_i) \lto^{\invlim f_i} \invlim(B_i) \lto^{\invlim g_i} \invlim(C_i) \lto 0.
   \]
 \end{remark}
 
@@ -290,21 +291,21 @@ to the category of modules.
     \]
     We must show when bottom triangles commute, that we can find a
     unique ring homomorphism so that the top triangle commutes. Let
-    $(m_0,m_1,\dots)$ be a Cauchy sequence (actually an element) in
+    $\vec{m}=(m_0,m_1,\dots)$ be a Cauchy sequence (actually an element) in
     $\hat{M}_I$. This sequence is compatible with our maps above in
     the sense that
     \[
     \phi_i(\vec{m}) = \phi_{j,i} \circ \phi_j(\vec{m}).
     \]
-    Now suppose $N$ is given along with other compatible maps,
+    Suppose $N$ is given along with other compatible maps,
     \[
-    \psi_i(n) = \phi_{j,i}\circ \psi_j(n)
+    \psi_i(n) = \phi_{j,i}\circ \psi_j(n).
     \]
-    Now, looking at the image of $n$ in $M/I^iM$, we have
+    Looking at the image of $n$ in $M/I^iM$, we have
     \[
     (\psi_0(n), \psi_1(n),\dots)
     \]
-    which can be viewed as an element of $\hat{M}_{I}$. This map is
+    and this can be viewed as an element of $\hat{M}_{I}$. This map is
     unique, as if another Cauchy sequence is found, it varies from the
     original by a null sequence, which go to zero in $\hat{M}_{I}$.
   \end{proof}
