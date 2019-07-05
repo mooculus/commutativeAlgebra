@@ -8,14 +8,97 @@
 
 \begin{document}
 \begin{abstract}
-  We state and prove Hensel's lemma.
+  We state and prove Hensel's lemma. Sources and references:
+  \cite{rA2006}.
 \end{abstract}
 \maketitle
 
-\begin{theorem}[Hensel's lemma]
-  Let $(A,\m)$ be a complete local ring, and let $f$ be a monic
-  polynomial of degree $d$ in $A[X]$
+\begin{theorem}[Hensel's lemma]\index{Hensel's lemma}
+  Let $(A,\m,k)$ be a complete local ring and let $f$ be a monic
+  polynomial of degree $d$ in $A[X]$. Consider the image of $f$ in a
+  polynomial ring over the residue field, $\bar{f}\in k[X]$. If
+  \begin{enumerate}
+  \item $\bar{f} = \bar{g}\cdot \bar{h}$ in $k[X]$,
+  \item with $(\bar{g},\bar{h}) = k[X]$,
+  \end{enumerate}
+  then $f = g\cdot h$ in $A[X]$, where $g= \bar{g}$ and $h=\bar{h}$
+  are monic polynomials in $A[X]$.
+  \begin{proof}
+    We will work inductively, producing a sequence of polynomials,
+    \[
+    g_1,g_2,\dots \quad\text{and}\quad h_1,h_2,\dots
+    \]
+    in $A[X]$ where $\deg(g_i) = c$ and $\deg(h_i) = d-c$, such that
+    \[
+    f(X) - g_i(X) h_i(X) \in \m^i(X).
+    \]
+
+    
+    If $i=1$, then by the hypothesis of the theorem, $\bar{f} =
+    \bar{g}\cdot \bar{h}$ in $k[X]$. Thus
+    \[
+    f(X) - g_1(X) h_1(X) \in \m[X].
+    \]
+
+    Now assume our inductive construction holds up to $i=n$. Hence we have
+    \[
+    f(X) - g_n(X) h_n(X) = \sum_{i=0}^n a_i X^i\in \m^n[X].
+    \]
+    with $a_i\in \m^n$.  Since $(\bar{g}_n, \bar{h}_n) = k[X]$, there
+    are polynomials $\bar{u}_i,\bar{v}_i\in k[X]$ such that
+    \begin{align*}
+      1  &= \bar{g}_n(X)\bar{u}_0(X) + \bar{h}_n(X)\bar{v}_0(X) \\
+      X  &= \bar{g}_n(X)\bar{u}_1(X) + \bar{h}_n(X)\bar{v}_1(X) \\
+      X^2  &= \bar{g}_n(X)\bar{u}_2(X) + \bar{h}_n(X)\bar{v}_2(X) \\
+      &\ \vdots\\
+      X^d  &= \bar{g}_n(X)\bar{u}_d(X) + \bar{h}_n(X)\bar{v}_d(X).
+    \end{align*}
+    Note that $\deg(\bar{u}_i) \le d-c$ and $\deg(\bar{v}_i) \le
+    c$. If we lift $\bar{u}_i$ and $\bar{v}_i$, we have that
+    \[
+    X^i - g_n(X) u_i(X) - h_n(X) v_i(X) \in \m[X]. 
+    \]
+    Now set
+    \begin{align*}
+      g_{n+1}(X) &= g_n(X) + \sum_{i=0}^d a_i v_i(X)\\
+      h_{n+1}(X) &= h_n(X) + \sum_{i=0}^d a_i u_i(X).
+    \end{align*}
+    Note that $\bar{g}_{n+1} = \bar{g}_n = g$ and $\bar{h}_{n+1} =
+    \bar{h}_n = h$, and that the $\deg(\bar{g}_{n+1}) = c$ and
+    $\deg(\bar{h}_{n+1}) = d-c$. We must show that
+    \[
+    f(X) - g_{n+1}(X) h_{n+1}(X) \in \m^{n+1}(X).
+    \]
+    Expanding out the element on the left,
+    \[
+    f(X) - \left(g_n(X) + \sum_{i=0}^d a_i v_i(X)\right)\left(h_n(X) + \sum_{i=0}^d a_i u_i(X)\right)
+    \]
+    yields
+    \[
+    \left(f(X) - g_n(X)h_n(X) - \sum_{i=0}^d a_i X^i\right) + \sum_{i=0}^d a_i(X^i - g_n(X) u_i(X) - h_n(X) v_i(X)) - T.
+    \]
+    By hypothesis, the left-most term is zero, by construction the
+    middle term is in $\m^{n+1}[X]$, and the final term is a sum of
+    elements of the form $a_ia_ju_i(X)v_i(X)\in\m^{n+1}[X]$.
+
+    Now we will use that our ring is complete. The sequences
+    \[
+    g_1,g_2,\dots \quad\text{and}\quad h_1,h_2,\dots
+    \]
+    are such that $g_{n+1}-g_n\in \m^n[X]$ and $h_{n+1}-h_n\in
+    \m^n[X]$. Thus the coefficients of each $X^i$ form a Cauchy
+    sequence that converges. Let $g$ and $h$ be the polynomials with
+    converged coefficients. Since $f$ is monic, the leading
+    coefficients of $g$ and $h$ must be inverses of each other. Since
+    the coefficients of these polynomials are not in $\m$, we may
+    clear denominators to replace $g$ and $h$ with monic polynomials.
+  \end{proof}
 \end{theorem}
+
+
+
+
+
 
 
 \end{document}
