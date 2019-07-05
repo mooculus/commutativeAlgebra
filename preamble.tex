@@ -3,6 +3,13 @@
 \usepackage{tikz-cd}
 \usepackage[sans]{dsfont}
 
+\let\oldbibliography\thebibliography%% to compact bib
+\renewcommand{\thebibliography}[1]{%
+  \oldbibliography{#1}%
+  \setlength{\itemsep}{0pt}%
+}
+
+
 \DefineVerbatimEnvironment{macaulay2}{Verbatim}{numbers=left,frame=lines,label=Macaulay2,labelposition=topline}
 
 %%% This next bit of code defines all our theorem environments
