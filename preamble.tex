@@ -36,6 +36,8 @@
 \let\example\relax
 \let\endexample\relax
 
+\let\warning\relax
+\let\endwarning\relax
 
 \let\lemma\relax
 \let\endlemma\relax
@@ -61,6 +63,7 @@
 \newtheorem*{touchstone}{Touchstone}
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem*{example}{Example}
+\newtheorem*{warning}{WARNING}
 
 
 \newtheoremstyle{Exercise}{\topsep}{\topsep} %%% space between body and thm
@@ -108,7 +111,7 @@
 \newcommand{\Cf}{\mathcal{C}}
 \newcommand{\IZ}{\mathrm{Int}(\Z)}
 \newcommand{\dsum}{\oplus}
-\newcommand{\directsum}{\coprod}
+\newcommand{\directsum}{\bigoplus}
 \newcommand{\union}{\bigcup}
 \renewcommand{\i}{\mathfrak}
 \renewcommand{\a}{\mathfrak{a}}
@@ -116,12 +119,13 @@
 \newcommand{\m}{\mathfrak{m}}
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
-\newcommand{\dfn}{\textbf}
+\newcommand{\dfn}[1]{\textbf{#1}\index{#1}}
 \let\hom\relax
 \DeclareMathOperator{\ann}{Ann}
 \DeclareMathOperator{\h}{ht}
 \DeclareMathOperator{\hom}{Hom}
 \DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\maxspec}{MaxSpec}
 \DeclareMathOperator{\supp}{Supp}
 \DeclareMathOperator{\ass}{Ass}
 \DeclareMathOperator{\ff}{Frac}
@@ -145,6 +149,8 @@
 \newcommand{\1}{\mathds{1}}
 \newcommand{\lto}{\mathop{\longrightarrow\,}\limits}
 \newcommand{\rad}{\sqrt}
+\newcommand{\hf}{H}
+\newcommand{\hs}{H\!S}
 \renewcommand{\vec}{\mathbf}
 \renewcommand{\phi}{\varphi}
 \renewcommand{\epsilon}{\varepsilon}
@@ -181,4 +187,19 @@
 %% Fix weird index/bib issue.
 \makeatletter
 \gdef\ttl@savemark{\sectionmark{}}
+\makeatother
+
+
+\makeatletter
+%% no number for refs
+\newcommand\frontstyle{%
+  \def\activitystyle{activity-chapter}
+  \def\maketitle{%
+    \addtocounter{titlenumber}{1}%
+                    {\flushleft\small\sffamily\bfseries\@pretitle\par\vspace{-1.5em}}%
+                    {\flushleft\LARGE\sffamily\bfseries\@title \par }%
+                    {\vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{sectiontitlenumber}{0}}%
+                    \par\vspace{2em}
+                    \phantomsection\addcontentsline{toc}{section}{\textbf{\@title}}%
+                  }}
 \makeatother

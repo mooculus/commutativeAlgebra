@@ -1,0 +1,156 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{A topological approach}
+
+\begin{document}
+\begin{abstract}
+  We define the dimension of a ring based on its topological
+  properties.  Sources and references: \cite{sD2008}.
+\end{abstract}
+\maketitle
+
+\section{Dimension of a topological space}
+
+Given a topological space, we can define its dimension as follows:
+
+
+\begin{definition}\index{dimension!topological space}
+  Let $X$ be a topological space, the \textbf{dimension} of $X$,
+  denoted by $\dim(X)$ is defined as
+  \[
+  \dim(X) :=\sup\left\{d:
+  \begin{minipage}{43ex}
+    there exists a chain $X_0\supsetneq \dots \supsetneq X_d$ of
+    length $d$ of irreducible closed subsets of $X$,
+  \end{minipage}
+  \right\}.
+  \]
+\end{definition}
+
+
+\begin{definition}\index{Noetherian!topological space}
+  If $X$ is a topological space, $X$ is called \textbf{Noetherian} if
+  any of the following equivalent conditions hold:
+  \begin{enumerate}
+  \item Every nonempty family of open sets has a maximal element.
+  \item Any increasing chain of open sets terminates.
+  \item Every nonempty family of closed sets has a minimal element.
+  \item Any decreasing chain of closed sets terminates.
+  \end{enumerate}
+\end{definition}
+
+
+
+\begin{proposition}
+  If $X$ is a Noetherian topological space,
+  \[
+  \dim(X) = \sup\dim(X_i)
+  \]
+  where $X_i$ is a component of $X$. 
+\end{proposition}
+
+\section{Krull dimension of a ring}
+
+
+\begin{proposition}\index{Noetherian!topological space}\index{Noetherian!ring}
+  If $R$ is a Noetherian ring, then $\spec(R)$ is a Noetherian
+  topological space.
+  \begin{proof}\index{Primary Decomposition Theorem}
+    Suppose $R$ is Noetherian, then by primary decomposition of
+    ideals, Theorem~\ref{T:PDI}, we have
+    \[
+    (0) = \q_1\cap \dots \cap \q_r
+    \]
+    where each $\q_i$ is $\p_i$-primary and so $V(\q_i) =
+    V(\p_i)$. Eliminate those $V(\p_i)$ for which $p_i$ is not minimal
+    in $\ass(R)$.  Then reindexing we have
+    \[
+    \spec(R) = V(0) = V(\p_1) \cup\dots \cup V(\p_s). 
+    \]
+    Since the $V(\p_i)$ are the irreducible components of $\spec(R)$,
+    any decreasing chain of closed sets terminates.
+  \end{proof}
+\end{proposition}
+
+
+
+\begin{warning}\index{Noetherian!topological space}\index{Noetherian!ring}
+  The converse of the above proposition is \textbf{not} true. We leave
+  it as an exercise to show that if $k$ is a field, then
+  \[
+  R = \frac{k[X_1,\dots,X_n,\dots]}{(X_1^2,\dots,X_n^2,\dots)}
+  \]
+  is not a Noetherian ring but $\spec(R)$ is a Noetherian topological space.
+\end{warning}
+
+
+\begin{definition}[First Notion of Dimension]\index{dimA@$\dim(A)$}\index{dimM@$\dim(M)$}\index{dimension}\index{Krull dimension}
+  If $R$ is a ring, the \textbf{Krull dimension}, denoted by
+  $\dim(R)$, is the dimension of the topological space $\spec(R)$. To
+  be explicit:
+  \[
+  \dim(R) = \sup \{ d : \text{there exists $\p_0\subsetneq \p_1
+    \subsetneq \dots \subsetneq \p_d$ such that $\p_i \in \spec(R)$} \}.
+  \]
+  This notion of dimension is often simply referred to as the
+  \textbf{dimension} of a ring. If $M$ is an $R$-module, then
+  \[
+  \dim(M) := \dim(R/\ann(M)).
+  \]
+\end{definition}
+
+
+\begin{exercise}\index{support}\index{supp@$\supp(M)$}
+  Given a ring $R$ and an $R$-module $M$, show that the dimension of
+  $M$ is the dimension of the topological space $\supp(M)\subset
+  \spec(R)$.
+\end{exercise}
+
+\begin{example}
+  While
+  \[
+  \dim(R) = \sup \{ d : \text{there exists $\p_0\subsetneq \p_1 \subsetneq \dots \subsetneq \p_d$ such that $\p_i \in \spec(R)$} \}.
+  \]
+  Nagata gives an example of a ring $R$ such that $R$ is Noetherian
+  but with infinite dimension in \cite{mN1962}.
+\end{example}
+
+
+\begin{example}
+  In the ring $\C[X_1,\dots,X_n]$ we have the chain of prime ideals
+  \[
+  (0) \subsetneq (X_1) \subsetneq \cdots \subsetneq (X_1,\dots,X_n).
+  \]
+  Thus the dimension of $\C[X_1,\dots,X_n]$ is at least $n$.
+\end{example}
+
+
+Suppose that a ring $R$ has finite dimension. If $\m_1, \dots, \m_r$
+are maximal prime ideals in $\spec(R)$, then $\dim(R) = d$ implies
+that there exists a chain of length $d$ ending at one of the $\m_i$'s.
+Thus for some $i$,
+\[
+\dim(R_{\m_i}) = \dim(R). 
+\]
+Hence we see that some questions about the dimension of a ring can be
+reduced to questions about local rings.
+
+
+\begin{remark}
+  We can characterize dimension in two useful ways:
+  \begin{enumerate}
+  \item $\dim(R) = \sup \dim(R_\m)$ where $\m \in \maxspec(R)$.
+  \item $\dim(R) = \sup \dim(R/\p)$ where $\p$ is a minimal prime ideal of $R$. 
+  \end{enumerate}
+\end{remark}
+
+
+
+
+
+
+\end{document}

@@ -284,30 +284,6 @@ I:J
 
 
 
-\begin{definition}\index{Jordan-H\"older chain}\index{composition series} A chain of $A$-modules
-\[
-M = M_0 \supsetneq M_1\supsetneq \dots \supsetneq M_n =(0)
-\]
-is a \dfn{Jordan-H\"older chain}, also known as a \dfn{composition series}, if for each $i$, $M_i/M_{i+1}\iso A/\i m$ for some maximal ideal $\i m$ in $A$.
-\end{definition}
-
-\begin{proposition} Each composition series for $M$ has the same length.
-\end{proposition}
-
-
-\begin{definition}\index{length}\index{l@$\l$} The \dfn{length} of an $A$-module, denoted by $\l_A(M)$, is the length of a composition series for $M$. That is, if
-\[
-M = M_0 \supsetneq M_1\supsetneq \dots \supsetneq M_n =(0)
-\]
-is a composition series, then $\l_A(M)=n$.
-\end{definition}
-
-
-
-\begin{proposition} $M$ has finite length if and only if $M$ is both Artinian and Noetherian.
-\end{proposition}
-
-
 \begin{proposition}  Given a short exact sequence of $A$-modules
 \[
 0\to M' \to M\to M'' \to 0
@@ -320,19 +296,8 @@ we have that:
 \end{proposition}
 
 
-\begin{proposition}\index{length!additive property} Given a short exact sequence of $A$-modules
-\[
-0\to M' \to M\to M'' \to 0
-\]
-such that $\l_A(M)$ is finite, then length is an additive function, that is,
-\[
-\l_A(M) = \l_A(M')+\l_A(M'').
-\]
-In particular, $\l_A(M)$ is finite if and only if $\l_A(M')$ and $\l_A(M'')$ are finite.
-\end{proposition}
-
-
-\begin{theorem}[Hilbert's Basis Theorem]\index{Hilbert's Basis Theorem} If $A$ is a Noetherian ring, then $A[x]$ is a Noetherian ring.
+\begin{theorem}[Hilbert's Basis Theorem]\index{Hilbert's Basis Theorem}
+  If $R$ is a Noetherian ring, then $R[x]$ is a Noetherian ring.
 \end{theorem}
 
 \begin{corollary}\hfill\begin{enumerate}

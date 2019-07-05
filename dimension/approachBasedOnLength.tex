@@ -1,0 +1,324 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp}
+
+\title{An approach based on length}
+
+\begin{document}
+\begin{abstract}
+  We introduce the Hilbert Function, Hilbert Series, Hilbert
+  Polynomial, and the Hilbert-Samuel Polynomial. Sources and
+  references: \cite{AK2012,rA2006,hS2003}.
+\end{abstract}
+\maketitle
+
+
+This approach generalizes the idea of vector-space dimension to modules. 
+
+\section{Length of a module}
+
+
+
+
+
+\begin{definition}\index{Jordan-H\"older chain}\index{composition series}
+  A chain of $R$-modules
+  \[
+  M = M_0 \supsetneq M_1\supsetneq \dots \supsetneq M_n =(0)
+  \]
+  is a \dfn{Jordan-H\"older chain}, also known as a \dfn{composition series},
+  if for each $i$, $M_i/M_{i+1}\iso R/\m$ for some maximal
+  ideal $\m$ in $R$.
+\end{definition}
+
+
+\begin{example}
+  Consider the $\Z$-module, $\Z/30\Z$. This has six different
+  composition series:
+  \begin{align*}
+  &\Z/30\Z \supsetneq 2\Z/30\Z \supsetneq 6\Z/30\Z \supsetneq 0\\
+  &\Z/30\Z \supsetneq 2\Z/30\Z \supsetneq 10\Z/30\Z \supsetneq 0\\
+  &\Z/30\Z \supsetneq 3\Z/30\Z \supsetneq 6\Z/30\Z \supsetneq 0\\
+  &\Z/30\Z \supsetneq 3\Z/30\Z \supsetneq 15\Z/30\Z \supsetneq 0\\
+  &\Z/30\Z \supsetneq 5\Z/30\Z \supsetneq 10\Z/30\Z \supsetneq 0\\
+  &\Z/30\Z \supsetneq 5\Z/30\Z \supsetneq 15\Z/30\Z \supsetneq 0
+  \end{align*}
+\end{example}
+
+
+
+\begin{definition}
+  Let $R$ be a ring and $M$ be an $R$-module. The \dfn{length} of $M$
+  is defined as
+  \[
+  \l(M) := \inf \{n: \text{$M$ has a composition series of length $n$}\}.
+  \]
+\end{definition}
+
+\begin{example}
+  Consider the $\Z$-module, $\Z/30\Z$. From our work above we see $\l(\Z/30\Z) = 3$.
+\end{example}
+
+
+
+\begin{lemma}\label{L:lensubmod}
+  Let $R$ be a ring and $M$ an $R$-module. If $N\subset M$ is a
+  submodule of $M$, then $\l(N)\le\l(M)$ with equality holding exactly
+  when $N=M$.
+  \begin{proof}
+    Consider a composition series of length $n$
+    \[
+    M = M_0 \supsetneq M_1 \supsetneq \cdots \supsetneq M_n = 0.
+    \]
+    Intersect this with $N$ to find
+    \begin{equation}\tag{$\bigstar$}\label{Eq:intcompseries}
+    N = (N\cap M_0) \supset (N\cap M_1) \supset \cdots \supset (N\cap M_n) = 0.
+    \end{equation}
+    By an isomorphism theorem
+    \begin{align*}
+      \frac{N\cap M_i}{N\cap M_{i+1}} &= \frac{N\cap M_i}{(N\cap M_i)\cap M_{i+1}} \\
+      &\iso \frac{(N\cap M_i) + M_{i+1}}{M_{i+1}}.
+    \end{align*}
+    Since for some maximal ideal $\m\subset R$
+    \[
+    \frac{(N\cap M_i) + M_{i+1}}{M_{i+1}} \subset \frac{M_i}{M_{i+1}}\iso R/\m
+    \]
+    we see that
+    \[
+    \frac{N\cap M_i}{N\cap M_{i+1}}  = 0 \quad \text{or}\quad \frac{N\cap M_i}{N\cap M_{i+1}} \iso R/\m.
+    \]
+    Thus, we can remove redundant terms from (\ref{Eq:intcompseries})
+    to see $\l(N)\le \l(M)$.
+
+    Now we will show that if $N\subset M$ and $\l(N) = \l(M)$, then $N
+    = M$. By our previous work, this means that for all $i = 0,\dots,
+    n$,
+    \[
+    (N\cap M_i) + M_{i+1} = M_i
+    \]
+    and working inductively, we conclude $N=M$.
+  \end{proof}
+\end{lemma}
+
+
+
+\begin{theorem}[Jordan-H\"older]
+  Let $R$ be a ring and $M$ an $R$-module. Each composition series for
+  $M$ has the same length.
+  \begin{proof}
+    Consider a composition series
+    \[
+    M = M_0\supsetneq M_1 \supsetneq \cdots \supsetneq M_n = 0.
+    \]
+    By the definition of length, $\l(M) \le n$. However by
+    Lemma~\ref{L:lensubmod},
+    \[
+    \l(M) > \l(M_0) > \l(M_1) > \dots > \l(M_n) =0
+    \]
+    and we see that $\l(M) \ge n$. Hence $\l(M) = n$, all composition
+    series have the same length.
+  \end{proof}
+\end{theorem}
+
+
+\begin{corollary}
+  Let $R$ be a ring, an $R$-module $M$ has finite length if and only
+  if $M$ is both Artinian and Noetherian.
+  \begin{proof}
+    $(\Rightarrow)$ Suppose $\l(M)<\infty$. In this case then any
+    chain (ascending or descending) must have length less than or
+    equal to $\l(M)$.
+
+    $(\Leftarrow)$ Suppose that $M$ is both Artinian and Noetherian.
+    We will construct a finite composition series. Set $M_0 =
+    M$. Working inductively if $i\ge 1$, use the fact that $M$ is
+    Noetherian to choose a maximal proper submodule $M_{i+1}\subsetneq
+    M_i$. Since $M$ is Artinian, this process will stabilize.
+  \end{proof}
+\end{corollary}
+
+
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated
+  $R$-module. The following are equivalent:
+  \begin{enumerate}
+  \item $\l(M)<\infty$
+  \item $\supp(M)\subset\maxspec(R)$
+  \item $\ass(M)\subset\maxspec(R)$
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Let $R$ be a Noetherian ring and $M$ be a finitely generated
+  $R$-module of finite length. Prove that $\ass(M) = \supp(M)$.
+\end{exercise}
+
+
+\begin{proposition}\index{length!additive property}
+  Given a short exact sequence of $R$-modules
+  \[
+  0\to M' \to M\to M'' \to 0
+  \]
+  such that $\l(M)$ is finite, then length is an additive function, that is,
+  \[
+  \l(M) = \l(M')+\l(M'').
+  \]
+  In particular, $\l(M)$ is finite if and only if $\l(M')$ and
+  $\l(M'')$ are finite.
+  \begin{proof}
+    Consider the following composition series for $M$
+    \[
+    M = M_0 \supsetneq M_1 \supsetneq \cdots \supsetneq M_n = 0.
+    \]
+    We can use this to obtain a composition series for $M'$ (as we did
+    in the proof of Lemma~\ref{L:lensubmod}). We can then extend that
+    compostion series for a new composition series for $M$
+    \[
+    M = M_0 \supsetneq M_1 \supsetneq \cdots \supsetneq M' \supsetneq \cdots \supsetneq M_n = 0.
+    \]
+    Now we may quotient by $M'$ to find a composition series for
+    $M''$
+    \[
+    M'' = M_0/M' \supsetneq M_1/M' \supsetneq \cdots \supsetneq M'/M'  = 0.
+    \]
+    Thus we see $\l(M) = \l(M')+\l(M'')$.
+  \end{proof}
+\end{proposition}
+
+\begin{corollary}
+  Given an exact sequence of $R$-modules
+  \[
+  0 \to M_0\to M_1\to \cdots \to M_n \to 0
+  \]
+  we have that
+  \[
+  \sum_{i=0}^n (-1)^i \l(M_i) = 0.
+  \]
+\end{corollary}
+
+
+
+\begin{proposition}
+  Let $k$ be a field and $V$ be a finite dimensional vector
+  space. Then
+  \[
+  \l(V) = \dim_k(V)
+  \]
+  \begin{proof}
+    If $V$ is a finite dimensional vector space, and
+    $\{b_1,\dots,b_n\}$ are a basis, then
+    \[
+    (b_1k + \dots + b_nk) \subsetneq \dots \subsetneq (b_1k) \subsetneq 0
+    \]
+    is a composition series.
+  \end{proof}
+\end{proposition}
+
+
+Hence when $R$ is a field, and $M$ is a finite dimensional vector
+space the length of $M$ is equal to the vector space dimension of $M$.
+
+
+
+
+\section{The Hilbert function}
+
+Let $R$ be a finitely generated graded commutative algebra over a
+field $k$
+\[
+R = \directsum_{n=0}^\infty R_n
+\]
+where $R_0 = k$.  in this case, each component $R_n$ is a $k$-vector
+space. It makes sense to look at
+\[
+\dim_k(R_n)
+\]
+We can generalize this further for graded commutative algebras over an
+Artinian ring $R_0$.
+
+\begin{lemma}
+  Let $R$ be a finitely generated graded commutative algebra over an
+  Artinian ring $R_0$ and let $M$ be a finitely generated graded
+  $R$-module.  In this case, $M_n$ is a finitely generated
+  $R_0$-module.
+  \begin{proof}
+    Exercise.
+  \end{proof}
+\end{lemma}
+
+
+This is called the \textit{Hilbert function}.
+
+\begin{definition}
+  Let $R$ be a finitely generated graded commutative algebra over an
+  Artinian ring $R_0$. Let $M$ be a finitely generated graded
+  $R$-module. The \dfn{Hilbert function} for $M$, $\hf_M(n)$ is given by
+  \[
+  \hf_M(n) := \l(M_n).
+  \]
+\end{definition}
+
+
+\begin{example}
+If $(A,\m,k)$ is a local ring, then 
+\[
+\hf_M(n) = \dim_{k}\left(\m^n M/\m^{n+1} M\right)
+\]
+as we take the associated graded ring and graded module.
+\end{example}
+
+
+
+We can compute the Hilbert function using \macaulay.
+
+\begin{macaulay2}
+CODE GOES HERE
+\end{macaulay2}
+
+
+
+
+
+The generating function for the Hilbert function is called the \textit{Hilbert series}.
+
+\begin{definition}
+  Let $R$ be a finitely generated graded commutative algebra over an
+  Artinian ring $R_0$. Let $M$ be a finitely generated graded
+  $R$-module. The \dfn{Hilbert series} for $M$, $\hs_M(t)$ is given by
+  \[
+  \hs_M(t) := \sum_{i=0}^\infty \l(M_n) t^n.
+  \]
+\end{definition}
+
+We can compute the Hilbert series using \macaulay.
+
+\begin{macaulay2}
+CODE GOES HERE
+\end{macaulay2}
+
+
+
+\begin{theorem}[Hilbert-Serre]
+  Let $R$ be a finitely generated graded commutative algebra over an
+  Artinian ring $R_0$. Let $M$ be a finitely generated graded
+  $R$-module. The Hilbert series
+  \[
+  \hs_M(t) = \frac{f(t)}{\prod_{i=1}^s(1-t^{k_i})}
+  \]
+  where $f(t)\in\Z[t]$
+\end{theorem}
+
+
+
+
+
+
+\section{The Hilbert-Samuel function}
+\[
+H_M(n) := \dim_{k}\left(\m^n M/\m^{n+1} M\right)
+\]
+
+\end{document}
