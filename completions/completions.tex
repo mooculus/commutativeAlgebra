@@ -309,6 +309,22 @@ to the category of modules.
 \end{theorem}
 
 
+\begin{corollary}\label{C:quotcomp}
+  If $R$ is Noetherian equipped with the $I$-adic metric, and $M$ is a
+  finitely generated $R$-module, then
+  \[
+  \hat{M}_I/\hat{I^n M}_I \iso M/I^n M.
+  \]
+  \begin{proof}
+    Let $\pi_n:\prod_{n=0}^\infty M/I^nM \to M/I^nM$ denote the
+    projection map.  Restricting $\pi_n$ to $\hat{M}_I \subset
+    \prod_{n=0}^\infty M/I^nM$ we have:
+    \[
+    \ker(\pi_n) \iso \hat{I^n M} \iso \invlim \left(\frac{I^n M}{I^{n+t}M}\right)
+    \]
+    The first isomorphism theorem gives the result.
+  \end{proof}
+\end{corollary}
 
 
 
