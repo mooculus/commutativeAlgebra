@@ -8,8 +8,40 @@
 
 \begin{document}
 \begin{abstract}
+  We introduce systems of parameters. Sources and references:
+  \cite{sD2008}.
 \end{abstract}
 \maketitle
+
+
+Recall that a local ring is a ring that is Noetherian with a unique maximal ideal.\index{local ring}
+
+\begin{definition}[Third Notion of Dimension]\index{sM@$s(M)$}
+  Let $A$ be a local ring and $M$ a finitely generated $A$-module. Define
+  \[
+  s(M) := \inf\left\{d:
+  \begin{minipage}{35ex}
+    there exists $x_1,\dots, x_d\in \m$ such that $\l(M/(x_1,\dots,x_d)M)<\infty$
+  \end{minipage} \right\}.
+  \]
+\end{definition}
+
+If $M$ is finitely generated as an $A$-module then, $M/\m M$ is
+finitely generated as an $A/\m$ module. Hence as a vector space over
+$A/\m$, $M/\m M$ has finite dimension. If $A$ is Noetherian, then we
+see that $M/\m M$ has finite length. This helps motivate our next
+definition.
+
+\begin{definition}\index{system of parameters}
+  Let $A$ be Noetherian and $M$ be a finitely generated
+  $A$-module. Then if $s(M) = n$, then any sequence $x_1,\dots, x_n$
+  such that
+  \[
+  \l(M/(x_1,\dots,x_n)M)<\infty\index{finite length}
+  \]
+  is called a \dfn{system of parameters} for $M$. 
+\end{definition}
+
 
 
 

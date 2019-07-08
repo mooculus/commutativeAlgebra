@@ -37,21 +37,21 @@ Given a topological space, we can define its dimension as follows:
   any of the following equivalent conditions hold:
   \begin{enumerate}
   \item Every nonempty family of open sets has a maximal element.
-  \item Any increasing chain of open sets terminates.
+  \item Any increasing chain of open sets stabilizes.
   \item Every nonempty family of closed sets has a minimal element.
-  \item Any decreasing chain of closed sets terminates.
+  \item Any decreasing chain of closed sets stabilizes.
   \end{enumerate}
 \end{definition}
 
 
 
-\begin{proposition}
-  If $X$ is a Noetherian topological space,
-  \[
-  \dim(X) = \sup\dim(X_i)
-  \]
-  where $X_i$ is a component of $X$. 
-\end{proposition}
+%% \begin{proposition}
+%%   If $X$ is a Noetherian topological space,
+%%   \[
+%%   \dim(X) = \sup\dim(X_i)
+%%   \]
+%%   where $X_i$ is a component of $X$. 
+%% \end{proposition}
 
 \section{Krull dimension of a ring}
 
@@ -63,16 +63,14 @@ Given a topological space, we can define its dimension as follows:
     Suppose $R$ is Noetherian, then by primary decomposition of
     ideals, Theorem~\ref{T:PDI}, we have
     \[
-    (0) = \q_1\cap \dots \cap \q_r
+    (0) = \q_1\cap \dots \cap \q_n
     \]
-    where each $\q_i$ is $\p_i$-primary and so $V(\q_i) =
-    V(\p_i)$. Eliminate those $V(\p_i)$ for which $p_i$ is not minimal
-    in $\ass(R)$.  Then reindexing we have
+    where for each $\q_i$, $\ass(R/\q_i) = \{\p_i\}$.  Then we have
     \[
-    \spec(R) = V(0) = V(\p_1) \cup\dots \cup V(\p_s). 
+    \spec(R) = V(0) = V(\p_1) \cup\dots \cup V(\p_n). 
     \]
     Since the $V(\p_i)$ are the irreducible components of $\spec(R)$,
-    any decreasing chain of closed sets terminates.
+    any decreasing chain of closed sets stabilizes.
   \end{proof}
 \end{proposition}
 
