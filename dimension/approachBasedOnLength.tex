@@ -303,9 +303,10 @@ The generating function for the Hilbert function is called the \textit{Hilbert s
   Let $R$ be a finitely generated graded commutative algebra over an
   Artinian ring $R_0$. Let $M$ be a finitely generated graded
   $R$-module. The \dfn{Hilbert series} for $M$, $\hs_M(t)$ is given by
-  \[
-  \hs_M(t) := \sum_{i=0}^\infty \l(M_n) t^n.
-  \]
+  \begin{align*}
+    \hs_M(t) &:= \sum_{i=0}^\infty \hf_M(n) t^n,\\
+    &:= \sum_{i=0}^\infty \l(M_n) t^n.
+  \end{align*}
 \end{definition}
 
 We can compute the Hilbert series using \macaulay. We'll use the same
@@ -326,12 +327,12 @@ hilbertSeries(R)
 \begin{theorem}[Hilbert-Serre]
   Let $R$ be a finitely generated graded commutative algebra over an
   Artinian ring $R_0$ with all generators $x_1,\dots,x_r$ belonging to
-  $R_1$. Let $M$ be a finitely generated graded $R$-module. In this
+  $R_1$ and let $M$ be a finitely generated graded $R$-module. In this
   case, the Hilbert series of $M$ is given by
   \[
-  \hs_M(t) = \frac{f(t)}{\prod_{i=1}^s(1-t)^r}
+  \hs_M(t) = \frac{g(t)}{\prod_{i=1}^s(1-t)^r}
   \]
-  where $f(t)\in\Z[t]$.
+  where $g(t)\in\Z[t]$.
   \begin{proof}
     Proceed by induction on the number of generators of $R$ over
     $R_0$.
@@ -348,7 +349,7 @@ hilbertSeries(R)
     $x_r$ be a generator in $R_1$ and consider the map defined by
     multiplication by $x_r$
     \[
-    0\lto K_n \lto M_n \lto^{x_r} \lto M_{n+1} \lto L_{n+1}
+    0\lto K_n \lto M_n \lto^{x_r} M_{n+1} \lto L_{n+1}
     \]
     where $K_n$ is the kernel and $L_{n+1}$ is the cokernel. Set
     \[
@@ -382,24 +383,124 @@ hilbertSeries(R)
   \end{proof}
 \end{theorem}
 
+\begin{remark}
+  Above we have a somewhat specialized theorem, since the degrees of
+  the generators of $M$ are all $1$. You can find a more general
+  version of this theorem in \cite{AM1969,hM1986}.
+\end{remark}
+
+
 \begin{corollary}
   Let $R$ be a finitely generated graded commutative algebra over an
   Artinian ring $R_0$ with all generators $x_1,\dots,x_r$ belonging to
-  $R_1$. Let $M$ be a finitely generated graded $R$-module. In this
-  case, there is a polynomial $\hp_M(n)\in\Q[n]$
+  $R_1$ and let $M$ be a finitely generated graded $R$-module. In this
+  case, there is a polynomial $\hp_M(X)\in\Q[X]$ such that
   \[
-  \hp_M(n) = \l(M_n)
+  \hp_M(n) = \hf_M(n) = \l(M_n)
   \]
-  for $n\ge s+1-d$. The polynomial $\hp_M(n)$ is called the
+  for $n\gg 0$. The polynomial $\hp_M(n)$ is called the
   \dfn{Hilbert polynomial} for $M$.
+  \begin{proof}
+    Start by finding the Hilbert series for the module:
+    \[
+    \hs_M(t) = \frac{g(t)}{\prod_{i=1}^s(1-t)^r}
+    \]
+    It may be the case that $g(1) = 0$, meaning $(1-t)|g(t)$. Cancel
+    all factors of $(1-t)$ of $g$ to obtain a new expression
+    \[
+    \hs_M(t) = \frac{f(t)}{\prod_{i=1}^s(1-t)^d}
+    \]
+    where $f(1) \ne 0$. If $d=0$, we are done, as $f(t)\in
+    \Z[t]$. Note, via Taylor's theorem
+    \[
+    \frac{1}{1-t}^d = \sum_{n=0}^\infty \binom{d+n-1}{d-1}t^n.
+    \]
+    If $f(t) = a_0 + a_1 t + \dots + a_s t^s$, then multiplying, we find
+    \[
+    \l(M_n) = a_0 \binom{d+n-1}{d-1} + a_1 \binom{d+n-2}{d-1} + \dots + a_s \binom{d+n-s-1}{d-1}
+    \]
+    where we set $\binom{m}{d-1} = 0$ for $m<d-1$. The expression
+    above on the right is a polynomial in $n$, call it $\hp_M(n)$:
+    \[
+    \hp_(n) = \sum_{i=0}^s a_i \binom{d+n-i-1}{d-1}
+    \]
+    we may rearrange these terms to see
+    \begin{align*}
+    \hp_M(n) &= \frac{\sum_{i=0}^s a_i}{(d-1)!}n^{d-1} + (\text{lower degree terms})\\
+    &= \frac{f(1)}{(d-1!)}n^{d-1}  + (\text{lower degree terms}).
+    \end{align*}
+    Hence $\hp_M(X)\in \Q[X]$ and if $n\ge s+1-d$, we have $\l(M_n) =
+    \hf_M(n) = \hp_M(n)$.
+    \end{proof}
 \end{corollary}
 
+\begin{remark}
+   If the degrees of the generators of $M$ are not all $1$. You might
+   not be able to find a single polynomial representative of the
+   Hilbert function.
+\end{remark}
+
+Let's see some examples with \macaulay.
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z];
+hp=hilbertPolynomial(R,Projective=>false)
+apply(10,i->hilbertFunction(i,R^1))
+apply(10,j->sub(hp,{first gens S=>j}))
+\end{macaulay2}
+
+\begin{definition}[Second Notion of Dimension]
+  Let $R$ be a finitely generated graded commutative algebra over an
+  Artinian ring $R_0$ with all generators $x_1,\dots,x_r$ belonging to
+  $R_1$ and let $M$ be a finitely generated graded $R$-module.
+  Define
+  \[
+  d(M) := \deg\hp(X) + 1.
+  \]
+\end{definition}
 
 
 
 \section{The Hilbert-Samuel function}
-\[
-H_M(n) := \dim_{k}\left(\m^n M/\m^{n+1} M\right)
-\]
+
+We can extend our work above, by using a canonical grading, the adic
+topology. We will work in the $\m$-adic topology over a local ring,
+though we could work more generally. Specifically, if we were working
+with an ideal such that $\m^n\subset I \subset \m$ (called an
+\dfn{ideal of definition}) the theorems below hold. The interested
+reader can see $\cite{AM1969,hM1985}$.
+
+\begin{definition}
+  Given a local ring $(A,\m)$ and an $A$-module $M$ we can produce the
+  associated grading ring:
+  \[
+  \gr_\m(R) = \directsum_{n=0}^\infty \left(\m^n/\m^{n+1}\right) \quad\text{and}\quad
+  \gr_\m(M) = \directsum_{n=0}^\infty \left(\m^nM/\m^{n+1}M\right)
+  \]
+\end{definition}
+
+\begin{proposition}
+  Given a local ring $(A,\m)$ and an $A$-module $M$. In this case,
+  \[
+  0 \to \m^n M/\m^{n+1}M \to M/\m^{n+1}M \to M/\m^n M \to 0
+  \]
+\end{proposition}
+
+
+\begin{proposition}
+  Given a local ring $(A,\m)$ and an $A$-module $M$, the
+  \dfn{Hilbert-Samuel function} is
+  \[
+  P_M(n) = \l(M/\m^n M)
+  \]
+\end{proposition}
+
+
+
+
+
+\begin{theorem}
+  
+\end{theorem}
 
 \end{document}
