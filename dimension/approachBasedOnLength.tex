@@ -290,11 +290,25 @@ hilbertFunction(3,R)
 Let's do something a bit more complex:
 
 \begin{macaulay2}
-R = ZZ/101[x,y,z]/ideal(x^3+y^3+z^3);
+R = ZZ/101[x,y,z]/(x^3+y^3+z^3);
 hilbertFunction(1,R)
 hilbertFunction(2,R)
 hilbertFunction(3,R)
 \end{macaulay2}
+
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z]/(x^2,y^3,z^4);
+hilbertFunction(1,R)
+hilbertFunction(2,R)
+hilbertFunction(3,R)
+hilbertFunction(4,R)
+hilbertFunction(5,R)
+hilbertFunction(6,R)
+hilbertFunction(7,R)
+dim(R) 
+\end{macaulay2}
+
 
 
 The generating function for the Hilbert function is called the \textit{Hilbert series}.
@@ -304,8 +318,8 @@ The generating function for the Hilbert function is called the \textit{Hilbert s
   Artinian ring $R_0$. Let $M$ be a finitely generated graded
   $R$-module. The \dfn{Hilbert series} for $M$, $\hs_M(t)$ is given by
   \begin{align*}
-    \hs_M(t) &:= \sum_{i=0}^\infty \hf_M(n) t^n,\\
-    &:= \sum_{i=0}^\infty \l(M_n) t^n.
+    \hs_M(t) &:= \sum_{n=0}^\infty \hf_M(n) t^n,\\
+    &:= \sum_{n=0}^\infty \l(M_n) t^n.
   \end{align*}
 \end{definition}
 
@@ -319,9 +333,15 @@ hilbertSeries(R)
 
 
 \begin{macaulay2}
-R = ZZ/101[x,y,z]/ideal(x^3+y^3+z^3);
+R = ZZ/101[x,y,z]/(x^3+y^3+z^3);
 hilbertSeries(R)
 \end{macaulay2}
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z]/(x^2,y^3,z^4);
+hilbertSeries(R)
+\end{macaulay2}
+
 
 
 \begin{theorem}[Hilbert-Serre]\label{T:HS}
@@ -330,7 +350,7 @@ hilbertSeries(R)
   $R_1$ and let $M$ be a finitely generated graded $R$-module. In this
   case, the Hilbert series of $M$ is given by
   \[
-  \hs_M(t) = \frac{g(t)}{\prod_{i=1}^s(1-t)^r}
+  \hs_M(t) = \frac{g(t)}{(1-t)^r}
   \]
   where $g(t)\in\Z[t]$.
   \begin{proof}
@@ -341,7 +361,7 @@ hilbertSeries(R)
     for $i>0$. Choose a finite set of generators for $M$. If $d$ is
     the maximum of the degrees of the generators, then 
     \[
-    \hs_M(t) = \sum_{i=0}^d \l(M_n) t^n.
+    \hs_M(t) = \sum_{n=0}^d \l(M_n) t^n.
     \]
     is a polynomial.
 
@@ -349,17 +369,17 @@ hilbertSeries(R)
     $x_r$ be a generator in $R_1$ and consider the map defined by
     multiplication by $x_r$
     \[
-    0\lto K_n \lto M_n \lto^{x_r} M_{n+1} \lto L_{n+1}
+    0\lto K_n \lto M_n \lto^{x_r} M_{n+1} \lto L_{n+1}\lto 0 
     \]
     where $K_n$ is the kernel and $L_{n+1}$ is the cokernel. Set
     \[
-    K = \directsum_{n\ge 0} K_n\quad\text{and}\quad L = \directsum_{n\ge 0} L_n.
+    K = \directsum_{n= 0}^\infty K_n\quad\text{and}\quad L = \directsum_{n= 0}^\infty L_n.
     \]
     Now $K\subset M$ is a submodule, and $L = M/x_r M$, and
     \[
     x_r K = x_r L = 0,
     \]
-    hence both $K_n$ and $L_n$ are $(R/x_r R)$-modules over a
+    hence both $K$ and $L$ are $(R/x_r R)$-modules over a
     $(r-1)$-generated graded ring. Thus we may apply the inductive
     hypothesis to compute $\hs_K(t)$ and $\hs_L(t)$. By
     Corollary~\ref{C:Lles}, we have that
@@ -403,7 +423,7 @@ hilbertSeries(R)
   \begin{proof}
     Start by finding the Hilbert series for the module:
     \[
-    \hs_M(t) = \frac{g(t)}{\prod_{i=1}^s(1-t)^r}
+    \hs_M(t) = \frac{g(t)}{(1-t)^r}
     \]
     It may be the case that $g(1) = 0$, meaning $(1-t)|g(t)$. Cancel
     all factors of $(1-t)$ of $g$ to obtain a new expression
@@ -415,7 +435,8 @@ hilbertSeries(R)
     \[
     \frac{1}{(1-t)^d} = \sum_{n=0}^\infty \binom{d+n-1}{d-1}t^n.
     \]
-    If $f(t) = a_0 + a_1 t + \dots + a_s t^s$, then multiplying, we find
+    If $f(t) = a_0 + a_1 t + \dots + a_s t^s$, then multiplying, we
+    find the $n$th coefficient to be
     \[
     \l(M_n) = a_0 \binom{d+n-1}{d-1} + a_1 \binom{d+n-2}{d-1} + \dots + a_s \binom{d+n-s-1}{d-1}
     \]
@@ -445,8 +466,19 @@ Let's see some examples with \macaulay.
 \begin{macaulay2}
 R = ZZ/101[x,y,z];
 hp=hilbertPolynomial(R,Projective=>false)
-apply(10,i->hilbertFunction(i,R^1))
+S = ring hp
+apply(10,i->hilbertFunction(i,R))
 apply(10,j->sub(hp,{first gens S=>j}))
+\end{macaulay2}
+
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z]/(x^4,y^2+z^2);
+hp=hilbertPolynomial(R,Projective=>false)
+S = ring hp
+apply(10,i->hilbertFunction(i,R))
+apply(10,j->sub(hp,{first gens S=>j}))
+dim R
 \end{macaulay2}
 
 \section{The Hilbert-Samuel polynomial}
@@ -596,8 +628,11 @@ these graded rings.
     r(n) = P_{M'}(n) -\l(M'/(M'\cap \m^{n+m}M))
     \]
     The polynomial $r(n)$ has degree less than $\deg(P_{M})$ since
-    $\deg(\l(M'/(M'\cap \m^{n+m}M)))\le \deg(P_M(n))$. Combining
-    $(\bigstar)$ and $(\bigstar\bigstar)$ we find our result.
+    \[
+    \deg(\l(M'/(M'\cap \m^{n+m}M)))\le \deg(P_M(n)).
+    \]
+    zCombining $(\bigstar)$ and $(\bigstar\bigstar)$ we find our
+    result.
   \end{proof}
 \end{proposition}
 
