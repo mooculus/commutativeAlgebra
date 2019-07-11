@@ -69,13 +69,21 @@ From the definition, one can see than an ideal is an additive subgroup of its ri
 
 %% propositon quotient free module
 
-\begin{definition}\index{algebra} A ring $A$ is an \dfn{$\boldsymbol{R}$-algebra} if it is equipped with an $R$-module structure. Equivalently, this means that there exists some ring homomorphism $\ph:R\to A$. An $R$-algebra is finitely generated, or of finite type, if 
-\[
-A \iso R[X_1,\dots,X_n]/I.
-\]
+\begin{definition}\index{algebra}
+  A ring $A$ is an \textbf{$\boldsymbol{R}$-algebra} if it is equipped
+  with an $R$-module structure. Equivalently, this means that there
+  exists some ring homomorphism $\ph:R\to A$. An $R$-algebra is
+  finitely generated, or of finite type, if
+  \[
+  A \iso R[X_1,\dots,X_n]/I.
+  \]
 \end{definition}
 
-\begin{definition}\index{algebra homomorphism}\index{homomorphism!of algebras} If $A$ and $B$ are $R$-algebras, $\ph:A\to B$ is a \dfn{$\boldsymbol{R}$-algebra homomorphism} if $\ph$ is a ring homomorphism and $\ph$ is $R$-linear, that is for $x\in R$, $x\ph(a) = \ph(xa)$.
+\begin{definition}\index{algebra homomorphism}\index{homomorphism!of algebras}
+  If $A$ and $B$ are $R$-algebras, $\ph:A\to B$ is a
+  \textbf{$\boldsymbol{R}$-algebra homomorphism} if $\ph$ is a ring
+  homomorphism and $\ph$ is $R$-linear, that is for $x\in R$, $x\ph(a)
+  = \ph(xa)$.
 \end{definition}
 
 
@@ -165,24 +173,6 @@ I \cdot J = \left\{\sum_{i = 1}^n x_i \cdot y_i : x_i\in I \text{ and }y_i\in J\
 
 \begin{example} Consider $k[X,Y]$ where $k$ is a field. Now $(X) \cup (Y)$ is not an ideal as it contains $X$, $Y$, but not $X+Y$.
 \end{example}
-
-Despite this fact there are some things we can say about unions of ideals.
-
-\begin{lemma}[Prime Avoidance]\label{L:PA}\index{prime avoidance}
-Let $A$ be a ring and $I$ be an ideal of $A$.  If $\p_1,\ldots,\p_n$ are prime ideals such that 
-\[
-I \not\subseteq \p_i \qquad\text{for all $i$,}
-\]
-then 
-\[
-I \not\subset \bigcup_{i = 1}^n \p_i.
-\]
-\end{lemma}
-
-
-\begin{remark} The above lemma is called \textit{prime avoidance} as if $I\not\subset \p_i$ for all $i$, then there is some element of $a \in I$ which \textit{avoids} being contained in any $\p_i$. 
-\end{remark}
-
 
 \begin{definition}\index{colon ideal/submodule}\index{ideal quotient}\index{colon ideal@$(Z:_X Y)$} If $\a$ and $\b$ are ideals of $A$, then the \dfn{colon ideal} $(\b:_A \a)$ is defined as follows:
 \[
