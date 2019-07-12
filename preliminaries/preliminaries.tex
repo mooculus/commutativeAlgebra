@@ -28,6 +28,17 @@ identity. Hence we will define a ring as follows:
 
 We will often denote $1_R$ simply by $1$.
 
+You can define a ring in \macaulay\ as follows:
+
+\begin{macaulay2}
+R = ZZ/101[x,y,z];
+x -- M2 knows x is in R
+S = R/(x^2,y^3,z^3)
+x -- now x is in S
+lift(x,R) -- this is not x lifted back to R
+\end{macaulay2}
+
+
 \begin{definition}\index{ring!homomorphism} If $A$ and $B$ are rings, a map $\ph:A\to B$ is a \dfn{ring homomorphism} if:
 \begin{enumerate}
 \item $\ph(a+b) = \ph(a) + \ph(b).$

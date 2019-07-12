@@ -146,8 +146,8 @@ We will prove this in three (or four) lemmas.
 
 
 
-\begin{lemma}[Prime Avoidance]\label{L:PA}\index{prime avoidance}
-Let $A$ be a ring and $I$ be an ideal of $A$.  If $\p_1,\ldots,\p_n$
+\begin{lemma}[Prime avoidance]\label{L:PA}\index{prime avoidance}
+Let $R$ be a ring and $I$ be an ideal of $R$.  If $\p_1,\ldots,\p_n$
 are prime ideals such that
 \[
 I \not\subseteq \p_i \qquad\text{for all $i$,}
@@ -160,21 +160,19 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
   Proceed by induction on the number of prime ideals. If there is only
   one prime ideal, then we are done.
 
-  Suppse the number of prime ideals is $n>1$. For each $i =
-  1,\dots,n$, choose
+  Suppose there are two prime ideals. In this case, suppose
+  $x_1\notin\p_1$ and $x_2\notin\p_2$. Then $x_1+x_2\notin
+  \p_1$ and $x_1+x_2\notin \p_2$, hence $x_1+x_2\notin\p_1\cup\p_2$
+  
+  Suppse the number of prime ideals is $n>2$, and that
+  $x_i\notin\p_i$. In this case,
   \[
-  x_i \in I - \bigcup_{j \ne i} \p_j
+  x_1+ x_2x_3\dots x_n \notin \p_1\cup \union_{i=2}^n \p_i.
   \]
-  via the inductive hypothesis. WLOG, $x_i\in\p_i$, otherwise we are done.  Set
-  \[
-  x = x_1x_2\dots x_{n-1} + x_n \in I
-  \]
-  Thus if $x\in\p_i$, $1\le i\le n-1$, then $x_n\in \p_i$, a
-  contradicition. If $x\in\p_n$, then
-  \[
-  x-x_n = x_1x_2\dots x_{n-1}\in \p_n.
-  \]
-  If $n = 2$, then $x_1\in \p_2$, HERE HERE
+  This proves the lemma---note, we actually don't need each $\p_i$ to
+  be prime. It is sufficient that either each $\p_i$ is an ideal and
+  $R$ contains and infinite field, or that at most two of the $\p_i$
+  are not prime, see~\cite{dE1995}.
 \end{proof}
 \end{lemma}
 
@@ -184,14 +182,6 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
   $I\not\subset \p_i$ for all $i$, then there is some element of $a
   \in I$ which \textit{avoids} being contained in any $\p_i$.
 \end{remark}
-
-
-
-
-
-
-
-
 
 
 
@@ -211,10 +201,10 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
     and so we see $s(M) = 0$.
     
     Now assume that $\dim(M)=n>0$. Let $\p_i$ be the minimal prime
-    ideals in $\supp(M)$. By Theorem~\ref{T:AssassinsMinimal}, these
+    ideals of $\supp(M)$. By Theorem~\ref{T:AssassinsMinimal}, these
     primes are also minimal in $\ass(M)$ and there are only finitely
-    many such primes. By the \index{prime avoidance}Prime Avoidance
-    Lemma, we may pick $x\in\m$ such that $x$ is not in any of these
+    many such primes. By the \index{prime avoidance}prime avoidance
+    lemma, we may pick $x\in\m$ such that $x$ is not in any of these
     minimal primes. Thus
     \[
     \dim(M/xM) <\dim(M)
@@ -245,135 +235,188 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
 
 
 
-\begin{corollary} If $(A,\m)$ is a local ring, then it is has finite dimension.
+\begin{corollary}
+  If $(A,\m)$ is a local ring, then it is has finite dimension.
+  \begin{proof}
+    Since $A$ is Noetherian, $\m$ is finitely generated, thus
+    $s(A)=\dim(A)$ is less than or equal to the number of generators of
+    $\m$.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} Since $A$ is Noetherian, $\m$ is finitely generated, thus $s(A)=\dim(A)$ is less than or equal to the number of generators of $\m$.
-\end{proof}
+\begin{remark}
+  By a example of Nagata, there are infinite dimensional Noetherian
+  rings, see~\cite{mN1962}.
+\end{remark}
 
 
-\begin{corollary} If $(A,\m)$ is a local ring and $M$ is a finitely generated $A$-module, then 
-\[
-\dim_A(M) =\dim_{\hat{A}}(\hat{M}).
-\]
+\begin{corollary}
+  If $(A,\m)$ is a local ring and $M$ is a finitely generated
+  $A$-module, then
+  \[
+  \dim_A(M) =\dim_{\hat{A}}(\hat{M}).
+  \]
+  \begin{proof}
+    We know from Corollary~\ref{C:quotcomp}
+    \[
+    M/\m^n M \iso \hat{M}/\hat{\m^n} \hat{M} \iso \hat{M}/ \hat{\m}^n\hat{M},
+    \]
+    and so $P_\m(M,n) = P_{\hat{\m}}(\hat{M},n)$.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} We know from Proposition~\ref{P:ComQuot}
-\[
-M/\m^n M \iso \hat{M}/\hat{\m^n} \hat{M} \iso \hat{M}/ \hat{\m}^n\hat{M},
-\]
-and so $P_\m(M,n) = P_{\hat{\m}}(\hat{M},n)$.
-\end{proof}
 
 
-\begin{corollary} If $(A,\m)$ is a local ring, then \index{primary}
-\[
-\dim(A) = \min\{i: (a_1,\dots,a_i) = \a\text{ where $\a$ is $\m$-primary}\}.
-\]
+\begin{corollary}
+  If $(A,\m)$ is a local ring, then \index{primary}
+  \[
+  \dim(A) = \min\{i: (a_1,\dots,a_i) = \a\text{ where $\a$ is $\m$-primary}\}.
+  \]
+  \begin{proof}
+    Let $\dim(A) = n$, then there exists $x_1,\dots,x_n$ a system of
+    parameters of $A$ such that $\l(A/\x) <\infty$. Thus
+    $(x_1,\dots,x_n)$ is $\m$-primary.  Since $s(A) = n$, we see that
+    we cannot obtain $y_1,\dots,y_t$ with $t<n$ such that
+    $\l(A/\mathbf{y})<\infty$.  So for any $y_1,\ldots,y_t$ with $t <
+    n$, $(y_1,\ldots,y_t)$ is not $\m$-primary.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} Let $\dim(A) = n$, then there exists $x_1,\dots,x_n$ a system of parameters of $A$ such that $\l(A/\x) <\infty$. Thus $(x_1,\dots,x_n)$ is $\m$-primary.  Since $s(A) = n$, we see that we cannot obtain $y_1,\dots,y_t$ with $t<n$ such that $\l(A/\mathbf{y})<\infty$.  So for any $y_1,\ldots,y_t$ with $t < n$, $(y_1,\ldots,y_t)$ is not $\m$-primary.
+
+\begin{corollary}
+  If $A$ is a Noetherian ring, not necessarily local, consider any decreasing chain of prime ideals in $A$ 
+  \[
+  \p_0\supsetneq \p_1\supsetneq \cdots \supsetneq \p_i\supsetneq \cdots
+  \]
+  Then there exists $n$ such that $\p_n = \p_{n+1} = \cdots$.
+  \begin{proof}
+    If we localize at $\p_0$, then $\dim(A_{\p_0}) <\infty$.  So for some $n$
+    \[
+    \p_n A_{\p_0} = \p_{n+1} A_{\p_0} = \cdots
+    \]
+    and so $\p_n = \p_{n+1} = \cdots$.
 \end{proof}
-
-
-\begin{corollary} If $A$ is a Noetherian ring, not necessarily local, consider any decreasing chain of prime ideals in $A$ 
-\[
-\p_0\supsetneq \p_1\supsetneq \cdots \supsetneq \p_i\supsetneq \cdots
-\]
-Then there exists $n$ such that $\p_n = \p_{n+1} = \cdots$.
 \end{corollary}
 
-\begin{proof} If we localize at $\p_0$, then $\dim(A_{\p_0}) <\infty$.  So for some $n$
-\[
-\p_n A_{\p_0} = \p_{n+1} A_{\p_0} = \cdots
-\]
-and so $\p_n = \p_{n+1} = \cdots$.
-\end{proof}
-
-\begin{definition}\index{height}\index{htp@$\h(\p)$} If $A$ is a Noetherian ring and $\p$ is a prime ideal of $A$, then the \textbf{height} of $\p$ is 
+Recall the definition of \textit{height}. If $A$ is a Noetherian ring
+and $\p$ is a prime ideal of $A$, then the \textbf{height} of $\p$ is
 \[
 \h(\p) = \sup\left\{n : \begin{minipage}{15em}there exists a chain of prime ideals $\p_0\subsetneq \p_1 \subsetneq \cdots \subsetneq \p_{n-1}\subsetneq \p_n =\p$\end{minipage} \right\}.
 \]
+Note that $\h(\p) = \dim(A_\p)$.
+
+
+\begin{definition}\index{height}\index{hti@$\h(I)$}
+  If $A$ is a Noetherian ring and $I$ is any ideal of $A$, then the \textbf{height} of $I$ is 
+  \begin{align*}
+    \h(I) &= \inf\{\h(\p): I\subset\p\} \\
+    &= \inf\{\h(\p): \p \text{ is minimal in $\ass_A(A/I)$}\}.
+  \end{align*}
 \end{definition}
 
-\begin{remark} Note that $\h(\p) = \dim(A_\p)$.
-\end{remark}
-
-\begin{definition}\index{height}\index{hti@$\h(I)$} If $A$ is a Noetherian ring and $I$ is any ideal of $A$, then the \textbf{height} of $I$ is 
-\begin{align*}
-\h(I) &= \inf\{\h(\p): I\subset\p\} \\
-&= \inf\{\h(\p): \p \text{ is minimal in $\ass_A(A/I)$}\}.
-\end{align*}
+\begin{definition}\index{coheight}\index{coht@$\mathrm{coht}(I)$}
+  If $A$ is a Noetherian ring and $I$ is any ideal, then the \textbf{coheight}, denoted $\mathrm{coht}(I)$ is defined as 
+  \[
+  \mathrm{coht}(I) = \dim(A/I).
+  \]
 \end{definition}
 
-\begin{definition}\index{coheight}\index{coht@$\mathrm{coht}(I)$} If $A$ is a Noetherian ring and $I$ is any ideal, then the \textbf{coheight}, denoted $\mathrm{coht}(I)$ is defined as 
-\[
-\mathrm{coht}(I) = \dim(A/I).
-\]
-\end{definition}
-
-\begin{exercise} Check that for any ideal $I$, $\h(I)+\dim(A/I)\le\dim(A)$. 
+\begin{exercise}
+  Check that for any ideal $I$, $\h(I)+\dim(A/I)\le\dim(A)$. 
 \end{exercise}
 
 \begin{warning}
-Even if $I$ is a prime ideal, the above inequality may be strict.
+  Even if $I$ is a prime ideal, the above inequality may be strict.
 \end{warning}
 
-\begin{corollary}[Krull's Ideal Theorem]\label{C:KIT}\index{Krull's Ideal Theorem} Let $A$ be a Noetherian ring and $\p$ is a prime ideal.  Then $\h(\p)\le n$ if and only if there exist $a_1,\dots,a_n\in\p$ such that $\p$ is a minimal prime containing $(a_1,\dots,a_n)$.
+\begin{corollary}[Krull's ideal theorem]\label{C:KIT}\index{Krull's ideal theorem}
+  Let $A$ be a Noetherian ring and $\p$ is a prime ideal.  Then
+  $\h(\p)\le n$ if and only if there exist $a_1,\dots,a_n\in\p$ such
+  that $\p$ is a minimal prime containing $(a_1,\dots,a_n)$.
+  \begin{proof}
+    Since $\h(\p) = \dim(A_\p)$, $\dim(A_\p)\le n$ if and only if there exists 
+    \[
+    \frac{x_1}{u_1}, \dots, \frac{x_n}{u_n}
+    \]
+    in $A_\p$ such that 
+    \[
+    \ass\left(\frac{x_1}{u_1}, \dots, \frac{x_n}{u_n}\right) = \{\p\}.
+    \]
+    This is the case if and only if there exist $x_1,\dots, x_n\in \p$
+    and $\p$ contains $(x_1,\dots,x_n)$ minimally.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} Since $\h(\p) = \dim(A_\p)$, $\dim(A_\p)\le n$ if and only if there exists 
-\[
-\frac{x_1}{u_1}, \dots, \frac{x_n}{u_n}
-\]
-in $A_\p$ such that 
-\[
-\left(\frac{x_1}{u_1}, \dots, \frac{x_n}{u_n}\right)
-\]
-is $\p A_\p$-primary. This is the case if and only if there exist $x_1,\dots, x_n\in \p$ and $\p$ contains $(x_1,\dots,x_n)$ minimally. 
-\end{proof}
 
-
-\begin{corollary}[Krull's Principal Ideal Theorem]\index{Krull's Principal Ideal Theorem} Let $A$ be a Noetherian ring and $x$ be an element of $A$ which is not a unit or a zerodivisor. Then every prime which contains $(x)$ minimally has height $1$.
+\begin{corollary}[Krull's principal ideal theorem]\index{Krull's principal ideal theorem}
+  Let $A$ be a Noetherian ring and $x$ be an element of $A$ which is
+  not a unit or a zerodivisor. Then every prime which contains $(x)$
+  minimally has height $1$.
+  \begin{proof}
+    By Corollary~\ref{C:KIT} the minimal prime containing $(x)$ has
+    height at most one. The prime $\p$ containing $(x)$ cannot have
+    height zero, as then $\p\in\ass(A)$ by Corollary~\ref{C:SA} and
+    hence then every element of $\p$ is a zero divisor, which is not
+    the case.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} By Corollary~\ref{C:KIT} the minimal prime containing $(x)$ has height at most one. The prime $\p$ containing $(x)$ cannot have height zero, as then $\p\in\ass(A)$ by Corollary~\ref{C:SA} and hence then every element of $\p$ is a zero divisor, which is not the case.
-\end{proof}
-
-\begin{remark} The above corollary to the Dimension Theorem is sometimes called \textbf{Krull's Hauptidealsatz}.\index{Krull's Hauptidealsatz}
+\begin{remark}
+  The above corollary to the Dimension Theorem is sometimes called
+  \textbf{Krull's hauptidealsatz}.\index{Krull's hauptidealsatz}
 \end{remark}
 
-\begin{corollary}\label{C:nzdd-1} Let $(A,\m)$ be a local ring and $x$ be an element of $\m$ which is not a zerodivisor. Then $\dim(A/xA) = \dim(A)-1$.
+\begin{corollary}\label{C:nzdd-1}
+  Let $(A,\m)$ be a local ring and $x$ be an element of $\m$ which is
+  not a zerodivisor. Then $\dim(A/xA) = \dim(A)-1$.
+  \begin{proof}
+    This follows from the previous corollary and the definition of
+    dimension.
+  \end{proof}
 \end{corollary}
 
-\begin{proof} This follows from the previous corollary and the definition of dimension.
-\end{proof}
 
-
-\begin{exercise} If $(A,\m)$ is a local ring and $M$ is a finitely generated $A$-module with $x_1,\dots,x_i\in\m$, then 
-\[
-\dim(M/(x_1,\dots,x_i)M)\ge \dim(M) -i.
-\]
-Equality holds if and only if $x_1,\dots,x_i$ form part of a system of parameters for $M$.
+\begin{exercise}
+  If $(A,\m)$ is a local ring and $M$ is a finitely generated
+  $A$-module with $x_1,\dots,x_i\in\m$, then
+  \[
+  \dim(M/(x_1,\dots,x_i)M)\ge \dim(M) -i.
+  \]
+  Equality holds if and only if $x_1,\dots,x_i$ form part of a system
+  of parameters for $M$.
 \end{exercise}
 
-\begin{exercise} Let $A$ be a Noetherian ring of dimension at least $2$. Then $A$ has infinitely many prime ideals of height $1$.
+\begin{exercise}
+  Let $A$ be a Noetherian ring of dimension at least $2$. Then $A$ has
+  infinitely many prime ideals of height $1$.
 \end{exercise}
 
-\begin{example} A ring $A$ is Artinian if and only if $\dim(A) = 0$. \index{Artinian!ring}
+\begin{example}
+  A ring $A$ is Artinian if and only if $\dim(A) =
+  0$. \index{Artinian!ring}
 \end{example}
 
-\begin{example} A PID has dimension one.
+\begin{example}
+  A PID has dimension one.
 \end{example}
 
-\begin{example} $\dim(\Z) = 1$.
+\begin{example}
+  $\dim(\Z) = 1$.
 \end{example}
 
-\begin{example} If $k$ is a field, then $\dim(k[X]) = 1$.
+\begin{example}
+  If $k$ is a field, then $\dim(k[X]) = 1$.
 \end{example}
 
-\begin{example} If $k$ is a field, then $\dim(k\lps x \rps) = 1$.
+\begin{example}
+  If $k$ is a field, then $\dim(k\lps x \rps) = 1$.
 \end{example}
+
+
+\section{Polynomials over Noetherian rings}
+
+Now we will investigate the dimension of $A[X]$, where $R$ is a
+Noetherian ring.
 
 
 \begin{lemma}\label{L:FT1} If $A$ is a ring and $P_1\subsetneq P_2$ are two prime ideals of $A[X]$ such that
@@ -399,69 +442,92 @@ is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But
 \end{proof}
 
 
-\begin{lemma}\label{L:FT2} If $A$ is Noetherian and $I$ is an ideal of $A$, then
-\[
-\h(I) = \h(I\cdot A[X]).
-\]
+\begin{lemma}\label{L:FT2}
+  If $A$ is Noetherian and $I$ is an ideal of $A$, then
+  \[
+  \h(I) = \h(I\cdot A[X]).
+  \]
+  \begin{proof}
+    By the Primary Decomposition Theorem, Theorem~\ref{T:PDT}, 
+    \[
+    \ass\left(\frac{A[X]}{IA[X]}\right) = \{\p_i[X]: \p_i\in\ass(A/I)\},
+    \]
+    as $A/I$ injects into $A/I [X]$. So it is enough to show that if $\p$ is a prime ideal in $A$, then 
+    \[
+    \h(\p) = \h(\p[X]).
+    \]
+    Suppose that $\h(\p) = n$. Then there exist $a_1,\dots,a_n\in \p$
+    such that $\p\supset(a_1,\dots,a_n)$ minimally. By the primary
+    decomposition theorem, Theorem~\ref{T:PDT}, we see that
+    $\p[X]\supset(a_1,\dots,a_n)[X]$ minimally. Thus $\h(\p[X])\le n$.
+    
+    On the other hand, if 
+    \[
+    \p_0 \subsetneq \p_1 \subsetneq \cdots \subsetneq \p_n = \p
+    \] 
+    is a chain of prime ideals where $\h(\p) = n$, then 
+    \[
+    \p_0[X] \subsetneq \p_1[X] \subsetneq \cdots \subsetneq \p_n[X] = \p[X]
+    \]
+    is a chain of prime ideals in $A[X]$. Thus $\h(\p[X])\ge \h(\p)$
+    and so we see that $\h(\p[X]) = \h(\p)$.
+\end{proof}
 \end{lemma}
 
-\begin{proof} By the Primary Decomposition Theorem, Theorem~\ref{T:PDT}, 
-\[
-\ass\left(\frac{A[X]}{IA[X]}\right) = \{\p_i[X]: \p_i\in\ass(A/I)\},
-\]
-as $A/I$ injects into $A/I [X]$. So it is enough to show that if $\p$ is a prime ideal in $A$, then 
-\[
-\h(\p) = \h(\p[X]).
-\]
-Suppose that $\h(\p) = n$. Then there exist $a_1,\dots,a_n\in \p$ such that $\p\supset(a_1,\dots,a_n)$ minimally. By the Primary Decomposition Theorem, Theorem~\ref{T:PDT}, we see that $\p[X]\supset(a_1,\dots,a_n)[X]$ minimally. Thus $\h(\p[X])\le n$.
-
-On the other hand, if 
-\[
-\p_0 \subsetneq \p_1 \subsetneq \cdots \subsetneq \p_n = \p
-\] 
-is a chain of prime ideals where $\h(\p) = n$, then 
-\[
-\p_0[X] \subsetneq \p_1[X] \subsetneq \cdots \subsetneq \p_n[X] = \p[X]
-\]
-is a chain of prime ideals in $A[X]$. Thus $\h(\p[X])\ge \h(\p)$ and so we see that $\h(\p[X]) = \h(\p)$. 
-\end{proof}
 
 
-\begin{theorem} If $A$ is a Noetherian ring, $\dim(A[X]) = \dim(A) + 1$.
+
+\begin{theorem}
+  If $A$ is a Noetherian ring, $\dim(A[X]) = \dim(A) + 1$.
+  \begin{proof}
+    First note that given a chain of primes $\p_0 \subsetneq \cdots
+    \subsetneq \p_n$ in $A$, we can construct the chain of primes
+    $\p_0 A[X] \subsetneq \cdots \subsetneq \p_n A[X] \subsetneq \p_n
+    A[X] + x A[X]$ in $A[X]$.  It is then clear that $\dim(A[X]) \ge
+    \dim(A) + 1$, so it is enough to show $\dim(A[X]) \le\dim(A) +
+    1$. If $\dim(A) = \infty$, then there is nothing to prove. We will
+    proceed by induction on the dimension of $A$. If $\dim(A) = 0$,
+    then for $P_i$ a prime ideal in $A[X]$ write $\p_i = P_i\cap A$.
+    So if
+    \[
+    P_0\subsetneq P_1\subsetneq \cdots \subsetneq P_n
+    \]
+    then since $\dim(A) = 0$, we have $\p_0 = \p_1 = \cdots = \p_n$. Thus by Lemma~\ref{L:FT1}, we have 
+    \[
+    \p_0[x] = P_0 = P_1 = \cdots = P_{n-1}\subsetneq P_n.
+    \]
+    Thus $n\le 1$ and so we see that $\dim(A[X]) = 1$.
+    
+    Now suppose that $\dim(A) = n >0$ and let $P_0 \subsetneq P_1
+    \subsetneq \cdots \subsetneq P_n$ be a strict chain of prime
+    ideals in $A$.  Set $\p_i = P_i \cap A$.
+    
+    Case 1: Suppose that $\p_{n-1} \subsetneq \p_n$. Then
+    \[
+    \dim(A_{\p_{n-1}})< \dim(A).
+    \]
+    By induction we then have that $\dim(A_{\p_{n-1}}[X]) =
+    \dim(A_{\p_{n-1}})+1\le \dim(A)$. In $A_{\p_{n-1}}[X]$ we have a
+    strict chain
+    \[
+    P_0A_{p_{n-1}} \subsetneq P_1A_{p_{n-1}} \subsetneq \cdots \subsetneq P_{n-1}A_{p_{n-1}}
+    \] 
+    and thus 
+    \[
+    n-1 \le \dim(A_{\p_{n-1}})[X]\le \dim(A). 
+    \]
+    Thus $n \le\dim(A) +1$ and so  $\dim(A[X]) = \dim(A) + 1$.
+    
+    Case 2: Suppose that $\p_{n-1} = \p_n$. By Lemma~\ref{L:FT1}, we
+    have $P_{n-1} = \p_{n-1}[X]$.  By Lemma~\ref{L:FT2}, we have
+    $\h(\p_{n-1}[X])=\h(\p_{n-1})$.  Thus
+    \[
+    \dim(A) \ge \h(\p_{n-1}) = \h(P_{n-1}) \ge n-1.
+    \]
+    Thus $n\le \dim(A) + 1$ and so we see that $\dim(A[X]) = \dim(A) +1$.
+  \end{proof}
 \end{theorem}
 
-\begin{proof} First note that given a chain of primes $\p_0 \subsetneq \cdots \subsetneq \p_n$ in $A$, we can construct the chain of primes $\p_0 A[X] \subsetneq \cdots \subsetneq \p_n A[X] \subsetneq \p_n A[X] + x A[X]$ in $A[X]$.  It is then clear that $\dim(A[X]) \ge \dim(A) + 1$, so it is enough to show $\dim(A[X]) \le\dim(A) + 1$. If $\dim(A) = \infty$, then there is nothing to prove. We will proceed by induction on the dimension of $A$. If $\dim(A) = 0$, then for $P_i$ a prime ideal in $A[X]$ write $\p_i = P_i\cap A$.  So if 
-\[
-P_0\subsetneq P_1\subsetneq \cdots \subsetneq P_n
-\]
-then since $\dim(A) = 0$, we have $\p_0 = \p_1 = \cdots = \p_n$. Thus by Lemma~\ref{L:FT1}, we have 
-\[
-\p_0[x] = P_0 = P_1 = \cdots = P_{n-1}\subsetneq P_n.
-\]
-Thus $n\le 1$ and so we see that $\dim(A[X]) = 1$.
-
-Now suppose that $\dim(A) = n >0$ and let $P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n$ be a strict chain of prime ideals in $A$.  Set $\p_i = P_i \cap A$.  
-
-Case 1: Suppose that $\p_{n-1} \subsetneq \p_n$. Then
-\[
-\dim(A_{\p_{n-1}})< \dim(A).
-\]
-By induction we then have that $\dim(A_{\p_{n-1}}[X]) = \dim(A_{\p_{n-1}})+1\le \dim(A)$. In $A_{\p_{n-1}}[X]$ we have a strict chain
-\[
-P_0A_{p_{n-1}} \subsetneq P_1A_{p_{n-1}} \subsetneq \cdots \subsetneq P_{n-1}A_{p_{n-1}}
-\] 
-and thus 
-\[
-n-1 \le \dim(A_{\p_{n-1}})[X]\le \dim(A). 
-\]
-Thus $n \le\dim(A) +1$ and so  $\dim(A[X]) = \dim(A) + 1$.
-
-Case 2: Suppose that $\p_{n-1} = \p_n$. By Lemma~\ref{L:FT1}, we have $P_{n-1} = \p_{n-1}[X]$.  By Lemma~\ref{L:FT2}, we have $\h(\p_{n-1}[X])=\h(\p_{n-1})$.  Thus
-\[
-\dim(A) \ge \h(\p_{n-1}) = \h(P_{n-1}) \ge n-1.
-\]
-Thus $n\le \dim(A) + 1$ and so we see that $\dim(A[X]) = \dim(A) +1$.
-\end{proof}
 
 \begin{exercise} If $A$ is Noetherian, show that 
 \[
