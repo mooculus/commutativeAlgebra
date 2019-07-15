@@ -577,9 +577,8 @@ these graded rings.
     \[
     \hp_{\gr_\m(M)}(n) = \l_{k}(\m^n M/\m^{n+1}) 
     \]
-    for $n\gg 0$. Now note that while $M/\m^n$ is an graded
-    $A$-module, it is also a graded $k$-module, view it as
-    such. Hence
+    for $n\gg 0$. Now note that while $M/\m^nM$ is an $A$-module, it is
+    also a $k$-module, and
     \[
     \l_{A}(M/\m^n M) = \l_k(M/\m^n M).
     \]
@@ -597,7 +596,7 @@ these graded rings.
     \]
     we see that
     \[
-    \hp_{\gr_\m(M)} - P_M(n+1) + P_M(n) = 0.
+    \hp_{\gr_\m(M)}(n) - P_M(n+1) + P_M(n) = 0.
     \]
     This means that $P_M(n)- P_M(n+1)$ is a polynomial of degree at
     most $d-1$. However, this means $P_M(X)\in\Q[X]$ is a polynomial
@@ -644,11 +643,11 @@ these graded rings.
     \]
     for $n\gg 0$, say $n>m$.  So
     \[
-    \m^{n+m} M' \subset (M'\cap \m^{n+m}M)  = \m^n (M'\cap\m^m M)\subset \m^n M'.
+    \m^{m+n} M' \subset (M'\cap \m^{m+n}M)  = \m^n (M'\cap\m^m M)\subset \m^n M'.
     \]
     Hence
     \[
-    \l(M'/\m^{m+n}M')\ge \l(M'/(M'\cap \m^{n+m}M))\ge \l(M'/\m^n M')
+    \l(M'/\m^{m+n}M')\ge \l(M'/(M'\cap \m^{m+n}M))\ge \l(M'/\m^n M')
     \]
     but the ends of this string of inequalities can be expressed as
     the Hilbert-Samuel polynomial
@@ -666,7 +665,7 @@ these graded rings.
     \[
     \deg(\l(M'/(M'\cap \m^{n+m}M)))\le \deg(P_M(n)).
     \]
-    zCombining $(\bigstar)$ and $(\bigstar\bigstar)$ we find our
+    Combining $(\bigstar)$ and $(\bigstar\bigstar)$ we find our
     result.
   \end{proof}
 \end{proposition}

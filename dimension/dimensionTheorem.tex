@@ -55,7 +55,8 @@ We will prove this in three (or four) lemmas.
     \p_0\subsetneq \p_1 \subsetneq \cdots \subsetneq \p_m
     \]
     in $\supp(M)$.  We need to show $m\le n$. We know that $\p_0$ is a
-    minimal element of $\supp(M)$ and hence is a minimal element in
+    minimal element of $\supp(M)$ and hence by
+    Theorem~\ref{T:AssassinsMinimal}, is a minimal element in
     $\ass(M)$.  So we have an injection
     \[
     A/\p_0\into M.
@@ -74,8 +75,8 @@ We will prove this in three (or four) lemmas.
     \[
     P_{N/xN}(n) = r(n).
     \]
-    Thus $d(N/xN) = \deg(P_M) = \deg(r) < n$.  By the
-    inductive hypothesis, $\dim(N/xN) \le d(N/xN)$.  Since
+    Thus $d(N/xN) = \deg(r) < n$.  By the inductive hypothesis,
+    $\dim(N/xN) \le d(N/xN)$.  Since
     \[
     \p_1 \subsetneq \cdots \subsetneq \p_m
     \]
@@ -161,15 +162,18 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
   one prime ideal, then we are done.
 
   Suppose there are two prime ideals. In this case, suppose
-  $x_1\notin\p_1$ and $x_2\notin\p_2$. Then $x_1+x_2\notin
-  \p_1$ and $x_1+x_2\notin \p_2$, hence $x_1+x_2\notin\p_1\cup\p_2$
+  $x_1\notin\p_1$ and $x_2\notin\p_2$. Then if $x_2\notin \p_1$ we
+  are done, and if $x_2\in \p_1$, $x_1+x_2\notin \p_1$.  If $x_1\notin
+  \p_2$ we are done, and if $x_1\in \p_2$, $x_1+x_2\notin
+  \p_1$. Regardless we have found an element not in $\p_1\cup \p_2$.
+  Hence $x_1+x_2\notin\p_1\cup\p_2$.
   
-  Suppse the number of prime ideals is $n>2$, and that
+  Suppose the number of prime ideals is $n>2$, and that
   $x_i\notin\p_i$. In this case,
   \[
   x_1+ x_2x_3\dots x_n \notin \p_1\cup \union_{i=2}^n \p_i.
   \]
-  This proves the lemma---note, we actually don't need each $\p_i$ to
+  This proves the lemma. Note, we actually don't need each $\p_i$ to
   be prime. It is sufficient that either each $\p_i$ is an ideal and
   $R$ contains and infinite field, or that at most two of the $\p_i$
   are not prime, see~\cite{dE1995}.
@@ -268,17 +272,17 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
 
 
 \begin{corollary}
-  If $(A,\m)$ is a local ring, then \index{primary}
+  If $(A,\m)$ is a local ring, then 
   \[
-  \dim(A) = \min\{i: (a_1,\dots,a_i) = \a\text{ where $\a$ is $\m$-primary}\}.
+  \dim(A) = \min\{i: (a_1,\dots,a_i) = \a\text{ where $\ass(A/\a) = \{\m\}$}\}.
   \]
   \begin{proof}
     Let $\dim(A) = n$, then there exists $x_1,\dots,x_n$ a system of
     parameters of $A$ such that $\l(A/\x) <\infty$. Thus
-    $(x_1,\dots,x_n)$ is $\m$-primary.  Since $s(A) = n$, we see that
+    $\ass(A/(x_1,\dots,x_n)) = \{\m\}$.  Since $s(A) = n$, we see that
     we cannot obtain $y_1,\dots,y_t$ with $t<n$ such that
     $\l(A/\mathbf{y})<\infty$.  So for any $y_1,\ldots,y_t$ with $t <
-    n$, $(y_1,\ldots,y_t)$ is not $\m$-primary.
+    n$, $\ass(A/(y_1,\ldots,y_t)) \ne \{\m\}$.
   \end{proof}
 \end{corollary}
 
@@ -355,9 +359,9 @@ Note that $\h(\p) = \dim(A_\p)$.
   \begin{proof}
     By Corollary~\ref{C:KIT} the minimal prime containing $(x)$ has
     height at most one. The prime $\p$ containing $(x)$ cannot have
-    height zero, as then $\p\in\ass(A)$ by Corollary~\ref{C:SA} and
-    hence then every element of $\p$ is a zero divisor, which is not
-    the case.
+    height zero, as then $\p\in\ass(A)$ by
+    Theorem~\ref{T:AssassinsMinimal} and hence then every element of
+    $\p$ is a zerodivisor, which is not the case.
   \end{proof}
 \end{corollary}
 
@@ -448,7 +452,7 @@ is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But
   \h(I) = \h(I\cdot A[X]).
   \]
   \begin{proof}
-    By the Primary Decomposition Theorem, Theorem~\ref{T:PDT}, 
+    By the definition of assassins,
     \[
     \ass\left(\frac{A[X]}{IA[X]}\right) = \{\p_i[X]: \p_i\in\ass(A/I)\},
     \]
@@ -457,8 +461,8 @@ is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But
     \h(\p) = \h(\p[X]).
     \]
     Suppose that $\h(\p) = n$. Then there exist $a_1,\dots,a_n\in \p$
-    such that $\p\supset(a_1,\dots,a_n)$ minimally. By the primary
-    decomposition theorem, Theorem~\ref{T:PDT}, we see that
+    such that $\p\supset(a_1,\dots,a_n)$ minimally. By
+    Theorem~\ref{T:AssassinsMinimal}, we see that
     $\p[X]\supset(a_1,\dots,a_n)[X]$ minimally. Thus $\h(\p[X])\le n$.
     
     On the other hand, if 

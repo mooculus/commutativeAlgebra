@@ -1,0 +1,98 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\title{Monomials and orderings}
+
+\begin{document}
+\begin{abstract}
+  We set up definitions and notation for the study of Groebner
+  bases. Sources and references: \cite{CLO2007}.
+\end{abstract}
+\maketitle
+
+Thoughout this chapter our ring will be $R=k[x_1,\dots,x_n] =
+k[\x]$. We will denote the whole numbers by $\omega =
+\{0,1,2,3,\dots\}$.
+
+
+\begin{definition}
+  A \dfn{monomial} in $k[x_1,\dots,x_n]$ is a product of the form
+  \[
+  \x^{\boldsymbol{\alpha}} = x_1^{\alpha_1}\cdot x_2^{\alpha_2}  \dots x_n^{\alpha_n}.
+  \]
+  where $\boldsymbol{\alpha} = (\alpha_1,\dots,\alpha_n) \in
+  \omega^n$.  A \dfn{polynomial} is finite sum of monomials with
+  coefficients $c_\alpha\in k$,
+  \[
+  F = \sum c_{\boldsymbol{\alpha}} \x^{\boldsymbol{\alpha}}.
+  \]
+\end{definition}
+
+
+\begin{definition}
+  Let $R = k[\x]$ and consider a polynomial
+  \[
+  F =  \sum c_{\boldsymbol{\alpha}} \x^{\boldsymbol{\alpha}}.
+  \]
+  \begin{itemize}
+    \item The \dfn{degree} of a monomial $\x^{\boldsymbol\alpha}$ is
+      $(\alpha_1,\dots,\alpha_n)\in \omega^n$.
+    \item The \dfn{total degree} of a monomial is
+      $|\boldsymbol{\alpha}| = \sum_{i=1}^n \alpha_i$.
+    \item Each $c_{\boldsymbol\alpha}$ is the \dfn{coefficient} of the
+      monomial $\x^{\boldsymbol\alpha}$.
+    \item If $c_{\boldsymbol\alpha} \ne 0$, then
+      $c_{\boldsymbol\alpha}\x^{\boldsymbol\alpha}$ is a \dfn{term} of
+      $F$.
+    \item The \dfn{total degree} of $F$, is the maximum total degree
+      of the monomials in $F$.
+  \end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+  A \dfn{monomial ordering} $(k[\x],>)$ is a relation on the set of
+  monomials in $k[\x]$ such that:
+  \begin{enumerate}
+  \item If $\x^{\boldsymbol\alpha}$ and $\x^{\boldsymbol\beta}$ are
+    monomials in $R$, then exactly one of the three statements
+      \[
+      \x^{\boldsymbol\alpha} > \x^{\boldsymbol\beta},\quad \x^{\boldsymbol\alpha} = \x^{\boldsymbol\beta},
+      \quad \x^{\boldsymbol\beta} > \x^{\boldsymbol\alpha}.
+      \]
+      holds. This means that ordering $>$ is a total ordering.
+    \item If $\x^{\boldsymbol\alpha}>\x^{\boldsymbol\beta}$ and
+      $\boldsymbol\gamma\in\omega^n$, then
+      $\x^{\boldsymbol\alpha+\boldsymbol\gamma}>\x^{\boldsymbol\beta+\boldsymbol\gamma}$.
+    \item Every nonempty subset of the set of monomials of $k[\x]$ has
+      a least element with respect to $>$. This means that the
+      monomials of $k[\x]$ are well-ordered.
+  \end{enumerate}
+\end{definition}
+
+Now let's look at some explicit monomial orderings.
+
+
+\begin{definition}[Lexicographic order]
+\end{definition}
+
+
+\begin{definition}[Reverse lexicographic order]
+\end{definition}
+
+\begin{definition}[Graded reverse lexicographic order]
+\end{definition}
+
+\begin{definition}[Elimination order]
+\end{definition}
+
+\begin{definition}[Weight order]
+\end{definition}
+
+
+
+
+
+\end{document}
