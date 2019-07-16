@@ -7,11 +7,11 @@
 \begin{document}
 \begin{abstract}
   We set up definitions and notation for the study of Groebner
-  bases. Sources and references: \cite{CLO2007}.
+  bases. Sources and references: \cite{CLO2007,hS2003}.
 \end{abstract}
 \maketitle
 
-Thoughout this chapter our ring will be $R=k[x_1,\dots,x_n] =
+Throughout this chapter our ring will be $R=k[x_1,\dots,x_n] =
 k[\x]$. We will denote the whole numbers by $\omega =
 \{0,1,2,3,\dots\}$.
 
@@ -19,13 +19,13 @@ k[\x]$. We will denote the whole numbers by $\omega =
 \begin{definition}
   A \dfn{monomial} in $k[x_1,\dots,x_n]$ is a product of the form
   \[
-  \x^{\boldsymbol{\alpha}} = x_1^{\alpha_1}\cdot x_2^{\alpha_2}  \dots x_n^{\alpha_n}.
+  \x^{\valpha} = x_1^{\alpha_1}\cdot x_2^{\alpha_2}  \cdots x_n^{\alpha_n}.
   \]
-  where $\boldsymbol{\alpha} = (\alpha_1,\dots,\alpha_n) \in
+  where $\valpha = (\alpha_1,\dots,\alpha_n) \in
   \omega^n$.  A \dfn{polynomial} is finite sum of monomials with
   coefficients $c_\alpha\in k$,
   \[
-  F = \sum c_{\boldsymbol{\alpha}} \x^{\boldsymbol{\alpha}}.
+  F = \sum_{\mathrm{finite}} c_{\valpha} \x^{\valpha}.
   \]
 \end{definition}
 
@@ -33,17 +33,17 @@ k[\x]$. We will denote the whole numbers by $\omega =
 \begin{definition}
   Let $R = k[\x]$ and consider a polynomial
   \[
-  F =  \sum c_{\boldsymbol{\alpha}} \x^{\boldsymbol{\alpha}}.
+  F =  \sum_{\mathrm{finite}} c_{\valpha} \x^{\valpha}.
   \]
   \begin{itemize}
-    \item The \dfn{degree} of a monomial $\x^{\boldsymbol\alpha}$ is
-      $(\alpha_1,\dots,\alpha_n)\in \omega^n$.
-    \item The \dfn{total degree} of a monomial is
+    \item The \dfn{degree} of a monomial $\x^{\valpha}$ is
+      $\valpha=(\alpha_1,\dots,\alpha_n)\in \omega^n$.
+    \item The \dfn{total degree} of a monomial $\x^{\valpha}$ is
       $|\boldsymbol{\alpha}| = \sum_{i=1}^n \alpha_i$.
-    \item Each $c_{\boldsymbol\alpha}$ is the \dfn{coefficient} of the
-      monomial $\x^{\boldsymbol\alpha}$.
-    \item If $c_{\boldsymbol\alpha} \ne 0$, then
-      $c_{\boldsymbol\alpha}\x^{\boldsymbol\alpha}$ is a \dfn{term} of
+    \item Each $c_{\valpha}$ is the \dfn{coefficient} of the
+      monomial $\x^{\valpha}$.
+    \item If $c_{\valpha} \ne 0$, then
+      $c_{\valpha}\x^{\valpha}$ is a \dfn{term} of
       $F$.
     \item The \dfn{total degree} of $F$, is the maximum total degree
       of the monomials in $F$.
@@ -56,16 +56,16 @@ k[\x]$. We will denote the whole numbers by $\omega =
   A \dfn{monomial ordering} $(k[\x],>)$ is a relation on the set of
   monomials in $k[\x]$ such that:
   \begin{enumerate}
-  \item If $\x^{\boldsymbol\alpha}$ and $\x^{\boldsymbol\beta}$ are
+  \item If $\x^{\valpha}$ and $\x^{\vbeta}$ are
     monomials in $R$, then exactly one of the three statements
       \[
-      \x^{\boldsymbol\alpha} > \x^{\boldsymbol\beta},\quad \x^{\boldsymbol\alpha} = \x^{\boldsymbol\beta},
-      \quad \x^{\boldsymbol\beta} > \x^{\boldsymbol\alpha}.
+      \x^{\valpha} > \x^{\vbeta},\quad \x^{\valpha} = \x^{\vbeta},
+      \quad \x^{\vbeta} > \x^{\valpha}.
       \]
       holds. This means that ordering $>$ is a total ordering.
-    \item If $\x^{\boldsymbol\alpha}>\x^{\boldsymbol\beta}$ and
-      $\boldsymbol\gamma\in\omega^n$, then
-      $\x^{\boldsymbol\alpha+\boldsymbol\gamma}>\x^{\boldsymbol\beta+\boldsymbol\gamma}$.
+    \item If $\x^{\valpha}>\x^{\vbeta}$ and
+      $\vgamma\in\omega^n$, then
+      $\x^{\valpha+\vgamma}>\x^{\vbeta+\vgamma}$.
     \item Every nonempty subset of the set of monomials of $k[\x]$ has
       a least element with respect to $>$. This means that the
       monomials of $k[\x]$ are well-ordered.
@@ -75,21 +75,82 @@ k[\x]$. We will denote the whole numbers by $\omega =
 Now let's look at some explicit monomial orderings.
 
 
-\begin{definition}[Lexicographic order]
+\begin{definition}[Lexicographic order]\index{lexicographic order}
+  Consider monomials $\x^\valpha,\x^\vbeta\in k[\x]$. We say
+  \[
+  \x^\valpha \underset{\mathtt{Lex}}{>}\x^\vbeta
+  \]
+  when the left-most nonzero entry of $\valpha-\vbeta$ is positive.
 \end{definition}
 
+The computer algebra system \macaulay\ will write the terms of a
+polynomial in decreasing order relative to the specified monomial
+order.
 
-\begin{definition}[Reverse lexicographic order]
+\begin{macaulay2}
+ZZ/101[x,y,MonomialOrder=>Lex];
+y^3+ x*y + x + y + 1
+\end{macaulay2}
+
+Here we see:
+\[
+xy \underset{\mathtt{Lex}}{>} x \underset{\mathtt{Lex}}{>} y^3
+\underset{\mathtt{Lex}}{>} y \underset{\mathtt{Lex}}{>} 1.
+\]
+
+
+
+\begin{definition}[Graded reverse lexicographic order]\index{graded reverse lexicographic order}
+  Consider monomials $\x^\valpha,\x^\vbeta\in k[\x]$. We say
+  \[
+  \x^\valpha \underset{\mathtt{GRevLex}}{>}\x^\vbeta
+  \]
+  when $|\valpha| > |\vbeta|$ or $|\valpha| = |\vbeta|$ and the
+  right-most nonzero entry of $\valpha-\vbeta$ is negative.
 \end{definition}
 
-\begin{definition}[Graded reverse lexicographic order]
+The order $\mathtt{GRevLex}$ is the default ordering in \macaulay.
+
+\begin{macaulay2}
+ZZ/101[x,y]
+y^3+ x*y + x + y + 1
+\end{macaulay2}
+
+Here we see:
+\[
+y^3 \underset{\mathtt{GRevLex}}{>} xy \underset{\mathtt{GRevLex}}{>} x  \underset{\mathtt{GRevLex}}{>} y \underset{\mathtt{GRevLex}}{>} 1
+\]
+
+\begin{definition}[Weight order]\index{weight order}
+  Consider monomials $\x^\valpha,\x^\vbeta\in k[x_1,\dots, x_n]$ and
+  let $\vec{w}$ be a vector in $\Z^n$. We say
+  \[
+  \x^\valpha \underset{\mathtt{w}}{>}\x^\vbeta
+  \]
+  when $\vec{w}\dotp \valpha > \vec{w}\dotp \vbeta$ or $\vec{w}\dotp
+  \valpha = \vec{w}\dotp \vbeta$ and $\x^\valpha
+  \underset{\mathtt{GRevLex}}{>}\x^\vbeta$.
 \end{definition}
 
-\begin{definition}[Elimination order]
-\end{definition}
+Weighted orderings are quite versatile. Here is a basic example with
+$\vec{w} = (0,3)$ in \macaulay.
 
-\begin{definition}[Weight order]
-\end{definition}
+\begin{macaulay2}
+ZZ/101[x,y,MonomialOrder=>{Weights=>{0,3}}]
+y^3+ x*y + x + y + 1
+\end{macaulay2}
+
+Here we see:
+\[
+y^3 \underset{\mathtt{w}}{>} xy \underset{\mathtt{w}}{>} y \underset{\mathtt{w}}{>} x \underset{\mathtt{w}}{>} 1
+\]
+
+\begin{proposition}
+  Each of the orderings above defines a monomial ordering.
+  \begin{proof}
+    Exercise.
+  \end{proof}
+\end{proposition}
 
 
 

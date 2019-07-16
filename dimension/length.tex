@@ -142,6 +142,8 @@ This approach generalizes the idea of vector-space dimension to modules.
 
 
 
+
+
 \begin{exercise}
   Let $R$ be a Noetherian ring and $M$ be a finitely generated
   $R$-module. The following are equivalent:
@@ -157,6 +159,15 @@ This approach generalizes the idea of vector-space dimension to modules.
   $R$-module of finite length. Prove that $\ass(M) = \supp(M)$.
 \end{exercise}
 
+\begin{exercise}
+  Let $R$ be a ring, show that if $\l(A/I)<\infty$, then $\ass(A/I) =
+  \{\m\}$.
+\end{exercise}
+
+
+\begin{exercise}
+  Show that $A$ is an artinian ring if and only if $\l(A)<\infty$.
+\end{exercise}
 
 %% \begin{theorem}[Akizuki]
 %%   A ring $R$ is Artinian if and only if $R$ is Noetherian and $\dim(R)
@@ -217,7 +228,7 @@ This approach generalizes the idea of vector-space dimension to modules.
     If $V$ is a finite dimensional vector space, and
     $\{b_1,\dots,b_n\}$ are a basis, then
     \[
-    \Span(b_1,\dots,b_n) \subsetneq \dots \subsetneq \Span_k(b_1) \subsetneq 0
+    \Span(b_1,\dots,b_n) \supsetneq \dots \supsetneq \Span_k(b_1) \supsetneq 0
     \]
     is a composition series.
   \end{proof}

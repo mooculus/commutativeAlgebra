@@ -6,6 +6,10 @@
 
 \title{The dimension theorem}
 
+%%
+%% TODO: Fix verbiage in induction proofs of lemmas for dimension theorem.
+%%
+
 \begin{document}
 \begin{abstract}
   We prove the dimension theorem. Sources and
@@ -108,7 +112,7 @@ We will prove this in three (or four) lemmas.
     \]
     Set $M_i = \frac{M}{(x_1,\dots,x_i)M}$. So we have that
     \[
-    s(M_i) = s(M)-1.
+    s(M_i) = s(M)-i.
     \]
     Now note
     \[
@@ -120,17 +124,17 @@ We will prove this in three (or four) lemmas.
     \]
     we see that
     \[
-    \l\left(\frac{M}{x_1 M + \m^n M}\right) = \l(M/\m^n M) - \l \left(\frac{M}{x_1 M + \m^n M}\right).
+    \l\left(\frac{M}{x_1 M + \m^n M}\right) = \l(M/\m^n M) - \l \left(\frac{M}{x_1 M \cap \m^n M}\right).
     \]
     Note,
     \[
-    \frac{M}{(\m^nM:x_1)}\iso \frac{M}{x_1 M + \m^n M}
+    \frac{M}{(\m^nM:_M x_1)}\iso \frac{M}{x_1 M \cap \m^n M}
     \]
     via the map $m\mapsto x_1 m$. Finally note
     \[
-    M/\m^{n-1}M \onto \frac{M}{x_1 M + \m^n M},
+    M/\m^{n-1}M \onto \frac{M}{x_1 M \cap \m^n M},
     \]
-    hence $\l(M/\m^{n-1}M)\ge \l\left(\frac{M}{x_1 M + \m^n
+    hence $\l(M/\m^{n-1}M)\ge \l\left(\frac{M}{x_1 M \cap \m^n
       M}\right)$. Putting this together we see
     \[
     \l(M_1/\m^n M_1) \ge \l(M/\m^n M) - \l(M/\m^{n-1}M)
@@ -199,7 +203,7 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
   \begin{proof}
     Proceed by induction on $\dim(M)$. If $\dim(M) = 0$,
     \begin{align*}
-      \dim(M) = 0 &\Leftrightarrow \ass_A(M)=\{\m\}, \\
+      \dim(M) = 0 &\Leftrightarrow \ass(M)=\{\m\}, \\
       &\Leftrightarrow \l_A(M) <\infty,
     \end{align*}
     and so we see $s(M) = 0$.
@@ -288,19 +292,28 @@ I \not\subset \bigcup_{i = 1}^n \p_i.
 
 
 \begin{corollary}
-  If $A$ is a Noetherian ring, not necessarily local, consider any decreasing chain of prime ideals in $A$ 
+  If $R$ is a Noetherian ring, not necessarily local, consider any
+  decreasing chain of prime ideals in $R$
   \[
   \p_0\supsetneq \p_1\supsetneq \cdots \supsetneq \p_i\supsetneq \cdots
   \]
   Then there exists $n$ such that $\p_n = \p_{n+1} = \cdots$.
   \begin{proof}
-    If we localize at $\p_0$, then $\dim(A_{\p_0}) <\infty$.  So for some $n$
+    If we localize at $\p_0$, then $\dim(R_{\p_0}) <\infty$.  So for some $n$
     \[
-    \p_n A_{\p_0} = \p_{n+1} A_{\p_0} = \cdots
+    \p_n R_{\p_0} = \p_{n+1} R_{\p_0} = \cdots
     \]
     and so $\p_n = \p_{n+1} = \cdots$.
 \end{proof}
 \end{corollary}
+
+
+\begin{corollary}
+  Given rings $R\subset S$, where $S$ is integral over $R$, we have
+  that $\dim(R) = \dim(S)$.
+\end{corollary}
+
+
 
 Recall the definition of \textit{height}. If $A$ is a Noetherian ring
 and $\p$ is a prime ideal of $A$, then the \textbf{height} of $\p$ is
@@ -311,17 +324,18 @@ Note that $\h(\p) = \dim(A_\p)$.
 
 
 \begin{definition}\index{height}\index{hti@$\h(I)$}
-  If $A$ is a Noetherian ring and $I$ is any ideal of $A$, then the \textbf{height} of $I$ is 
+  If $R$ is a Noetherian ring and $I$ is any ideal of $R$, then the \textbf{height} of $I$ is 
   \begin{align*}
     \h(I) &= \inf\{\h(\p): I\subset\p\} \\
-    &= \inf\{\h(\p): \p \text{ is minimal in $\ass_A(A/I)$}\}.
+    &= \inf\{\h(\p): \p \text{ is minimal in $\ass(R/I)$}\}.
   \end{align*}
 \end{definition}
 
 \begin{definition}\index{coheight}\index{coht@$\mathrm{coht}(I)$}
-  If $A$ is a Noetherian ring and $I$ is any ideal, then the \textbf{coheight}, denoted $\mathrm{coht}(I)$ is defined as 
+  If $R$ is a Noetherian ring and $I$ is any ideal, then the
+  \textbf{coheight}, denoted $\mathrm{coht}(I)$ is defined as
   \[
-  \mathrm{coht}(I) = \dim(A/I).
+  \mathrm{coht}(I) = \dim(R/I).
   \]
 \end{definition}
 
@@ -334,11 +348,11 @@ Note that $\h(\p) = \dim(A_\p)$.
 \end{warning}
 
 \begin{corollary}[Krull's ideal theorem]\label{C:KIT}\index{Krull's ideal theorem}
-  Let $A$ be a Noetherian ring and $\p$ is a prime ideal.  Then
+  Let $R$ be a Noetherian ring and $\p$ is a prime ideal.  Then
   $\h(\p)\le n$ if and only if there exist $a_1,\dots,a_n\in\p$ such
   that $\p$ is a minimal prime containing $(a_1,\dots,a_n)$.
   \begin{proof}
-    Since $\h(\p) = \dim(A_\p)$, $\dim(A_\p)\le n$ if and only if there exists 
+    Since $\h(\p) = \dim(R_\p)$, $\dim(R_\p)\le n$ if and only if there exists 
     \[
     \frac{x_1}{u_1}, \dots, \frac{x_n}{u_n}
     \]
@@ -353,13 +367,13 @@ Note that $\h(\p) = \dim(A_\p)$.
 
 
 \begin{corollary}[Krull's principal ideal theorem]\index{Krull's principal ideal theorem}
-  Let $A$ be a Noetherian ring and $x$ be an element of $A$ which is
+  Let $R$ be a Noetherian ring and $x$ be an element of $R$ which is
   not a unit or a zerodivisor. Then every prime which contains $(x)$
   minimally has height $1$.
   \begin{proof}
     By Corollary~\ref{C:KIT} the minimal prime containing $(x)$ has
     height at most one. The prime $\p$ containing $(x)$ cannot have
-    height zero, as then $\p\in\ass(A)$ by
+    height zero, as then $\p\in\ass(R)$ by
     Theorem~\ref{T:AssassinsMinimal} and hence then every element of
     $\p$ is a zerodivisor, which is not the case.
   \end{proof}
@@ -390,10 +404,6 @@ Note that $\h(\p) = \dim(A_\p)$.
   of parameters for $M$.
 \end{exercise}
 
-\begin{exercise}
-  Let $A$ be a Noetherian ring of dimension at least $2$. Then $A$ has
-  infinitely many prime ideals of height $1$.
-\end{exercise}
 
 \begin{example}
   A ring $A$ is Artinian if and only if $\dim(A) =
@@ -548,6 +558,19 @@ Hint: Does every maximal ideal in $A\lps X \rps$ contain $X$?
 \dim(\Z_{(p)}[X_1,\ldots,X_n]) &= \dim(\Z_{(p)}\lps X_1,\dots,X_n\rps) = n+1.
 \end{align*}
 \end{corollary}
+
+
+Now let's revisit Noether normalization.
+
+\begin{corollary}
+  Let $k$ be an infinite field and $A$ be a finitely generated
+  $k$-algebra. There exist $\alpha_1,\dots,\alpha_m\in A$ such that
+  \[
+  \dim(k[\alpha_1,\dots,\alpha_m]) = \dim(A) = m.
+  \]
+\end{corollary}
+
+
 
 
 
