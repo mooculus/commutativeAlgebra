@@ -1,0 +1,53 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\title{Groebner bases}
+
+\author{Bart Snapp}
+
+\begin{document}
+\begin{abstract}
+  We give an algorithm for deciding when a polynomial is a member of
+  an ideal.  Sources and references: \cite{CLO2007,hS2003}.
+\end{abstract}
+\maketitle
+
+
+\section{The division algorithm}
+
+Given a ring and ideal in the ring, we would like to know when an
+element is a member of the ideal. We'll need some notation.
+
+
+\begin{definition}
+  Consider a polynomial $F\in k[x_1,\dots, x_n]$ with a monomial order
+  $>$.
+  \begin{itemize}
+    \item The \dfn{multidegree} of $F$ is
+    \[
+    \multideg(F) := \max\{\valpha: \text{$c_\valpha x^\valpha$ is the largest term w.r.t.\ $>$} \}
+    \]
+  \item The \dfn{lead coefficient} of $F$ is $\lc(F) := c_{\multideg(F)}$.
+  \item The \dfn{lead monomial} of $F$ is $\lm(F) := \x^{\multideg(F)}$.
+  \item The \dfn{lead term} of $F$ is $\lt(F) := \lc(F)\cdot \lm(F)$.
+  \end{itemize}
+\end{definition}
+
+Now suppose we are working in the ring $k[x_1,\dots, x_n]$ and we have an ideal
+\[
+I = (G_1,\dots, G_m) \subset k[\x]
+\]
+
+
+\section{Groebner bases}
+
+
+
+\section{The ideal membership problem}
+
+
+\end{document}
+
+
+
