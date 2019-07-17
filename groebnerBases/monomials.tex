@@ -3,18 +3,39 @@
 \input{../preamble.tex}
 
 \title{Monomials and orderings}
-
 \begin{document}
 \begin{abstract}
-  We set up definitions and notation for the study of Groebner
+  We set up definitions and notation for the study of Gr\"obner 
   bases. Sources and references: \cite{CLO2007}.
 \end{abstract}
 \maketitle
 
-Throughout this chapter our ring will be $R=k[x_1,\dots,x_n] =
-k[\x]$. We will denote the whole numbers by $\omega =
-\{0,1,2,3,\dots\}$.
+Throughout this chapter we will denote the whole numbers by $\omega =
+\{0,1,2,3,\dots\}$. Moreover, our ring will be $R=k[x_1,\dots,x_n] =
+k[\x]$ where $k$ is a field of suitable characteristic. This ring is
+also canonically graded: $R_i$ is the degree-$i$ $k$-vector space with
+$R_0=k$.
 
+\begin{theorem}[Graded Nakayama]
+  Let $R$ be a graded ring and $M$ be a finitely generated graded
+  $R$-module. If
+  \[
+  M = R_+ M 
+  \]
+  then $M=0$.
+  \begin{proof}
+    Seeking a contradiction, suppose that the formula above holds, and
+    $M\ne0$. Since $M$ is graded,
+    \[
+    M = \directsum_{i=1}^n M_i
+    \]
+    Consider the least $i$ such that $M_i \ne 0$. In this case,
+    \[
+    M_i \not\subset R_+\directsum_{i=1}^n M_i.
+    \]
+    This contradicts our hypothesis.
+  \end{proof}
+\end{theorem}
 
 \begin{definition}
   A \dfn{monomial} in $k[x_1,\dots,x_n]$ is a product of the form

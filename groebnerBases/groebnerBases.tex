@@ -2,7 +2,7 @@
 
 \input{../preamble.tex}
 
-\title{Groebner bases}
+\title{Gr\"obner bases}
 
 \author{Bart Snapp}
 
@@ -14,7 +14,8 @@
 \maketitle
 
 
-\section{The division algorithm}
+
+\section{The ideal membership problem}
 
 Given a ring and ideal in the ring, we would like to know when an
 element is a member of the ideal. We'll need some notation.
@@ -26,11 +27,16 @@ element is a member of the ideal. We'll need some notation.
   \begin{itemize}
     \item The \dfn{multidegree} of $F$ is
     \[
-    \multideg(F) := \max\{\valpha: \text{$c_\valpha x^\valpha$ is the largest term w.r.t.\ $>$} \}
+    \multideg(F) := \max\{\valpha: \text{$c_\valpha x^\valpha$ is the largest term w.r.t.\ $>$} \}.
     \]
   \item The \dfn{lead coefficient} of $F$ is $\lc(F) := c_{\multideg(F)}$.
   \item The \dfn{lead monomial} of $F$ is $\lm(F) := \x^{\multideg(F)}$.
   \item The \dfn{lead term} of $F$ is $\lt(F) := \lc(F)\cdot \lm(F)$.
+  \item The \dfn{ideal of lead terms} of an ideal $I\subset k[\x]$ is
+    the ideal
+    \[
+    \lt(I) = (\lt(F): F\in I)\subset k[\x].
+    \]
   \end{itemize}
 \end{definition}
 
@@ -38,17 +44,155 @@ Now suppose we are working in the ring $k[x_1,\dots, x_n]$ and we have an ideal
 \[
 I = (G_1,\dots, G_m) \subset k[\x]
 \]
+Here is a basic algorithm that attempts to solve the ideal membership
+problem.
+
+\begin{algorithm}[Division algorithm]
+  \hfill
+  \begin{algorithmic}[1]
+    \State $\texttt{quotient} = 0$
+    \State $\texttt{remainder} = 0$
+    \Repeat
+    \If{$\lt(G_i) \cdot a_i = \lt(F)$}
+    \State $\texttt{quotient} \from \texttt{quotient} + a_i\cdot G_i$
+    \State $F \from F - a_i\cdot G_i$
+    \Else
+    \State $\texttt{remainder} \from \texttt{remainder} + \lt(F)$
+    \State $F\from F- \lt(F)$
+    \EndIf
+    \Until{$F = 0$}
+  \end{algorithmic}
+\end{algorithm}
+
+At the end of this algorithm, we can write
+\[
+F = \sum_{finite}  a_i\cdot G_i + r.
+\]
+If the reminder is zero, then $F\in I$. However, this algorithm is
+insufficient. Consider an example from \cite{hS2003} where
+\begin{align*}
+  F &= x^2 - y^2\\
+  G_1 &= x^2 + y\\
+  G_2 &=xy+x \\
+  I &= (G_1,G_2).
+\end{align*}
+Let's run the division algorithm manually in \macaulay.
+
+\begin{macaulay2}
+R = ZZ/101[x,y];
+F = x^2-y^2;
+G1 = x^2+y;
+G2 = x*y+x;
+leadTerm F
+leadTerm G1
+F%G1
+\end{macaulay2}
+
+Using the monomial order \texttt{GRevLex}, $\lt(F) = x^2$ and
+$\lt(G_1) = x^2$. Hence, we divide $F$ by $G_1$ and compute the
+remainder, which comes out to $-y^2-y$. Since neither $\lt(G_1) =
+x^2$ nor $\lt(G_2) = xy$ divide $y^2$, the algorithm concludes with
+\[
+F  = 1\cdot G_1 + \underbrace{-y^2-y}_{\text{remainder}}.
+\]
+this would seem to indicate that $F\notin I$. However,
+\[
+F = x G_1 - y G_2.
+\]
+so in fact, $F\in I$. To remedy this, we will enlarge our set of
+generators.
+
+\begin{definition}
+  A subset $\{G_1,\dots, G_n\}\subset I$ of an ideal is a
+  \dfn{Gr\"obner basis} for $I$ if
+  \[
+  \lt(I) = (\lt(G_1),\dots, \lt(G_n)).
+  \]
+\end{definition}
+
+\begin{proposition}
+  Suppose $(G_1,\dots,G_n)$ is a Gr\"obner basis for $I$. Then
+  \[
+  I = (G_1,\dots,G_n).
+  \]
+  \begin{proof}
+    Suppose $F\in I$. Using the division algorithm on the ideal
+    $(G_1,\dots,G_n)$, there will always be a $G_i$ such that
+    $\lt(G_i)|\lt(F)$. Hence $F$ can be expressed as a finite sum
+    \[
+    F = \sum_\mathrm{finite} a_i G_i.
+    \]
+  \end{proof}
+\end{proposition}
+
+Now suppose that $(G_1,\dots,G_n)$ is a Gr\"obner basis for some
+ideal. We can then write:
+\[
+0 \to S \to k[\x]^n \to k[x]/I \to 0
+\]
+$S$ is a syzygy, the kernel of this map of free modules.
+
+\begin{definition}
+  Let $F,G\in k[\x]$ be nonzero polynomials. The \dfn{S-polynomial} or
+  \dfn{syzygy-polynomial} is given by
+  \[
+  S(F,G) := \frac{\lcm(\lm(F),\lm(G))}{\lt(F)}\cdot F - \frac{\lcm(\lm(F),\lm(G))}{\lt(G)}\cdot G.
+  \]
+\end{definition}
+
+\begin{macaulay2}
+Spair = (G1,G2) ->
+lcm(leadMonomial(G1),leadMonomial(G2))/leadTerm(G1)*G1-
+lcm(leadMonomial(G1),leadMonomial(G2))/leadTerm(G2)*G2;
+\end{macaulay2}
+
+
+
+
+
+\begin{theorem}[Buchberger's Criterion]
+  A set $\{G_1,\dots,G_n\}\subset k[\x]$ is Gr\"obner basis if and
+  only if
+  \[
+  S(G_i,G_j) \equiv 0 \pmod{(\vec{G}})
+  \]
+  for all $i\ne j$. In this case $G_i$ and $G_j$ are called
+  \dfn{S-pairs} or $\dfn{syzygy-pairs}$.
+  \begin{proof}
+    $(\Rightarrow)$
+  \end{proof}
+\end{theorem}
+
+
+
+
+\begin{algorithm}[Buchberger algorithm]
+  \hfill
+  \begin{algorithmic}[1]
+    \State $\texttt{quotient} = 0$
+    \State $\texttt{remainder} = 0$
+    \Repeat
+    \If{$\lt(G_i) \cdot a_i = \lt(F)$}
+    \State $\texttt{quotient} \from \texttt{quotient} + a_i\cdot G_i$
+    \State $F \from F - a_i\cdot G_i$
+    \Else
+    \State $\texttt{remainder} \from \texttt{remainder} + \lt(F)$
+    \State $F\from F- \lt(F)$
+    \EndIf
+    \Until{$F = 0$}
+  \end{algorithmic}
+\end{algorithm}
 
 
 NOTE - IF WE WERE WORKING WITH MONOMIALS THIS WOULD BE EASY
 
 
 
-\section{Groebner bases}
+\section{Gr\"obner bases}
 
 
 
-\section{The ideal membership problem}
+
 
 
 \end{document}

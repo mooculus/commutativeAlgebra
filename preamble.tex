@@ -49,6 +49,11 @@
 \let\lemma\relax
 \let\endlemma\relax
 
+
+\let\algorithm\relax
+\let\endalgorithm\relax
+\usepackage{algpseudocode}
+
 \newtheoremstyle{SlantTheorem}{\topsep}{\topsep}%%% space between body and thm
 		{\slshape}                      %%% Thm body font
 		{}                              %%% Indent amount (empty = no indent)
@@ -71,6 +76,20 @@
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem*{example}{Example}
 \newtheorem*{warning}{WARNING}
+
+\let\algorithm\relax
+\let\endalgorithm\relax
+\newtheoremstyle{Alg}{\topsep}{\topsep}%%% space between body and thm
+		{}                              %%% Thm body font
+		{}                              %%% Indent amount (empty = no indent)
+		{\bfseries\sffamily}            %%% Thm head font
+		{}                              %%% Punctuation after thm head
+		{3ex}                           %%% Space after thm head
+		{\thmname{#1}\thmnumber{ #2}\thmnote{ \bfseries(#3)}}%%% Thm head spec
+\theoremstyle{Alg}
+\newtheorem*{algorithm}{Algorithm}
+
+
 
 
 \newtheoremstyle{Exercise}{\topsep}{\topsep} %%% space between body and thm
@@ -99,6 +118,9 @@
 		{}%%% Thm head spec
 \theoremstyle{Question}
 \newtheorem*{question}{}
+
+
+
 
 
 
@@ -136,6 +158,7 @@
 \DeclareMathOperator{\maxspec}{MaxSpec}
 \DeclareMathOperator{\supp}{Supp}
 \DeclareMathOperator{\ass}{Ass}
+\DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\ff}{Frac}
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\syz}{Syz}
@@ -177,6 +200,7 @@
 \newcommand{\lc}{\textsc{lc}}
 \newcommand{\lt}{\textsc{lt}}
 \newcommand{\lm}{\textsc{lm}}
+\newcommand{\from}{\leftarrow}
 
 
 %\renewcommand{\proofname}{Sketch of Proof}

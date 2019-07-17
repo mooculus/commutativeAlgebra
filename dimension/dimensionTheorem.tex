@@ -429,44 +429,52 @@ Note that $\h(\p) = \dim(A_\p)$.
 
 \section{Polynomials over Noetherian rings}
 
-Now we will investigate the dimension of $A[X]$, where $R$ is a
+Now we will investigate the dimension of $R[X]$, where $R$ is a
 Noetherian ring.
 
 
-\begin{lemma}\label{L:FT1} If $A$ is a ring and $P_1\subsetneq P_2$ are two prime ideals of $A[X]$ such that
-\[
-P_1\cap A = P_2\cap A = \p,
-\]
-then $P_1 = \p[X]$.
+\begin{lemma}\label{L:FT1}
+  If $R$ is a Noetherian ring and $P_1\subsetneq P_2$ are two prime
+  ideals of $R[X]$ such that
+  \[
+  P_1\cap R = P_2\cap R = \p,
+  \]
+  then $P_1 = \p[X]$.
 \end{lemma}
 
-\begin{proof} Suppose not. Then 
-\[
-\p[X]\subsetneq P_1\subsetneq P_2 
-\]
-and so 
-\[
-(0) \subsetneq (P_1/\p)[X] \subsetneq (P_2/\p)[X]
-\]
-in $(A/\p) [X]$. Set $U = A-\p$.  Since $P_1 \cap U = P_2 \cap U = \emptyset$, and since localizations are exact, we have
-\[
-(0) \subsetneq U^{-1}(P_1/\p)[X] \subsetneq U^{-1}(P_2/\p)[X]
-\]
-is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But this contradicts that $\dim(k[X]) = 1$ when $k$ is a field as $k[X]$ is a PID, hence all primes are principal and so are of height one or zero.  Thus $P_1 = \p[X]$.
+\begin{proof}
+  Seeking a contradiction, suppose 
+  \[
+  \p[X]\subsetneq P_1\subsetneq P_2 
+  \]
+  and so working in $(R/\p)[X]$,  
+  \[
+  (0) \subsetneq (P_1/\p)[X] \subsetneq (P_2/\p)[X]
+  \]
+  Set $U = R-\p$.  Since $P_1 \cap U = P_2 \cap U = \emptyset$, and
+  since localizations are exact, we have
+  \[
+  (0) \subsetneq U^{-1}(P_1/\p)[X] \subsetneq U^{-1}(P_2/\p)[X]
+  \]
+  is a strict chain of prime ideals in $(R_\p/\p R_\p)[X] =
+  U^{-1}(R/\p)[X]$.  But this contradicts that $\dim(k[X]) = 1$ when
+  $k$ is a field as $k[X]$ is a PID, hence all primes are principal
+  and so are of height one or zero.  Thus $P_1 = \p[X]$.
 \end{proof}
 
 
 \begin{lemma}\label{L:FT2}
-  If $A$ is Noetherian and $I$ is an ideal of $A$, then
+  If $R$ is Noetherian and $I$ is an ideal of $R$, then
   \[
-  \h(I) = \h(I\cdot A[X]).
+  \h(I) = \h(I\cdot R[X]).
   \]
   \begin{proof}
     By the definition of assassins,
     \[
-    \ass\left(\frac{A[X]}{IA[X]}\right) = \{\p_i[X]: \p_i\in\ass(A/I)\},
+    \ass\left(\frac{R[X]}{IR[X]}\right) = \{\p_i[X]: \p_i\in\ass(R/I)\},
     \]
-    as $A/I$ injects into $A/I [X]$. So it is enough to show that if $\p$ is a prime ideal in $A$, then 
+    as $R/I$ injects into $(R/I) [X]$. So it is enough to show that if
+    $\p$ is a prime ideal in $R$, then
     \[
     \h(\p) = \h(\p[X]).
     \]
@@ -483,7 +491,7 @@ is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But
     \[
     \p_0[X] \subsetneq \p_1[X] \subsetneq \cdots \subsetneq \p_n[X] = \p[X]
     \]
-    is a chain of prime ideals in $A[X]$. Thus $\h(\p[X])\ge \h(\p)$
+    is a chain of prime ideals in $R[X]$. Thus $\h(\p[X])\ge \h(\p)$
     and so we see that $\h(\p[X]) = \h(\p)$.
 \end{proof}
 \end{lemma}
@@ -492,71 +500,90 @@ is a strict chain of prime ideals in $(A_\p/\p A_\p)[X] = U^{-1}(A/\p)[X]$.  But
 
 
 \begin{theorem}
-  If $A$ is a Noetherian ring, $\dim(A[X]) = \dim(A) + 1$.
+  If $R$ is a Noetherian ring, $\dim(R[X]) = \dim(R) + 1$.
   \begin{proof}
     First note that given a chain of primes $\p_0 \subsetneq \cdots
-    \subsetneq \p_n$ in $A$, we can construct the chain of primes
-    $\p_0 A[X] \subsetneq \cdots \subsetneq \p_n A[X] \subsetneq \p_n
-    A[X] + x A[X]$ in $A[X]$.  It is then clear that $\dim(A[X]) \ge
-    \dim(A) + 1$, so it is enough to show $\dim(A[X]) \le\dim(A) +
-    1$. If $\dim(A) = \infty$, then there is nothing to prove. We will
-    proceed by induction on the dimension of $A$. If $\dim(A) = 0$,
-    then for $P_i$ a prime ideal in $A[X]$ write $\p_i = P_i\cap A$.
+    \subsetneq \p_n$ in $R$, we can construct the chain of primes
+    \[
+    \p_0 R[X] \subsetneq \cdots \subsetneq \p_n R[X] \subsetneq \p_n
+    R[X] + X R[X]
+    \]
+    in $R[X]$.  It is then clear that $\dim(R[X]) \ge \dim(R) + 1$, so
+    it is enough to show $\dim(R[X]) \le\dim(R) + 1$.
+
+
+    If $\dim(R) = \infty$, then there is nothing to prove. We will
+    proceed by induction on the dimension of $R$. If $\dim(R) = 0$,
+    then for $P_i$ a prime ideal in $R[X]$ write $\p_i = P_i\cap R$.
     So if
     \[
     P_0\subsetneq P_1\subsetneq \cdots \subsetneq P_n
     \]
-    then since $\dim(A) = 0$, we have $\p_0 = \p_1 = \cdots = \p_n$. Thus by Lemma~\ref{L:FT1}, we have 
+    then since $\dim(R) = 0$, we have
+    \[
+    \p_0 = \p_1 = \cdots = \p_n.
+    \]
+    Thus by Lemma~\ref{L:FT1}, we have 
     \[
     \p_0[x] = P_0 = P_1 = \cdots = P_{n-1}\subsetneq P_n.
     \]
-    Thus $n\le 1$ and so we see that $\dim(A[X]) = 1$.
+    Thus $n\le 1$ and so we see that $\dim(R[X]) = 1$.
     
-    Now suppose that $\dim(A) = n >0$ and let $P_0 \subsetneq P_1
-    \subsetneq \cdots \subsetneq P_n$ be a strict chain of prime
-    ideals in $A$.  Set $\p_i = P_i \cap A$.
-    
-    Case 1: Suppose that $\p_{n-1} \subsetneq \p_n$. Then
+    Now suppose that $\dim(R) = n >0$ and let
     \[
-    \dim(A_{\p_{n-1}})< \dim(A).
+    P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n
     \]
-    By induction we then have that $\dim(A_{\p_{n-1}}[X]) =
-    \dim(A_{\p_{n-1}})+1\le \dim(A)$. In $A_{\p_{n-1}}[X]$ we have a
+    be a strict chain of prime ideals in $R$. We must show $\dim(R[X])
+    \le\dim(R) + 1$.
+
+
+    
+    
+    Case 1: Set $\p_i = P_i \cap R$ and suppose that $\p_{n-1}
+    \subsetneq \p_n$. Then
+    \[
+    \dim(R_{\p_{n-1}})< \dim(R).
+    \]
+    By induction we then have that $\dim(R_{\p_{n-1}}[X]) =
+    \dim(R_{\p_{n-1}})+1\le \dim(R)$. In $R_{\p_{n-1}}[X]$ we have a
     strict chain
     \[
-    P_0A_{p_{n-1}} \subsetneq P_1A_{p_{n-1}} \subsetneq \cdots \subsetneq P_{n-1}A_{p_{n-1}}
+    P_0R_{\p_{n-1}} \subsetneq P_1R_{\p_{n-1}} \subsetneq \cdots
+    \subsetneq P_{n-1}R_{\p_{n-1}}
     \] 
     and thus 
     \[
-    n-1 \le \dim(A_{\p_{n-1}})[X]\le \dim(A). 
+    n-1 \le \dim(R_{\p_{n-1}}[X])\le \dim(R).
     \]
-    Thus $n \le\dim(A) +1$ and so  $\dim(A[X]) = \dim(A) + 1$.
+    Thus $n \le\dim(R) +1$ and so  $\dim(R[X]) = \dim(R) + 1$.
     
     Case 2: Suppose that $\p_{n-1} = \p_n$. By Lemma~\ref{L:FT1}, we
     have $P_{n-1} = \p_{n-1}[X]$.  By Lemma~\ref{L:FT2}, we have
     $\h(\p_{n-1}[X])=\h(\p_{n-1})$.  Thus
     \[
-    \dim(A) \ge \h(\p_{n-1}) = \h(P_{n-1}) \ge n-1.
+    \dim(R) \ge \h(\p_{n-1}) = \h(P_{n-1}) \ge n-1.
     \]
-    Thus $n\le \dim(A) + 1$ and so we see that $\dim(A[X]) = \dim(A) +1$.
+    Thus $n\le \dim(R) + 1$ and so we see that $\dim(R[X]) = \dim(R) +1$.
   \end{proof}
 \end{theorem}
 
 
-\begin{exercise} If $A$ is Noetherian, show that 
-\[
-\dim(A\lps X \rps) = \dim(A) + 1
-\]
-Hint: Does every maximal ideal in $A\lps X \rps$ contain $X$?
+\begin{exercise}
+  If $R$ is Noetherian, show that
+  \[
+  \dim(R\lps X \rps) = \dim(R) + 1
+  \]
+  Hint: Does every maximal ideal in $R\lps X \rps$ contain $X$?
 \end{exercise}
 
 
-\begin{corollary} We have that if $k$ is a field, then
-\begin{align*}
-\dim(k[X_1,\ldots,X_n]) &= \dim(k\lps X_1,\dots,X_n\rps) = n, \\
-\dim(\Z[X_1,\ldots,X_n]) &= \dim(\Z\lps X_1,\dots,X_n\rps) = n+1, \\
-\dim(\Z_{(p)}[X_1,\ldots,X_n]) &= \dim(\Z_{(p)}\lps X_1,\dots,X_n\rps) = n+1.
-\end{align*}
+\begin{corollary}
+  We have that if $k$ is a field, then
+  \begin{align*}
+    \dim(k[X_1,\ldots,X_n]) &= \dim(k\lps X_1,\dots,X_n\rps) = n, \\
+    \dim(\Z[X_1,\ldots,X_n]) &= \dim(\Z\lps X_1,\dots,X_n\rps) = n+1, \\
+    \dim(\Z_{(p)}[X_1,\ldots,X_n]) &= \dim(\Z_{(p)}\lps X_1,\dots,X_n\rps) = n+1.
+  \end{align*}
 \end{corollary}
 
 
