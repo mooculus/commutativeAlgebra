@@ -50,6 +50,7 @@ problem.
 \begin{algorithm}[Division algorithm]
   \hfill
   \begin{algorithmic}[1]
+    \Procedure{Division}{$F,G_1,\dots,G_m$} 
     \State $\texttt{quotient} = 0$
     \State $\texttt{remainder} = 0$
     \Repeat
@@ -61,12 +62,14 @@ problem.
     \State $F\from F- \lt(F)$
     \EndIf
     \Until{$F = 0$}
+    \Return\{\texttt{quotient}, \texttt{reminder}\}
+    \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
 At the end of this algorithm, we can write
 \[
-F = \sum_{finite}  a_i\cdot G_i + r.
+F = \sum_{\mathrm{finite}}  a_i\cdot G_i + r.
 \]
 If the reminder is zero, then $F\in I$. However, this algorithm is
 insufficient. Consider an example from \cite{hS2003} where
@@ -155,14 +158,28 @@ lcm(leadMonomial(G1),leadMonomial(G2))/leadTerm(G2)*G2;
 
 \begin{theorem}[Buchberger's Criterion]
   A set $\{G_1,\dots,G_n\}\subset k[\x]$ is Gr\"obner basis if and
-  only if
+  only if for all $i\ne j$
   \[
-  S(G_i,G_j) \equiv 0 \pmod{(\vec{G}})
+  S(G_i,G_j) \equiv 0 \pmod{(\i g})
   \]
-  for all $i\ne j$. In this case $G_i$ and $G_j$ are called
-  \dfn{S-pairs} or $\dfn{syzygy-pairs}$.
+  where $\i g = (G_1,\dots,G_n)$. In this case $G_i$ and $G_j$ are
+  called \dfn{S-pairs} or $\dfn{syzygy-pairs}$.
   \begin{proof}
-    $(\Rightarrow)$
+    $(\Rightarrow)$ Suppose that $\{G_1,\dots,G_n\}$ is a Gr\"obner
+    basis. Since $S(G_i,G_j)\in (G_1,\dots,G_n)$ we are done.
+
+    $(\Leftarrow)$ Suppose that $F\in \i g$ and that
+    \[
+    S(G_i,G_j \equiv 0 \pmod{(\i g})
+    \]
+    for all $i\ne j$. We must show that
+    \[
+    \lt(F) \in (\lt(G_1),\dots, \lt(G_n)).
+    \]
+    Since $F\in \i g$, we know
+    \[
+    F = \sum_{\mathrm{finite}} a_i G_i
+    \]
   \end{proof}
 \end{theorem}
 
