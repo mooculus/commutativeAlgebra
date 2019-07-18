@@ -42,7 +42,7 @@ element is a member of the ideal. We'll need some notation.
 
 Now suppose we are working in the ring $k[x_1,\dots, x_n]$ and we have an ideal
 \[
-I = (G_1,\dots, G_m) \subset k[\x]
+I = (G_1,\dots, G_m) \subset k[\x].
 \]
 Here is a basic algorithm that attempts to solve the ideal membership
 problem.
@@ -76,7 +76,8 @@ insufficient. Consider an example from \cite{hS2003} where
   G_2 &=xy+x \\
   I &= (G_1,G_2).
 \end{align*}
-Let's run the division algorithm manually in \macaulay.
+Let's run the division algorithm manually in \macaulay and try to see
+if we what happens.
 
 \begin{macaulay2}
 R = ZZ/101[x,y];
@@ -99,8 +100,10 @@ this would seem to indicate that $F\notin I$. However,
 \[
 F = x G_1 - y G_2.
 \]
-so in fact, $F\in I$. To remedy this, we will enlarge our set of
-generators.
+so in fact, $F\in I$. Our algorithm didn't work because the lead terms
+of $G_1$ and $G_2$ cancelled. To remedy this, we will enlarge our set
+of generators to include more lead terms. This leads us to the
+definition of a Gr\"obner basis.
 
 \begin{definition}
   A subset $\{G_1,\dots, G_n\}\subset I$ of an ideal is a
