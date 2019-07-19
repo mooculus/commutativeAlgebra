@@ -27,7 +27,7 @@ element is a member of the ideal. We'll need some notation.
   \begin{itemize}
     \item The \dfn{multidegree} of $f$ is
     \[
-    \multideg(f) := \max\{\valpha: \text{$c_\valpha x^\valpha$ is the largest term w.r.t.\ $>$} \}.
+    \multideg(f) := \{\valpha: \text{$c_\valpha \x^\valpha$ is the largest term w.r.t.\ $>$} \}.
     \]
   \item The \dfn{lead coefficient} of $f$ is $\lc(f) := c_{\multideg(f)}$.
   \item The \dfn{lead monomial} of $f$ is $\lm(f) := \x^{\multideg(f)}$.
@@ -40,6 +40,24 @@ element is a member of the ideal. We'll need some notation.
   \end{itemize}
 \end{definition}
 
+We have
+\begin{macaulay2}
+R = ZZ/101[x,y,z];
+f = 3*z^2*y^3 + 7*x^2*y;
+degree f
+leadCoefficient f
+leadMonomial f
+leadTerm f
+
+R = ZZ/101[x,y,z,MonomialOrder=>Lex];
+f = 3*z^2*y^3 + 7*x^2*y;
+degree f
+leadCoefficient f
+leadMonomial f
+leadTerm f
+\end{macaulay2}
+
+
 Now suppose we are working in the ring $k[x_1,\dots, x_n]$ and we have an ideal
 \[
 I = (g_1,\dots, g_m) \subset k[\x].
@@ -50,13 +68,13 @@ problem.
 \begin{algorithm}[Division algorithm]
   \hfill
   \begin{algorithmic}[1]
-    \Procedure{Division}{$f,g_1,\dots,g_m$} 
+    \Procedure{Division}{$f,\{g_1,\dots,g_m\}$} 
     \State $\texttt{quotient} = 0$
     \State $\texttt{remainder} = 0$
     \Repeat
     \If{$\lt(g_i) \cdot h_i = \lt(f)$}
     \State $\texttt{quotient} \from \texttt{quotient} + h_i\cdot g_i$
-    \State $f \from f - h_i\cdot G_i$
+    \State $f \from f - h_i\cdot g_i$
     \Else
     \State $\texttt{remainder} \from \texttt{remainder} + \lt(f)$
     \State $f\from f- \lt(f)$
@@ -69,9 +87,32 @@ problem.
 
 At the end of this algorithm, we can write
 \[
-f = \sum_{\mathrm{finite}}  h_i\cdot g_i + r.
+f =\left(\sum_{\mathrm{finite}}  h_i\cdot g_i\right) + r.
 \]
-If the reminder is zero, then $f\in I$. However, this algorithm is
+If the reminder is zero, then $f\in I$. We can implement this
+algorithm (code from Greg Smith)
+\begin{macaulay2}
+division = (f,G) -> (
+S := ring f;
+p := f;
+r := 0_S;
+m := #G;
+Q := new MutableHashTable;
+for j from 0 to m-1 do Q#j = 0_S;
+while p != 0 do (
+i := 0;
+while i < m and leadTerm(p) % leadTerm(G#i) != 0 do i = i+1;
+if i < m then (Q#i = Q#i + (leadTerm(p) // leadTerm(G#i));
+p = p - (leadTerm(p) // leadTerm(G#i)*G#i))else (r = r + leadTerm(p);
+p = p - leadTerm(p)));
+L := apply(m, j -> Q#j);
+return (r,L));
+\end{macaulay2}
+%% I think f % matrix{{g_1},{g_2}}
+%% should give the reminder, but it doesn't work.
+
+
+However, this algorithm is
 insufficient. Consider an example from \cite{hS2003} where
 \begin{align*}
   f &= x^2 - y^2\\
@@ -97,11 +138,11 @@ $\lt(g_1) = x^2$. Hence, we divide $f$ by $g_1$ and compute the
 remainder, which comes out to $-y^2-y$. Since neither $\lt(g_1) =
 x^2$ nor $\lt(g_2) = xy$ divide $y^2$, the algorithm concludes with
 \[
-f  = 1\cdot g_1 + \underbrace{-y^2-y}_{\text{remainder}}.
+f  = 1\cdot g_1 + \underbrace{(-y^2-y)}_{\text{remainder}}.
 \]
 this would seem to indicate that $F\notin I$. However,
 \[
-f = x g_1 - y g_2.
+f = x g_2 - y g_1.
 \]
 so in fact, $f\in I$. Our algorithm didn't work because the lead terms
 of $g_1$ and $g_2$ cancelled. To remedy this, we will enlarge our set
@@ -109,21 +150,21 @@ of generators to include more lead terms. This leads us to the
 definition of a Gr\"obner basis.
 
 \begin{definition}
-  A subset $\{g_1,\dots, g_n\}\subset I$ of an ideal is a
+  A subset $\{g_1,\dots, g_m\}\subset I$ of an ideal is a
   \dfn{Gr\"obner basis} for $I$ if
   \[
-  \lt(I) = (\lt(g_1),\dots, \lt(g_n)).
+  \lt(I) = (\lt(g_1),\dots, \lt(g_m)).
   \]
 \end{definition}
 
 \begin{proposition}
-  Suppose $(g_1,\dots,g_n)$ is a Gr\"obner basis for $I$. Then
+  Suppose $(g_1,\dots,g_m)$ is a Gr\"obner basis for $I$. Then
   \[
-  I = (g_1,\dots,g_n).
+  I = (g_1,\dots,g_m).
   \]
   \begin{proof}
     Suppose $f\in I$. Using the division algorithm on the ideal
-    $(g_1,\dots,g_n)$, there will always be a $g_i$ such that
+    $\{g_1,\dots,g_m\}$, there will always be a $g_i$ such that
     $\lt(g_i)|\lt(f)$. Hence $f$ can be expressed as a finite sum
     \[
     f = \sum_\mathrm{finite} h_i g_i.
@@ -131,67 +172,72 @@ definition of a Gr\"obner basis.
   \end{proof}
 \end{proposition}
 
-Now suppose that $(g_1,\dots,g_n)$ is a Gr\"obner basis for some
+Now suppose that $\{g_1,\dots,g_m\}$ is a Gr\"obner basis for some
 ideal. We can then write:
 \[
-0 \to S \to k[\x]^n \to k[x]/I \to 0
+0 \to S \to k[\x]^n \to k[\x]/I \to 0
 \]
 $S$ is a syzygy, the kernel of this map of free modules.
 
 \begin{definition}
-  Let $f,g\in k[\x]$ be nonzero polynomials. The \dfn{S-polynomial} or
+  Let $f,g\in k[\x]$ be nonzero polynomials. The
   \dfn{syzygy-polynomial} is given by
   \[
   S(f,g) := \frac{\lcm(\lm(f),\lm(g))}{\lt(f)}\cdot f - \frac{\lcm(\lm(f),\lm(g))}{\lt(g)}\cdot g.
   \]
 \end{definition}
-
+We can define the syzygy-polynomial in \macaulay.
 \begin{macaulay2}
-Spair = (g1,g2) ->
-lcm(leadMonomial(g1),leadMonomial(g2))/leadTerm(g1)*g1-
-lcm(leadMonomial(g1),leadMonomial(g2))/leadTerm(g2)*g2;
+S = (g1,g2) ->
+lcm(leadMonomial(g1),leadMonomial(g2))//leadTerm(g1)*g1-
+lcm(leadMonomial(g1),leadMonomial(g2))//leadTerm(g2)*g2;
 R = ZZ/101[x,y];
 g1 = x^2+y;
 g2 = x*y+x;
-Spair(g1,g2)
+S(g1,g2)
 \end{macaulay2}
 
 
 
 
 
-\begin{theorem}[Buchberger's Criterion]
-  A set $\{g_1,\dots,g_n\}\subset k[\x]$ is Gr\"obner basis if and
-  only if for all $i\ne j$
-  \[
-  S(g_i,g_j) \equiv 0 \pmod{\i g}
-  \]
-  where $\i g = (g_1,\dots,g_n)$. In this case $g_i$ and $g_j$ are
-  called \dfn{S-pairs} or $\dfn{syzygy-pairs}$.
-  \begin{proof}
-    $(\Rightarrow)$ Suppose that $\{g_1,\dots,g_n\}$ is a Gr\"obner
-    basis. Since $S(g_i,g_j)\in (g_1,\dots,g_n)$ we are done.
 
-    $(\Leftarrow)$ Suppose that $f\in \i g$ and that
+\begin{theorem}[Buchberger's criterion]
+  A set $G=\{g_1,\dots,g_n\}\subset k[\x]$ is Gr\"obner basis if and
+  only if for all $i\ne j$ 
+  \[
+  S(g_i,g_j) \equiv 0 \pmod{G}.
+  \]
+  In this case $g_i$ and $g_j$ are called an \dfn{s-pair} or a
+  $\dfn{syzygy-pair}$.
+  \begin{proof}
+    $(\Rightarrow)$ Suppose that $\{g_1,\dots,g_m\}$ is a Gr\"obner
+    basis. Since $S(g_i,g_j)\in (g_1,\dots,g_m)$ we are done.
+
+    $(\Leftarrow)$ Suppose that $f\in (g_1,\dots,g_m)$ and that for
+    all $i\ne j$
     \[
-    S(g_i,g_j \equiv 0 \pmod{(\i g})
+    S(g_i,g_j) \equiv 0 \pmod{G}.
     \]
-    for all $i\ne j$. We must show that
+    We must show that
     \[
     \lt(f) \in (\lt(g_1),\dots, \lt(g_n)).
     \]
-    Since $f\in \i g$, we know
+    Since $f\in (g_1,\dots,g_m)$, we know
     \[
     f = \sum_{\mathrm{finite}} h_i g_i.
     \]
     At this point there are two cases, either $\lm(f) = \lm(g_i)$, in
-    which case we are done, or not. This second case is the one that
+    which case we are done. The second case when $\lm(f) \ne \lm(g_i)$
     requires attention. We refer the interested reader
-    to~\ref{CLO2007}.
+    to~\cite{CLO2007}.
   \end{proof}
 \end{theorem}
 
 
+So here's the basic idea: Take your favorite ideal, compute all the
+s-pairs, add them to your idea. If you do this enough, you'll satisfy
+Buchberger's criterion.
 
 
 \begin{algorithm}[Buchberger algorithm]
@@ -201,22 +247,85 @@ Spair(g1,g2)
     \State $G = \{f_1,\dots,f_m\}$
     \Repeat
     \State $G':=G$
+    \For{each pair $p,q\in G'$} $S:= S(p,q)$
+    \If{$S\not\equiv 0 \pmod{g\in G}$}
+    $G\from G\cup\{S\}$
+    \EndIf
+    \EndFor
     \Until{$G' = G$}
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
+Let's see it in action with \macaulay.
 
-NOTE - IF WE WERE WORKING WITH MONOMIALS THIS WOULD BE EASY
+\begin{macaulay2}
+division = (f,G) -> (
+S := ring f;
+p := f;
+r := 0_S;
+m := #G;
+Q := new MutableHashTable;
+for j from 0 to m-1 do Q#j = 0_S;
+while p != 0 do (
+i := 0;
+while i < m and leadTerm(p) % leadTerm(G#i) != 0 do i = i+1;
+if i < m then (Q#i = Q#i + (leadTerm(p) // leadTerm(G#i));
+p = p - (leadTerm(p) // leadTerm(G#i)*G#i))else (r = r + leadTerm(p);
+p = p - leadTerm(p)));
+L := apply(m, j -> Q#j);
+return (r,L));
 
+S = (g1,g2) ->
+lcm(leadMonomial(g1),leadMonomial(g2))/leadTerm(g1)*g1-
+lcm(leadMonomial(g1),leadMonomial(g2))/leadTerm(g2)*g2;
 
+R = ZZ/101[x,y];
+g_1 = x^2+y;
+g_2 = x*y+x;
+s = S(g_1,g_2)
+division(s,{g_1,g_2})
+g_3=s
+s = S(g_1,g_3)
+division(s,{g_1,g_2,g_3})
+g_4=s
+s = S(g_1,g_4)
+division(s,{g_1,g_2,g_3,g_4})
+s = S(g_2,g_3)
+division(s,{g_1,g_2,g_3,g_4})
+s = S(g_2,g_4)
+division(s,{g_1,g_2,g_3,g_4})
+s = S(g_3,g_4)
+division(s,{g_1,g_2,g_3,g_4})
+ideal (g_1,g_2,g_3,g_4)
+gens gb ideal (g_1,g_2)
+\end{macaulay2}
 
-\section{Gr\"obner bases}
+At this point, we can solve the ideal memebership problem.
 
+\begin{proposition}
+  Let $G = \{g_1,\dots,g_m\}$ be a Gr\"obner basis for and ideal
+  $I\subset k[x_1,\dots,x_n]$. An element $f\in I$ if and only if the
+  reminder of $f$ by $G$ is zero.
+  \begin{proof}
+    $(\Rightarrow)$ If $f\in I$, then, since $I$ is the ideal
+    generated by $G$, the reminder is zero.
 
+    $(\Leftarrow)$ If the reminder of $f$ is zero when divided by $G$,
+    then, $f\in I$.
+  \end{proof}
+\end{proposition}
 
-
-
+Moreover, if we are working in a ring $R=k[x_1,\dots,x_n]$ and we wish
+to know if an element is in the radical of an ideal, we can use the
+``Rabinowitch trick'' \index{Rabinowitch trick} and we claim $a\in
+\rad{I}$ if and only if
+\[
+1 \in I + (1-ya) \subset R[y]
+\]
+Note, we know that given a ring, $R/I$, in $(R/I)[y]$, the Jacobson
+radical equals the nilradical. Hence if $y$ is in the radical of $I$
+if and only if $(1-ya)$ is a unit in $(R/I)[y]$.
 
 \end{document}
 
