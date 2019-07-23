@@ -111,7 +111,7 @@ construct $\hat{M}$ as follows:
     Consider the following diagram:
     \[
     \begin{tikzcd}
-      Y\ar[ddr,bend right=60,swap,"\psi_i"] \ar[dr,swap,"\psi_j"]  \ar[dashed,rr,"\iota"] &   &  \bigcap_{i=0}^\infty(X_{i}) \ar[ddl,bend left=60,"\iota_i"] \ar[dl,"\iota_j"]\\
+      Y\ar[ddr,bend right=60,swap,"\psi_i"] \ar[dr,swap,"\psi_j"]  \ar[dashed,rr,"\iota"] &   &  \bigcap_{i=0}^\infty X_{i} \ar[ddl,bend left=60,"\iota_i"] \ar[dl,"\iota_j"]\\
       & X_{j} \ar[d,"\iota_{j,i}"] &\\
       & X_{i}&
     \end{tikzcd}
@@ -281,7 +281,7 @@ to the category of modules.
     sequences.  Consider the following diagram:
     \[
     \begin{tikzcd}
-      N\ar[ddr,bend right=60,swap,"\psi_i"] \ar[dr,swap,"\psi_j"]  \ar[dashed,rr,"\ph"] &   &  \hat{M}_{I} \ar[ddl,bend left=60,"\ph_i"] \ar[dl,"\ph_j"]\\
+      N\ar[ddr,bend right=60,swap,"\psi_i"] \ar[dr,swap,"\psi_j"]  \ar[dashed,rr,"\ph"] &   &  \hat{M} \ar[ddl,bend left=60,"\ph_i"] \ar[dl,"\ph_j"]\\
       & M/I^jM \ar[d,"\ph_{j,i}"] &\\
       & M/I^iM &
     \end{tikzcd}
@@ -302,9 +302,9 @@ to the category of modules.
     \[
     (\psi_0(n), \psi_1(n),\dots)
     \]
-    and this can be viewed as an element of $\hat{M}_{I}$. This map is
+    and this can be viewed as an element of $\hat{M}$. This map is
     unique, as if another Cauchy sequence is found, it varies from the
-    original by a null sequence, which go to zero in $\hat{M}_{I}$.
+    original by a null sequence, which go to zero in $\hat{M}$.
   \end{proof}
 \end{theorem}
 

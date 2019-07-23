@@ -1,0 +1,161 @@
+\documentclass{ximera}
+
+\input{../preamble.tex}
+
+\author{Bart Snapp and Jason McCullough}
+
+\title{Appendix}
+
+\begin{document}
+\begin{abstract}
+We give several diagrams showing relations between rings.  Adapted
+from \cite{sD2008}.
+\end{abstract}
+\maketitle
+
+\section{Diagram of implications}
+
+\[
+\begin{tikzcd}          
+              & &         & \text{DVR} \ar[Rightarrow,rrdd]\ar[Rightarrow,ld] &    &                 \\   
+& & \text{PID} \ar[Rightarrow,rd]\ar[Rightarrow,ld] &  &                                   & \\
+& \text{UFD} \ar[Rightarrow,ld] &   & \text{DD} \ar[Rightarrow,rd] &   & \text{LR} \ar[Rightarrow,ld] \\
+\text{ND} & & & & \text{NR} &                            
+\end{tikzcd}                 
+\]
+
+\noindent In the diagram above, the abbreviations are as follows:
+
+\begin{itemize}
+\item[DVR] Discrete Valuation Ring\index{DVR}\index{discrete valuation ring}
+\item[PID] Principal Ideal Domain\index{PID}\index{principal ideal domain}
+\item[DD] Dedekind Domain\index{Dedekind domain}
+\item[UFD] Unique Factorization Domain\index{UFD}\index{unique factorization domain}
+\item[ND] Normal Domain\index{normal domain} (Noetherian Integrally Closed Domain)
+\item[LR] Local Ring\index{local ring}
+\item[NR] Noetherian ring\index{Noetherian!ring}
+\end{itemize}
+
+
+
+
+\section{Diagram and examples of domains}
+
+All rings are assumed to be domains in the diagram below:
+%% \[
+%% \includegraphics[width=12cm]{venn.eps}
+%% \]
+
+\[
+\begin{tikzpicture}
+\draw[rounded corners] (0,0) rectangle (2,1);
+\node at (1,.5) {Field};
+\end{tikzpicture}
+\]
+
+
+\newpage
+
+\noindent In the examples below, $k$
+represents any field and $\m$ represents any maximal ideal in the
+given ring.
+
+
+\begin{enumerate}
+
+\item Not Noetherian, not integrally closed:
+\begin{itemize}
+\item $k[X^2,X^3,Y_1,Y_2,Y_3,\ldots]$
+\end{itemize}
+
+\item Integrally closed, not a UFD, not Noetherian:
+\begin{itemize}
+\item $\Z[2X,2X^2,2X^3,\ldots]$
+\item $k[U,V,Y,Z,X_1,X_2,X_3,\ldots]/(UV - YZ)$
+\end{itemize}
+For further information, see \cite{hH1981}.
+
+\item A UFD but not Noetherian:
+\begin{itemize}
+\item $k[X_1,X_2,X_3,\ldots]$ 
+\end{itemize}
+
+\item Noetherian, not local, not integrally closed: 
+\begin{itemize}
+\item $k[X^2,X^3]$
+\item $\Z[\sqrt{5}]$ 
+\end{itemize}
+
+\item Local, not integrally closed:
+\begin{itemize}
+\item $k[X^2,X^3]_{(X^2,X^3)}$
+\item $k\lps X^2, X^3 \rps$
+\end{itemize}
+
+
+\item A Dedekind domain, not a UFD and hence not local: 
+\begin{itemize}
+\item $\Z[\sqrt{-5}]$
+\end{itemize}
+
+\item A PID but not local: 
+\begin{itemize}
+\item $\Z$
+\item $k[X]$
+\item $\Z[i]$
+\end{itemize}
+
+\item A DVR, not a field:  
+\begin{itemize}
+\item $\Z_{(p)}$
+\item $k[X]_{(X)}$
+\end{itemize}
+
+
+\item A field: 
+\begin{itemize}
+\item $k$
+\item $\Q$
+\item $\R$ 
+\item $\C$ 
+\item $\Z/p\Z$
+\end{itemize}
+\end{enumerate}
+
+
+
+\section{Table of invariances}
+
+The table below summarizes those basic properties of commutative rings
+that are and are not preserved under the basic operations on rings.
+For example, the symbol \ding{51} that appears in the upper left box
+means that if $R$ is Noetherian, then $R[X]$ is Noetherian as well.
+An \ding{54} in the table merely means ``not in general.''
+
+\begin{center}
+\begin{tabular}{| c || c | c | c | c | c | c | c | c|}
+\multicolumn{1}{c}{$R$}&   \multicolumn{1}{c}{$R[X]$} &    \multicolumn{1}{c}{$R\lps X\rps$} &    \multicolumn{1}{c}{$R/I$} &    \multicolumn{1}{c}{$R/\p$} &    \multicolumn{1}{c}{$U^{-1}R$}  & \multicolumn{1}{c}{$R_\p$} &   \multicolumn{1}{c}{$\hat{R}$} &    \multicolumn{1}{c}{$\tilde{R}$}   \\ \hline \hline
+Noetherian        & \ding{51}& \ding{51}& \ding{51}& \ding{51}& \ding{51}& \ding{51}& \ding{51} & \ding{54} \\\hline  
+local             & \ding{54}& \ding{51}& \ding{51}& \ding{51}& \ding{54} & \ding{51} & \ding{51} & \ding{54}  \\\hline  
+local and complete & \ding{54}& \ding{51}& \ding{51}& \ding{51}& \ding{54} & \ding{54} & \ding{51} & \ding{51} \\\hline  
+normal domain     & \ding{51}& \ding{51}& \ding{54}& \ding{54}& \ding{51}& \ding{51} & \ding{54}& \ding{51}\\\hline  
+Dedekind domain   & \ding{54}& \ding{54}& \ding{54}& \ding{51}& \ding{51}& \ding{51}& \ding{54} & \ding{51} \\\hline  
+UFD               & \ding{51}& \ding{54}& \ding{54}& \ding{54}& \ding{51}& \ding{51}& \ding{54} & \ding{51}\\\hline  
+PID               & \ding{54}& \ding{54}& \ding{54}& \ding{51}& \ding{51}& \ding{51}& \ding{54}& \ding{51} \\\hline  
+DVR or a field    & \ding{54}& \ding{54}& \ding{54}& \ding{51}& \ding{51}& \ding{51} & \ding{51}& \ding{51} \\\hline
+\end{tabular}
+\end{center}
+
+
+
+\noindent In the above table, $\hat{R}$ denotes the completion of $R$ with
+respect to some ideal $I$ which is taken to be the unique maximal
+ideal if $R$ is local.  Local, as throughout these notes, is taken to
+mean Noetherian and local.  For the third and fourth columns $I$
+denotes an arbitrary ideal of $R$ while $\p$ denotes a prime ideal.
+Lastly, $\tilde{R}$ denotes the integral closure of $R$, which is
+assumed to be a domain in this column.
+
+
+
+\end{document}
