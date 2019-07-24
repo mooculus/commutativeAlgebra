@@ -20,7 +20,7 @@ from \cite{sD2008}.
               & &         & \text{DVR} \ar[Rightarrow,rrdd]\ar[Rightarrow,ld] &    &                 \\   
 & & \text{PID} \ar[Rightarrow,rd]\ar[Rightarrow,ld] &  &                                   & \\
 & \text{UFD} \ar[Rightarrow,ld] &   & \text{DD} \ar[Rightarrow,rd] &   & \text{LR} \ar[Rightarrow,ld] \\
-\text{ND} & & & & \text{NR} &                            
+\text{ICD} & & & & \text{NR} &                            
 \end{tikzcd}                 
 \]
 
@@ -31,13 +31,13 @@ from \cite{sD2008}.
 \item[PID] Principal Ideal Domain\index{PID}\index{principal ideal domain}
 \item[DD] Dedekind Domain\index{Dedekind domain}
 \item[UFD] Unique Factorization Domain\index{UFD}\index{unique factorization domain}
-\item[ND] Normal Domain\index{normal domain} (Noetherian Integrally Closed Domain)
+\item[ICD] Integrally Closed Domain, also known as a Normal Domain\index{normal domain}
 \item[LR] Local Ring\index{local ring}
 \item[NR] Noetherian ring\index{Noetherian!ring}
 \end{itemize}
 
 
-
+\newpage
 
 \section{Diagram and examples of domains}
 
@@ -48,81 +48,70 @@ All rings are assumed to be domains in the diagram below:
 
 \[
 \begin{tikzpicture}
-\draw[rounded corners] (0,0) rectangle (2,1);
-\node at (1,.5) {Field};
+\draw[rounded corners] (10,10) rectangle (12,11);
+\node at (11,10.5) {Field \ref{A:field}};
+
+\draw[rounded corners] (9.7,9.7) rectangle (12.3,12);
+\node at (11,11.5) {DVR \ref{A:dvr}};
+
+\draw[rounded corners] (9.4,9.4) rectangle (12.6,13);
+\node at (11,12.6) {PID \ref{A:pid}};
+
+\draw[rounded corners] (9.1,9.1) rectangle (12.9,14);
+\node at (11,13.6) {Dedekind Domain \ref{A:dd}};
+
+\draw[rounded corners] (7,8.1) rectangle (13.8,13.3);
+\node at (8,12.6) {UFD \ref{A:ufd}};
+
+\draw[rounded corners] (4.7
+,8.8) rectangle (13.2,12.3);
+\node at (5.7,11.5) {Local \ref{A:l}};
+
+\draw[rounded corners] (4.4,7.5) rectangle (13.5,15);
+\node at (6,14.6) {Noetherian \ref{A:n}};
+
+\draw[rounded corners] (6.7,6.7) rectangle (14.1,14.3);
+\node at (11,7) {Integrally Closed \ref{A:ic}};
+
+\node at (5.5,7) {Domain \ref{A:domain}};
+
+
+
 \end{tikzpicture}
 \]
 
 
-\newpage
+\noindent In the examples below, $k$ represents any field and $p\in\Z$
+represents a prime number.
 
-\noindent In the examples below, $k$
-represents any field and $\m$ represents any maximal ideal in the
-given ring.
-
-
+\begin{multicols}{2}
 \begin{enumerate}
-
-\item Not Noetherian, not integrally closed:
-\begin{itemize}
-\item $k[X^2,X^3,Y_1,Y_2,Y_3,\ldots]$
-\end{itemize}
-
-\item Integrally closed, not a UFD, not Noetherian:
-\begin{itemize}
-\item $\Z[2X,2X^2,2X^3,\ldots]$
-\item $k[U,V,Y,Z,X_1,X_2,X_3,\ldots]/(UV - YZ)$
-\end{itemize}
-For further information, see \cite{hH1981}.
-
-\item A UFD but not Noetherian:
-\begin{itemize}
-\item $k[X_1,X_2,X_3,\ldots]$ 
-\end{itemize}
-
-\item Noetherian, not local, not integrally closed: 
-\begin{itemize}
-\item $k[X^2,X^3]$
-\item $\Z[\sqrt{5}]$ 
-\end{itemize}
-
-\item Local, not integrally closed:
-\begin{itemize}
-\item $k[X^2,X^3]_{(X^2,X^3)}$
-\item $k\lps X^2, X^3 \rps$
-\end{itemize}
+\item\label{A:domain} Not Noetherian, not integrally closed:
+$k[X^2,X^3,Y_1,Y_2,Y_3,\ldots]$.
 
 
-\item A Dedekind domain, not a UFD and hence not local: 
-\begin{itemize}
-\item $\Z[\sqrt{-5}]$
-\end{itemize}
+\item\label{A:ic} Integrally closed, not a UFD, not Noetherian:
+  $\Z[2X,2X^2,2X^3,\ldots]$, $k[U,V,Y,Z,X_1,X_2,X_3,\ldots]/(UV -
+  YZ)$.  For further information, see \cite{hH1981}.
 
-\item A PID but not local: 
-\begin{itemize}
-\item $\Z$
-\item $k[X]$
-\item $\Z[i]$
-\end{itemize}
+\item\label{A:ufd} A UFD but not Noetherian: $k[X_1,X_2,X_3,\ldots]$.
 
-\item A DVR, not a field:  
-\begin{itemize}
-\item $\Z_{(p)}$
-\item $k[X]_{(X)}$
-\end{itemize}
+\item\label{A:n} Noetherian, not local, not integrally closed: $k[X^2,X^3]$, $\Z[\sqrt{5}]$. 
 
+\item\label{A:l} Local, not integrally closed: $k[X^2,X^3]_{(X^2,X^3)}$, $k\lps X^2, X^3 \rps$.
 
-\item A field: 
-\begin{itemize}
-\item $k$
-\item $\Q$
-\item $\R$ 
-\item $\C$ 
-\item $\Z/p\Z$
-\end{itemize}
+\item\label{A:dd} A Dedekind domain, not a UFD and hence not local: $\Z[\sqrt{-5}]$.
+
+\item\label{A:pid} A PID but not local: $\Z$, $k[X]$, $\Z[i]$.
+
+\item\label{A:dvr} A DVR, not a field: $\Z_{(p)}$, $k[X]_{(X)}$.
+
+\item\label{A:field} A field: $k$, $\Q$, $\R$, $\C$, $\Z/p\Z$.
+
 \end{enumerate}
+\end{multicols}
 
-
+\newpage
 
 \section{Table of invariances}
 
