@@ -41,15 +41,14 @@ from \cite{sD2008}.
 
 \section{Diagram and examples of domains}
 
-All rings are assumed to be domains in the diagram below:
-%% \[
-%% \includegraphics[width=12cm]{venn.eps}
-%% \]
+%All rings are assumed to be domains in the diagram below:
 
 \[
 \begin{tikzpicture}
 \draw[rounded corners] (10,10) rectangle (12,11);
 \node at (11,10.5) {Field \ref{A:field}};
+
+\node at(7.3,10.5) {\ref{A:nil}};
 
 \draw[rounded corners] (9.7,9.7) rectangle (12.3,12);
 \node at (11,11.5) {DVR \ref{A:dvr}};
@@ -57,17 +56,20 @@ All rings are assumed to be domains in the diagram below:
 \draw[rounded corners] (9.4,9.4) rectangle (12.6,13);
 \node at (11,12.6) {PID \ref{A:pid}};
 
+\node at (8.5,12.6) {\ref{A:ni}};
+
 \draw[rounded corners] (9.1,9.1) rectangle (12.9,14);
 \node at (11,13.6) {Dedekind Domain \ref{A:dd}};
 
-\draw[rounded corners] (7,8.1) rectangle (13.8,13.3);
-\node at (8,12.6) {UFD \ref{A:ufd}};
+\node at (7.3,13.6) {\ref{A:nu}};
 
-\draw[rounded corners] (3.7
-,8.8) rectangle (13.2,12.3);
-\node at (5.3,11.5) {Local Domain \ref{A:l}};
+\draw[rounded corners] (8,7.5) rectangle (13.8,13.3); \node at
+(11,8) {UFD \ref{A:ufd}};
 
-\draw[rounded corners] (3.4,7.5) rectangle (13.5,15);
+\draw[rounded corners] (3.7,8.8) rectangle (13.2,12.3);
+\node at (5.2,11.5) {Local Domain \ref{A:l}};
+
+\draw[rounded corners] (3.4,8.5) rectangle (13.5,15);
 \node at (5.3,14.6) {Noetherian Domain \ref{A:n}};
 
 \draw[rounded corners] (6.7,6.7) rectangle (14.1,14.3);
@@ -93,7 +95,7 @@ $k[X^2,X^3,Y_1,Y_2,Y_3,\ldots]$.
 
 \item\label{A:ic} Integrally closed, not a UFD, not Noetherian:
   $\Z[2X,2X^2,2X^3,\ldots]$, $k[U,V,Y,Z,X_1,X_2,X_3,\ldots]/(UV -
-  YZ)$.  For further information, see \cite{hH1981}.
+  YZ)$.  See \cite{hH1981}.
 
 \item\label{A:ufd} A UFD but not Noetherian: $k[X_1,X_2,X_3,\ldots]$.
 
@@ -101,6 +103,19 @@ $k[X^2,X^3,Y_1,Y_2,Y_3,\ldots]$.
 
 \item\label{A:l} Local, not integrally closed: $k[X^2,X^3]_{(X^2,X^3)}$, $k\lps X^2, X^3 \rps$.
 
+\item\label{A:ni} Noetherian, integrally closed, not a UFD, not local:
+  $k[W,X,Y,Z]/(WX - YZ)$, $\R[W,X,Y,Z]/(X^2 + Y^2 + Z^2 - W^2)$. See
+  \cite{hH1981}.
+
+\item\label{A:nil} Local, integrally closed, not a UFD:
+  $\left(k[W,X,Y,Z]/(WX - YZ)\right)_{(W,X,Y,Z)}$, $k\lps W,X,Y,Z \rps
+  / (WX - YZ)$. See \cite{hH1981}.
+
+
+\item\label{A:nu} Noetherian, a UFD, not local: $k[V,W,X,Y,Z]/(V^2 +
+  W^2 + X^2 + Y^2 + Z^2)$, $\R[W,X,Y,Z]/(W^2 + X^2 + Y^2 + Z^2)$. See
+  \cite{hH1981}.
+  
 \item\label{A:dd} A Dedekind domain, not a UFD and hence not local: $\Z[\sqrt{-5}]$.
 
 \item\label{A:pid} A PID but not local: $\Z$, $k[X]$, $\Z[i]$.
