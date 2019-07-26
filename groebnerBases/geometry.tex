@@ -8,8 +8,26 @@
 
 \begin{document}
 \begin{abstract}
+    We use Gr\"obner bases to prove theorems in Euclidean
+    geometry. Sources and references: \cite{CLO2007}.
 \end{abstract}
 \maketitle
+
+\begin{macaulay2}
+R = QQ[x_1,x_2,x_3,x_4,u_1,u_2,u_3];
+h1 = x_2-u_3;
+h2 = (x_1-u_1)*u_3-u_2*x_2;
+h3 = x_4*x_1-x_3*u_3;
+h4 = x_4*(u_2-u_1) - (x_3-u_1)*u_3;
+g = x_1^2 -2*x_1*x_3-2*x_4*x_2 + x_2^2;
+I = ideal(h1,h2,h3,h4)
+g%I
+pd=primaryDecomposition I
+apply(pd,i -> transpose gens i)
+I' = first primaryDecomposition I
+g%I'
+\end{macaulay2}
+
 
 [This section has yet to be written.]
 

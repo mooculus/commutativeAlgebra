@@ -96,11 +96,53 @@
 \end{theorem}
 
 
-\section{Understanding $p$-adic numbers}
+\section{Understanding \textit{p}-adic numbers}
 
-[This section has yet to be written.]
+We started this section with an algorithm for solving equations. This
+algorithm is essentially Hensel's lemma. Thanks to Aziz Burak G\"ulen
+for suggesting this approach.
+
+\begin{corollary}[Hensel's lemma, \textit{p}-adic version]
+  Let $f\in\Z[X]$ be a nonzero monic polynomial. Let $p$ be a prime in
+  $\Z$ and $a_1$ be an integer such that
+  \[
+  f(a_1) \equiv 0 \pmod{p}\quad\text{with}\quad f'(a_1) \not\equiv 0\pmod{p}.
+  \]
+  Then there exists a sequence of integers $(a_1,a_2,\dots)$
+  satisfying
+  \[
+  f(a_i) \equiv 0 \pmod{p^i}\quad\text{with}\quad a_{i+1} \equiv
+  a_i\pmod{p^{i}}.
+  \]
+  The value of $a_i$ is determined uniquely modulo $p^i$.
+  \begin{proof}
+    Consider $f\in\Z[X]$. We will localize at a prime $p$ and complete to
+    find
+    \[
+    f\in \Z[X] \subset \hat{\Z}_{(p)}[X].
+    \]
+    Now, suppose $\bar{f}(a_1) = (X-a_1)\cdot h(x)$ in
+    $\Z/p\Z[X]$. Since $a_1$ is not a root of $f'$, $(X-a_1)$ and
+    $h(X)$ have no common factors, so
+    \[
+    (X-a_1,h(X) = \Z/p\Z[X].
+    \]
+    by Hensel's lemma, $f = (X-a_1)h(X)$ in
+    $\hat{\Z}_{(p)}[X]$. Iteratively repeating this process, we find a
+    sequence of integers $(a_1,a_2,\dots)$ in $\hat{\Z}_{(p)}$
+    corresponding to a solution in the $p$-adic integers.
+  \end{proof}
+\end{corollary}
+
+This is the algorithm we used at the beginning of the section.
+
+
+[Add a picture of $\hat{\Z}_{(3)}$.]
 
 \section{Understanding the geometric case}
+
+We will show how the prime spectrum changes upon completion.
+
 
 [This section has yet to be written.]
 

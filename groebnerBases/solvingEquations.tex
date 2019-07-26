@@ -8,8 +8,28 @@
 
 \begin{document}
 \begin{abstract}
+  We use Gr\"obner bases to solve equations. Sources and references:
+  \cite{CLO2007,hS2003}.
 \end{abstract}
 \maketitle
+
+\begin{definition}
+  Let $I\subset k[x_1,\dots,x_n]$ be an ideal. The $m$th
+  \dfn{elimination ideal} is defined as
+  \[
+  _mI := I \cap k[x_{m+1},\dots, x_n].
+  \]
+\end{definition}
+
+\begin{theorem}
+  Let $I\subset k[x_1,\dots,x_n]$ be an ideal and $G = \{g_1,\dots,
+  g_l\}$ be a Gr\"obner basis for $I$ with respect to \texttt{Lex}
+  order. In this case
+  \[
+  _m G = G \cap k[x_{m+1},\dots, x_n]
+  \]
+  is a Gr\"obner basis for $_m I$.
+\end{theorem}
 
 [This section has yet to be written.]
 
