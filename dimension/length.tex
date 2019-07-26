@@ -142,6 +142,32 @@ This approach generalizes the idea of vector-space dimension to modules.
 
 
 
+\begin{corollary}
+  Given a ring $A$, $\l(A)<\infty$ $A$ if and only if $A$ is an
+  Artinian ring.
+  \begin{proof}
+    $(\Rightarrow)$ Use the above corollary on $M = A$.
+
+    $(\Leftarrow)$ Suppose that $A$ is Artinian, WLOG we may localize
+    at a maximal ideal (localization preserves chains) and consider
+    $(A,\m)$. Consider the chain:
+    \[
+    \m\supset \m^2\supset \dots
+    \]
+    Since $A$ is Artinian, there exists $n$ such that
+    \[
+    \m^n = \m^{n+1}
+    \]
+    so by Nakayama's lemma, Theorem~\ref{NAK},\index{Nakayama's lemma}
+      $\m^n = 0$.  Hence we get a maximal chain
+      \[
+      A = \m^0 \supsetneq \m^2 \supsetneq\dots \supsetneq \m^n = 0
+      \]
+      Since all composition series have the same length,
+      $\l(A)<\infty$.
+  \end{proof}
+\end{corollary}
+
 
 
 \begin{exercise}
@@ -164,10 +190,6 @@ This approach generalizes the idea of vector-space dimension to modules.
   \{\m\}$.
 \end{exercise}
 
-
-\begin{exercise}
-  Show that $A$ is an artinian ring if and only if $\l(A)<\infty$.
-\end{exercise}
 
 %% \begin{theorem}[Akizuki]
 %%   A ring $R$ is Artinian if and only if $R$ is Noetherian and $\dim(R)
